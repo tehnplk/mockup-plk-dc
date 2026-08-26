@@ -1,7 +1,7 @@
 import Link from "next/link";
 import PhoneShell, { Sheet, Row } from "@/components/PhoneShell";
 import { Icon } from "@/components/icons";
-import { Chip, Progress } from "@/components/ui";
+import { Chip, Progress, initial } from "@/components/ui";
 import { TEAM_MEMBERS } from "@/lib/mock";
 import { FIELD_TABS } from "../tabs";
 
@@ -77,7 +77,7 @@ export default function MePage() {
                   className="grid place-items-center rounded-full w-9 h-9 text-[12px] font-bold"
                   style={{ background: "#ffedd5", color: "#ea580c" }}
                 >
-                  {m.name.slice(-3, -2)}
+                  {initial(m.name)}
                 </span>
                 <span
                   className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-white"

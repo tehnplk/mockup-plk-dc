@@ -151,8 +151,14 @@ export function Progress({
   );
 }
 
+export function initial(name: string) {
+  return (
+    name.replace(/^(นพ\.|พญ\.|ภก\.|ภญ\.|ทพ\.|น\.ส\.|นางสาว|นาย|นาง)\s*/, "").trim()[0] ??
+    "?"
+  );
+}
+
 export function Avatar({ name, size = 32 }: { name: string; size?: number }) {
-  const initial = name.replace(/^(นพ\.|ภญ\.|น\.ส\.|นาย|นาง)/, "").trim()[0] ?? "?";
   return (
     <span
       className="grid place-items-center rounded-full font-semibold shrink-0"
@@ -164,7 +170,7 @@ export function Avatar({ name, size = 32 }: { name: string; size?: number }) {
         color: "var(--accent)",
       }}
     >
-      {initial}
+      {initial(name)}
     </span>
   );
 }
@@ -373,29 +379,28 @@ export function Donut({
   const total = slices.reduce((a, s) => a + s.value, 0);
   const r = 42;
   const c = 2 * Math.PI * r;
-  let acc = 0;
+  const arcs = slices.map((s, i) => ({
+    ...s,
+    frac: s.value / total,
+    offset: slices.slice(0, i).reduce((a, p) => a + p.value, 0) / total,
+  }));
   return (
     <div className="flex items-center gap-5 flex-wrap">
       <svg viewBox="0 0 100 100" style={{ width: size, height: size }}>
         <g transform="rotate(-90 50 50)">
-          {slices.map((s) => {
-            const frac = s.value / total;
-            const el = (
-              <circle
-                key={s.label}
-                cx="50"
-                cy="50"
-                r={r}
-                fill="none"
-                stroke={s.color}
-                strokeWidth="13"
-                strokeDasharray={`${frac * c} ${c}`}
-                strokeDashoffset={-acc * c}
-              />
-            );
-            acc += frac;
-            return el;
-          })}
+          {arcs.map((s) => (
+            <circle
+              key={s.label}
+              cx="50"
+              cy="50"
+              r={r}
+              fill="none"
+              stroke={s.color}
+              strokeWidth="13"
+              strokeDasharray={`${s.frac * c} ${c}`}
+              strokeDashoffset={-s.offset * c}
+            />
+          ))}
         </g>
         {center && (
           <>

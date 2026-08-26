@@ -1,7 +1,7 @@
 import Link from "next/link";
 import PhoneShell, { Sheet, Row } from "@/components/PhoneShell";
 import { Icon } from "@/components/icons";
-import { Chip } from "@/components/ui";
+import { Chip, initial } from "@/components/ui";
 
 export default function FieldCaseDetail() {
   return (
@@ -125,7 +125,7 @@ export default function FieldCaseDetail() {
                 className="grid place-items-center rounded-full w-8 h-8 text-[12px] font-bold shrink-0"
                 style={{ background: "#ffedd5", color: "#ea580c" }}
               >
-                {String(n).slice(-3, -2)}
+                {initial(String(n))}
               </span>
               <span className="min-w-0">
                 <span className="block text-[12.5px] font-semibold truncate">{n}</span>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Icon, type IconName } from "./icons";
+import { initial } from "./ui";
 
 export type NavItem = { href: string; label: string; icon: IconName; badge?: string };
 
@@ -141,7 +142,7 @@ export default function DesktopShell({
                     color: "var(--accent)",
                   }}
                 >
-                  {user.name.slice(-2, -1)}
+                  {initial(user.name)}
                 </span>
                 <span className="hidden sm:block leading-tight">
                   <span className="block text-[12.5px] font-semibold">{user.name}</span>

@@ -6,7 +6,7 @@ import { CASES, severityTone, stageTone } from "@/lib/mock";
 import { FIELD_TABS } from "./tabs";
 
 export default function FieldInbox() {
-  const incoming = CASES.filter((c) => c.stage === "รอรับเคส");
+  const incoming = [CASES[0], CASES[7], CASES[3]];
   const mine = CASES.filter((c) => c.stage === "รับเคสแล้ว" || c.stage === "ลงพื้นที่");
 
   return (
@@ -47,7 +47,7 @@ export default function FieldInbox() {
           </Chip>
         </div>
 
-        {[...incoming, CASES[7], CASES[3]].slice(0, 3).map((c, i) => (
+        {incoming.map((c, i) => (
           <article
             key={c.id + i}
             className="bg-surface rounded-2xl border border-line-brd mb-3 overflow-hidden"

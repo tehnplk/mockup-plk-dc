@@ -6,15 +6,16 @@ import { DISTRICT_LOAD } from "@/lib/mock";
 const VALUES = Object.fromEntries(DISTRICT_LOAD.map((d) => [d.d, d.n]));
 
 const PINS = [
-  { d: "เมืองพิษณุโลก", x: 96, y: 168, color: "#b91c1c", size: 7 },
-  { d: "เมืองพิษณุโลก", x: 108, y: 182, color: "#b91c1c", size: 5 },
-  { d: "วังทอง", x: 124, y: 194, color: "#dc2626", size: 6 },
-  { d: "บางระกำ", x: 44, y: 186, color: "#ea580c", size: 5 },
-  { d: "พรหมพิราม", x: 56, y: 122, color: "#f59e0b", size: 5 },
-  { d: "นครไทย", x: 138, y: 62, color: "#059669", size: 4 },
-  { d: "วัดโบสถ์", x: 130, y: 126, color: "#2563eb", size: 4 },
-  { d: "บางกระทุ่ม", x: 74, y: 240, color: "#d97706", size: 4 },
-  { d: "เนินมะปราง", x: 166, y: 196, color: "#7c3aed", size: 4 },
+  { d: "เมืองพิษณุโลก", x: 78, y: 148, color: "#b91c1c", size: 6 },
+  { d: "เมืองพิษณุโลก", x: 112, y: 190, color: "#b91c1c", size: 5 },
+  { d: "วังทอง", x: 140, y: 224, color: "#dc2626", size: 6 },
+  { d: "บางระกำ", x: 26, y: 208, color: "#ea580c", size: 5 },
+  { d: "พรหมพิราม", x: 34, y: 128, color: "#f59e0b", size: 5 },
+  { d: "นครไทย", x: 160, y: 34, color: "#059669", size: 4 },
+  { d: "วัดโบสถ์", x: 154, y: 128, color: "#2563eb", size: 4 },
+  { d: "บางกระทุ่ม", x: 52, y: 258, color: "#d97706", size: 4 },
+  { d: "เนินมะปราง", x: 180, y: 214, color: "#7c3aed", size: 4 },
+  { d: "ชาติตระการ", x: 40, y: 34, color: "#7c3aed", size: 4 },
 ];
 
 export default function DashboardMap() {

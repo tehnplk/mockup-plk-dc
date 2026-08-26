@@ -23,7 +23,7 @@ export default function FlexChat() {
         </p>
 
         {/* system text bubble */}
-        <div className="flex gap-2 items-end mb-4">
+        <div className="flex gap-2 items-start mb-4">
           <span
             className="grid place-items-center rounded-full w-8 h-8 shrink-0 text-white text-[11px] font-bold"
             style={{ background: "#06c755" }}
@@ -43,7 +43,7 @@ export default function FlexChat() {
         </div>
 
         {/* flex bubble — pending */}
-        <div className="flex gap-2 items-end mb-4">
+        <div className="flex gap-2 items-start mb-4">
           <span className="w-8 shrink-0" />
           <div>
             <FlexCard width={268} />
@@ -65,7 +65,7 @@ export default function FlexChat() {
         </div>
 
         {/* confirmation */}
-        <div className="flex gap-2 items-end mt-4 mb-4">
+        <div className="flex gap-2 items-start mt-4 mb-4">
           <span
             className="grid place-items-center rounded-full w-8 h-8 shrink-0 text-white text-[11px] font-bold"
             style={{ background: "#06c755" }}
@@ -98,7 +98,7 @@ export default function FlexChat() {
         <p className="text-center text-[11px] text-white/95 font-semibold my-4">
           เมื่อวาน
         </p>
-        <div className="flex gap-2 items-end mb-4">
+        <div className="flex gap-2 items-start mb-4">
           <span
             className="grid place-items-center rounded-full w-8 h-8 shrink-0 text-white text-[11px] font-bold"
             style={{ background: "#06c755" }}
