@@ -1,13 +1,14 @@
 import { PageHead } from "@/components/DesktopShell";
 import { Card, Chip, Stat, Progress } from "@/components/ui";
 import { Icon } from "@/components/icons";
+import PublicFlexCard from "@/components/PublicFlexCard";
 
 export default function Broadcast() {
   return (
     <>
       <PageHead
         title="แจ้งข่าวประชาชนในพื้นที่ระบาดด้วยไลน์หมอพร้อม"
-        desc="ส่งข้อความถึงประชาชนที่ผูกบัญชีหมอพร้อมและมีที่อยู่อยู่ในพื้นที่เป้าหมาย"
+        desc="ส่งข้อความถึงประชาชนในเขต รพ.สต.บ้านคลอง ที่ผูกบัญชีหมอพร้อมและมีที่อยู่ในพื้นที่เป้าหมาย"
         actions={
           <>
             <button className="btn btn-sm">
@@ -22,7 +23,7 @@ export default function Broadcast() {
       />
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4 mb-5">
-        <Stat label="ผู้รับที่เข้าเกณฑ์" value="12,480" unit="คน" icon="users" />
+        <Stat label="ผู้รับที่เข้าเกณฑ์" value="1,840" unit="คน" icon="users" />
         <Stat label="ส่งแล้วเดือนนี้" value={7} unit="ครั้ง" icon="megaphone" />
         <Stat label="อัตราการเปิดอ่านเฉลี่ย" value="76" unit="%" icon="chat" tone="var(--ok)" />
         <Stat label="กดดูรายละเอียดต่อ" value="31" unit="%" icon="link" tone="var(--info)" />
@@ -121,7 +122,7 @@ export default function Broadcast() {
                       );
                     })}
                     <text x="10" y="163" fontSize="9" fill="#475569">
-                      ผู้รับในรัศมี 500 ม. · 12,480 คน
+                      ผู้รับในรัศมี 500 ม. · 1,840 คน
                     </text>
                   </svg>
                 </div>
@@ -184,17 +185,26 @@ export default function Broadcast() {
                 <textarea
                   className="inp min-h-[120px] resize-none"
                   readOnly
-                  defaultValue={`เรียน พี่น้องประชาชน ต.ในเมือง อ.เมืองพิษณุโลก
+                  defaultValue={`เรียน พี่น้องประชาชน ม.4 บ้านคลองใหม่ ต.บ้านคลอง
 
-ขณะนี้พบผู้ป่วยไข้เลือดออกในพื้นที่ของท่าน 9 ราย ขอความร่วมมือ
+ขณะนี้พบผู้ป่วยไข้เลือดออกในพื้นที่ของท่าน 6 ราย ขอความร่วมมือ
 • สำรวจและทำลายแหล่งเพาะพันธุ์ยุงลายรอบบ้านทุก 7 วัน
 • ปิดฝาภาชนะเก็บน้ำให้มิดชิด คว่ำภาชนะที่ไม่ใช้
 • นอนในมุ้งหรือห้องที่มีมุ้งลวด ทายากันยุง
 • หากมีไข้สูงเกิน 2 วัน อย่าซื้อยากลุ่ม NSAIDs กินเอง ให้รีบพบแพทย์
 
-สอบถามเพิ่มเติม: รพ.สต.ในเมือง หรือสายด่วนกรมควบคุมโรค 1422`}
+สอบถามเพิ่มเติม: รพ.สต.บ้านคลอง หรือสายด่วนกรมควบคุมโรค 1422`}
                 />
               </div>
+              <div>
+                <span className="lbl">ผู้ส่ง (แสดงเป็น footer บนการ์ด)</span>
+                <div className="grid gap-2.5 sm:grid-cols-3">
+                  <input className="inp" readOnly defaultValue="นายวิรัตน์ สุขเกษม" />
+                  <input className="inp" readOnly defaultValue="ผอ.รพ.สต.บ้านคลอง" />
+                  <input className="inp" readOnly defaultValue="สสอ.เมืองพิษณุโลก" />
+                </div>
+              </div>
+
               <div>
                 <span className="lbl">ปุ่มบนข้อความ</span>
                 <div className="flex flex-wrap gap-2">
@@ -217,45 +227,24 @@ export default function Broadcast() {
         {/* preview + history */}
         <div className="grid gap-4 content-start">
           <Card title="ตัวอย่างบนไลน์หมอพร้อม" icon="chat">
-            <div className="rounded-2xl p-4" style={{ background: "#8ab4d8" }}>
-              <div className="flex gap-2 items-end">
-                <span
-                  className="grid place-items-center rounded-full w-8 h-8 shrink-0 text-white text-[11px] font-bold"
-                  style={{ background: "#06c755" }}
-                >
-                  พร้
-                </span>
-                <div className="rounded-2xl rounded-bl-sm bg-white p-3 max-w-[250px]">
-                  <p className="text-[12px] font-bold text-[#b91c1c] flex items-center gap-1.5">
-                    <Icon name="bell" size={13} /> แจ้งเตือนพื้นที่ระบาด
-                  </p>
-                  <p className="text-[11.5px] leading-relaxed mt-1.5 text-[#334155]">
-                    พื้นที่ของท่านพบผู้ป่วยไข้เลือดออก 9 ราย ขอความร่วมมือสำรวจและทำลาย
-                    แหล่งเพาะพันธุ์ยุงลายรอบบ้านทุก 7 วัน หากมีไข้สูงเกิน 2 วัน รีบพบแพทย์
-                  </p>
-                  <div className="grid gap-1.5 mt-2.5">
-                    {["ดูวิธีป้องกันโรค", "แจ้งพบแหล่งลูกน้ำ", "ประเมินอาการตนเอง"].map((b) => (
-                      <button
-                        key={b}
-                        className="w-full rounded-lg py-2 text-[11.5px] font-semibold border border-[#e2e8f0] text-[#334155]"
-                      >
-                        {b}
-                      </button>
-                    ))}
-                  </div>
-                </div>
+            <div className="rounded-2xl p-4 flex justify-center" style={{ background: "#8ab4d8" }}>
+              <div>
+                <p className="text-[10.5px] text-white/90 mb-1.5 text-center">วันนี้ 09:41</p>
+                <PublicFlexCard width={258} />
               </div>
-              <p className="text-[10px] text-white/90 mt-1.5 ml-10">09:41</p>
             </div>
+            <p className="sub mt-3">
+              การ์ดมี footer ระบุชื่อ ตำแหน่ง และหน่วยงานผู้ส่ง เพื่อให้ประชาชนตรวจสอบแหล่งที่มาได้
+            </p>
           </Card>
 
           <Card title="ประวัติการส่งล่าสุด" icon="clock" pad={false}>
             <ul>
               {[
-                ["เตือนภัยไข้เลือดออก ต.ในเมือง", "24 ส.ค.", "12,480", 78],
-                ["รณรงค์ 3 เก็บ 3 โรค", "18 ส.ค.", "38,200", 71],
-                ["แจ้งพบมือเท้าปาก ศูนย์เด็กเล็ก", "12 ส.ค.", "4,120", 84],
-                ["ประชาสัมพันธ์ฉีดวัคซีนไข้หวัดใหญ่", "5 ส.ค.", "42,180", 62],
+                ["เตือนภัยไข้เลือดออก ม.4 บ้านคลองใหม่", "24 ส.ค.", "1,840", 78],
+                ["รณรงค์ 3 เก็บ 3 โรค ทั้งตำบล", "18 ส.ค.", "5,120", 71],
+                ["แจ้งพบมือเท้าปาก ศูนย์เด็กเล็ก ม.7", "12 ส.ค.", "480", 84],
+                ["ประชาสัมพันธ์ฉีดวัคซีนไข้หวัดใหญ่", "5 ส.ค.", "5,120", 62],
               ].map(([n, d, r, open]) => (
                 <li key={String(n)} className="px-4 py-3 border-b border-line-brd last:border-0">
                   <div className="flex items-center gap-2">

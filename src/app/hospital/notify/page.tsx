@@ -141,13 +141,25 @@ export default function NotifyPage() {
                 />
               </div>
               <div className="sm:col-span-2">
+                <span className="lbl">ผู้ส่ง (แสดงเป็น footer บนการ์ด)</span>
+                <div className="grid gap-2.5 sm:grid-cols-3">
+                  <input className="inp" readOnly defaultValue="พญ.นภัสสร ชัยวัฒน์" />
+                  <input className="inp" readOnly defaultValue="แพทย์เวรควบคุมโรค" />
+                  <input className="inp" readOnly defaultValue="รพ.พุทธชินราช พิษณุโลก" />
+                </div>
+                <p className="sub mt-1.5">
+                  ชื่อ · ตำแหน่ง · หน่วยงาน — ผู้รับจะเห็นว่าใครเป็นผู้ส่งข้อความนี้
+                </p>
+              </div>
+
+              <div className="sm:col-span-2">
                 <span className="lbl">ปุ่มบนการ์ด</span>
                 <div className="grid gap-2">
                   {[
                     ["กดรับทราบ", "บันทึกเวลารับทราบเข้าระบบติดตาม", true],
-                    ["เปิด PHR ผู้ป่วย", "ลิงก์ไปยังเอกสารในระบบจัดเก็บ", true],
+                    ["เปิดระบบงานภาคสนาม", "ลิงก์ไปยังระบบที่ 2 เพื่อรับเคสและสอบสวน", true],
                     ["ดูพิกัดบนแผนที่", "เปิดแผนที่การระบาดในบริเวณนั้น", true],
-                    ["รับเคสทันที", "เปิดแอปภาคสนามและรับเคส", false],
+                    ["โทรหาผู้แจ้งเคส", "โทรออกหาแพทย์เจ้าของเคสโดยตรง", false],
                   ].map(([n, d, on]) => (
                     <label
                       key={String(n)}

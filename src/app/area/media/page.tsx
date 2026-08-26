@@ -87,31 +87,31 @@ export default function AreaMedia() {
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="sm:col-span-2">
                 <span className="lbl">หัวเรื่อง</span>
-                <input className="inp" readOnly defaultValue="เตือนภัย! ไข้เลือดออกระบาด ต.ในเมือง" />
+                <input className="inp" readOnly defaultValue="เตือนภัย! ไข้เลือดออกระบาด ม.4 ต.บ้านคลอง" />
               </div>
               <div className="sm:col-span-2">
                 <span className="lbl">ข้อความหลัก</span>
                 <textarea
                   className="inp min-h-[86px] resize-none"
                   readOnly
-                  defaultValue="พบผู้ป่วยไข้เลือดออก 9 รายใน 4 สัปดาห์ ขอความร่วมมือประชาชนเก็บบ้าน เก็บขยะ เก็บน้ำ ทำลายแหล่งเพาะพันธุ์ยุงลายทุก 7 วัน หากมีไข้สูงเกิน 2 วัน รีบพบแพทย์ทันที"
+                  defaultValue="พบผู้ป่วยไข้เลือดออก 6 รายใน 4 สัปดาห์ ขอความร่วมมือประชาชนเก็บบ้าน เก็บขยะ เก็บน้ำ ทำลายแหล่งเพาะพันธุ์ยุงลายทุก 7 วัน หากมีไข้สูงเกิน 2 วัน รีบพบแพทย์ทันที"
                 />
               </div>
               <div>
                 <span className="lbl">หน่วยงานเจ้าของสื่อ</span>
-                <input className="inp" readOnly defaultValue="สสอ.เมืองพิษณุโลก" />
+                <input className="inp" readOnly defaultValue="รพ.สต.บ้านคลอง" />
               </div>
               <div>
                 <span className="lbl">ข้อมูลติดต่อ</span>
-                <input className="inp" readOnly defaultValue="สายด่วน 1422 · รพ.สต.ในเมือง 055-xxx-xxx" />
+                <input className="inp" readOnly defaultValue="สายด่วน 1422 · รพ.สต.บ้านคลอง 055-xxx-xxx" />
               </div>
               <div className="sm:col-span-2">
                 <span className="lbl">ข้อมูลสถานการณ์ที่ดึงมาอัตโนมัติ</span>
                 <div className="flex flex-wrap gap-2">
                   {[
-                    "ผู้ป่วยสะสม 9 ราย",
-                    "ค่า HI 22.4%",
-                    "พื้นที่ ม.4 ต.ในเมือง",
+                    "ผู้ป่วยสะสม 6 ราย",
+                    "ค่า HI 24.1%",
+                    "พื้นที่ ม.4 ต.บ้านคลอง",
                     "ข้อมูล ณ 27 ส.ค. 2569",
                   ].map((c) => (
                     <Chip key={c} bg="#ede9fe" fg="#6d28d9">
@@ -145,7 +145,7 @@ export default function AreaMedia() {
                 <circle cx="40" cy="370" r="90" fill="#00000018" />
 
                 <text x="24" y="52" fontSize="12" fill="#fecaca" fontWeight="600">
-                  สสอ.เมืองพิษณุโลก · สสจ.พิษณุโลก
+                  รพ.สต.บ้านคลอง · สสจ.พิษณุโลก
                 </text>
                 <text x="24" y="94" fontSize="28" fill="#fff" fontWeight="800">
                   เตือนภัย!
@@ -154,18 +154,18 @@ export default function AreaMedia() {
                   ไข้เลือดออกระบาด
                 </text>
                 <text x="24" y="150" fontSize="15" fill="#fde68a" fontWeight="700">
-                  ต.ในเมือง อ.เมืองพิษณุโลก
+                  ม.4 ต.บ้านคลอง อ.เมือง
                 </text>
 
                 <rect x="24" y="172" width="252" height="72" rx="10" fill="#ffffff1f" />
                 <text x="40" y="200" fontSize="26" fill="#fff" fontWeight="800">
-                  9
+                  6
                 </text>
                 <text x="72" y="200" fontSize="11" fill="#fecaca">
                   ผู้ป่วยใน 4 สัปดาห์
                 </text>
                 <text x="170" y="200" fontSize="26" fill="#fff" fontWeight="800">
-                  22.4%
+                  24.1%
                 </text>
                 <text x="170" y="216" fontSize="10" fill="#fecaca">
                   ค่าดัชนีลูกน้ำ (เกณฑ์ ≤10%)
@@ -211,11 +211,11 @@ export default function AreaMedia() {
           <Card title="ช่องทางเผยแพร่" icon="send">
             <div className="grid gap-2">
               {[
-                ["ไลน์หมอพร้อม (ประชาชนในพื้นที่)", "42,180 คน", true],
-                ["Facebook สสอ.เมืองพิษณุโลก", "8,940 คน", true],
-                ["กลุ่มไลน์ อสม. 21 รพ.สต.", "1,284 คน", true],
-                ["ป้ายไวนิลจุดชุมชน", "24 จุด", false],
-                ["เสียงตามสายหมู่บ้าน", "38 หมู่บ้าน", false],
+                ["ไลน์หมอพร้อม (ประชาชนในเขต)", "5,120 คน", true],
+                ["Facebook รพ.สต.บ้านคลอง", "1,840 คน", true],
+                ["กลุ่มไลน์ อสม. ต.บ้านคลอง", "96 คน", true],
+                ["ป้ายไวนิลจุดชุมชน", "9 จุด", false],
+                ["เสียงตามสายหมู่บ้าน", "9 หมู่บ้าน", false],
               ].map(([n, r, on]) => (
                 <label key={String(n)} className="flex items-center gap-2.5 rounded-lg border border-line-brd p-2.5">
                   <span

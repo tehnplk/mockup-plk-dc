@@ -6,10 +6,11 @@ import { Chip, initial } from "@/components/ui";
 export default function FieldCaseDetail() {
   return (
     <PhoneShell
+      url="cdc.plkhealth.go.th/field/case"
       title="PLK-6809-0142"
       subtitle="รายละเอียดเคสจากโรงพยาบาล"
       back="/field"
-      caption="ระบบงานภาคสนาม · หน้ารายละเอียดเคส"
+      caption="ระบบงานภาคสนาม · Web Mobile · หน้ารายละเอียดเคส"
       right={
         <button className="opacity-90">
           <Icon name="file" size={19} />
@@ -48,7 +49,7 @@ export default function FieldCaseDetail() {
 
         <Sheet title="ที่อยู่ขณะป่วย" action={<Chip bg="#dcfce7" fg="#15803d">มีพิกัด</Chip>}>
           <p className="text-[13px] leading-relaxed">
-            128/4 หมู่ 4 ต.ในเมือง อ.เมืองพิษณุโลก จ.พิษณุโลก 65000
+            128/4 หมู่ 4 ต.บ้านคลอง อ.เมืองพิษณุโลก จ.พิษณุโลก 65000
           </p>
           {/* mini map */}
           <div className="mt-3 rounded-xl overflow-hidden border border-line-brd">
@@ -118,7 +119,7 @@ export default function FieldCaseDetail() {
           {[
             ["พญ.นภัสสร ชัยวัฒน์", "ผู้แจ้งเคส · รพ.พุทธชินราช"],
             ["นพ.ธนากร วงศ์วิวัฒน์", "หัวหน้าทีมสอบสวน · สสจ."],
-            ["นายกิตติศักดิ์ แสงเพชร", "จพ.สาธารณสุข · รพ.สต.ในเมือง"],
+            ["นายกิตติศักดิ์ แสงเพชร", "จพ.สาธารณสุข · รพ.สต.บ้านคลอง"],
           ].map(([n, r]) => (
             <div key={String(n)} className="flex items-center gap-3 py-2.5 border-b border-line-brd last:border-0">
               <span

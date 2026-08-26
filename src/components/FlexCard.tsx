@@ -43,7 +43,7 @@ export default function FlexCard({
           {[
             ["ผู้ป่วย", "ชาย 34 ปี"],
             ["วินิจฉัย", "DHF Grade II"],
-            ["พื้นที่", "ม.4 ต.ในเมือง อ.เมือง"],
+            ["พื้นที่", "ม.4 ต.บ้านคลอง อ.เมือง"],
             ["วันเริ่มป่วย", "22 ส.ค. 2569"],
             ["ผู้สัมผัสมีอาการ", "1 ราย"],
           ].map(([k, v]) => (
@@ -66,7 +66,7 @@ export default function FlexCard({
             {acked ? "รับทราบแล้ว · 09:44 น." : "กดรับทราบ"}
           </button>
           <button className="w-full rounded-lg py-2.5 text-[12.5px] font-bold border border-[#e2e8f0] text-[#334155] flex items-center justify-center gap-1.5">
-            <Icon name="file" size={15} /> เปิด PHR ผู้ป่วย
+            <Icon name="clipboard" size={15} /> เปิดระบบงานภาคสนาม
           </button>
           <button className="w-full rounded-lg py-2.5 text-[12.5px] font-bold border border-[#e2e8f0] text-[#334155] flex items-center justify-center gap-1.5">
             <Icon name="pin" size={15} /> ดูพิกัดบนแผนที่
@@ -74,9 +74,24 @@ export default function FlexCard({
         </div>
       </div>
 
-      <p className="px-4 pb-3 text-[10px] text-[#94a3b8]">
-        ระบบสอบสวนควบคุมโรค สสจ.พิษณุโลก · ข้อมูลลับทางการแพทย์
-      </p>
+      {/* footer: ชื่อ / ตำแหน่ง / หน่วยงานผู้ส่ง */}
+      <div className="px-4 pb-3.5 pt-2.5 border-t border-[#e2e8f0] flex items-start gap-2.5">
+        <span
+          className="grid place-items-center rounded-full w-7 h-7 shrink-0 text-[11px] font-bold"
+          style={{ background: "#fee2e2", color: "#b91c1c" }}
+        >
+          น
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block text-[10.5px] text-[#94a3b8]">ผู้ส่ง</span>
+          <span className="block text-[11.5px] font-bold text-[#0f172a] leading-tight">
+            พญ.นภัสสร ชัยวัฒน์
+          </span>
+          <span className="block text-[10.5px] text-[#64748b] leading-tight">
+            แพทย์เวรควบคุมโรค · รพ.พุทธชินราช พิษณุโลก
+          </span>
+        </span>
+      </div>
     </div>
   );
 }

@@ -8,9 +8,10 @@ import { FIELD_TABS } from "../tabs";
 export default function MePage() {
   return (
     <PhoneShell
+      url="cdc.plkhealth.go.th/field/me"
       title="ทีมและโปรไฟล์"
       subtitle="ทีม SRRT อ.เมืองพิษณุโลก"
-      caption="ระบบงานภาคสนาม · ทีม/โปรไฟล์"
+      caption="ระบบงานภาคสนาม · Web Mobile · ทีม/โปรไฟล์"
       tabs={FIELD_TABS}
     >
       {/* profile head */}
@@ -22,7 +23,7 @@ export default function MePage() {
           ก
         </span>
         <p className="text-[16px] font-bold mt-3">นายกิตติศักดิ์ แสงเพชร</p>
-        <p className="text-[12px] text-muted">จพ.สาธารณสุข (SRRT) · รพ.สต.ในเมือง</p>
+        <p className="text-[12px] text-muted">จพ.สาธารณสุข (SRRT) · รพ.สต.บ้านคลอง</p>
         <div className="flex justify-center gap-2 mt-2.5">
           <Chip bg="#dcfce7" fg="#15803d" dot>
             ออนไลน์
@@ -97,7 +98,7 @@ export default function MePage() {
 
         <Sheet title="งานที่ได้รับมอบหมายวันนี้">
           {[
-            ["สำรวจลูกน้ำ ม.4 ต.ในเมือง", "09:00–12:00", true],
+            ["สำรวจลูกน้ำ ม.4 ต.บ้านคลอง", "09:00–12:00", true],
             ["พ่นหมอกควันรัศมี 100 ม.", "13:00–15:00", false],
             ["ให้ความรู้ชุมชน ศาลาหมู่บ้าน", "15:30–16:30", false],
           ].map(([t, time, done]) => (

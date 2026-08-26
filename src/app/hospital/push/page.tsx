@@ -14,7 +14,7 @@ const PAYLOAD = `{
     "age": 34, "sex": "M", "nationality": "TH"
   },
   "address": {
-    "tambon": "ในเมือง", "amphoe": "เมืองพิษณุโลก",
+    "tambon": "บ้านคลอง", "amphoe": "เมืองพิษณุโลก",
     "province": "พิษณุโลก",
     "lat": 16.8211, "lng": 100.2659
   },

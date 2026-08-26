@@ -5,6 +5,8 @@ const NAV: NavItem[] = [
   { href: "/dashboard/cases", label: "ความก้าวหน้ารายเคส", icon: "clipboard", badge: "8" },
   { href: "/dashboard/charts", label: "ระบบแผนภูมิ", icon: "chart" },
   { href: "/dashboard/map", label: "ระบบแผนที่", icon: "map" },
+  { href: "/dashboard/requests", label: "รับคำร้อง/อนุมัติตัดเคส", icon: "shield", badge: "3" },
+  { href: "/dashboard/resources", label: "สำรวจ/จัดสรรทรัพยากร", icon: "db", badge: "4" },
   { href: "/dashboard/decision", label: "สนับสนุนการตัดสินใจ", icon: "sparkles" },
   { href: "/dashboard/admin", label: "Admin กำหนดกติกา", icon: "settings" },
 ];
@@ -16,7 +18,7 @@ export default function DashboardLayout({ children }: LayoutProps<"/dashboard">)
       system="PLK CDC DASHBOARD"
       org="สำนักงานสาธารณสุขจังหวัดพิษณุโลก"
       url="https://dashboard.plkhealth.go.th"
-      device="Web Application"
+      device="Webapp Desktop · Web Mobile"
       nav={NAV}
       user={{ name: "นพ.ธนากร วงศ์วิวัฒน์", role: "นายแพทย์เชี่ยวชาญ (ควบคุมโรค)" }}
     >

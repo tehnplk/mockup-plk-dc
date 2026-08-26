@@ -15,9 +15,10 @@ const SHOTS = [
 export default function CameraPage() {
   return (
     <PhoneShell
+      url="cdc.plkhealth.go.th/field/camera"
       title="ถ่ายรูปหลักฐาน"
       subtitle="PLK-6809-0142 · 6 รูป"
-      caption="ระบบงานภาคสนาม · กล้องถ่ายภาพ"
+      caption="ระบบงานภาคสนาม · Web Mobile · กล้องถ่ายภาพ"
       tabs={FIELD_TABS}
     >
       {/* viewfinder */}

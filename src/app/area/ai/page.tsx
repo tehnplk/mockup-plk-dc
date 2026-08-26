@@ -7,7 +7,7 @@ export default function AreaAi() {
     <>
       <PageHead
         title="ระบบวิเคราะห์ข้อมูลด้วย AI"
-        desc="วิเคราะห์แนวโน้ม พยากรณ์การระบาด และเสนอมาตรการจากข้อมูลเคส สภาพอากาศ และค่าดัชนีลูกน้ำ"
+        desc="วิเคราะห์แนวโน้มในเขต รพ.สต.บ้านคลอง พยากรณ์การระบาดรายหมู่บ้าน และเสนอมาตรการจากข้อมูลเคส สภาพอากาศ และค่าดัชนีลูกน้ำ"
         actions={
           <>
             <button className="btn btn-sm">
@@ -43,12 +43,12 @@ export default function AreaAi() {
               </Chip>
             </div>
             <p className="text-[13.5px] leading-relaxed mt-2 text-ink">
-              พื้นที่ อ.เมืองพิษณุโลก มีแนวโน้มผู้ป่วยไข้เลือดออก
+              เขตรับผิดชอบ รพ.สต.บ้านคลอง มีแนวโน้มผู้ป่วยไข้เลือดออก
               <strong> เพิ่มขึ้นต่อเนื่อง 3 สัปดาห์ </strong>
-              และสูงกว่าค่ามัธยฐาน 5 ปีย้อนหลัง 2.1 เท่า จุดเสี่ยงหลักอยู่ที่
-              <mark className="bg-[#fde68a] px-1 rounded"> ม.4 ต.ในเมือง </mark>
-              ซึ่งมีค่าดัชนีลูกน้ำ (HI) 22.4% สูงกว่าเกณฑ์มาตรฐาน 2.2 เท่า ประกอบกับปริมาณฝนสะสม
-              7 วันที่ 84 มม. คาดว่าอีก 2 สัปดาห์จะพบผู้ป่วยเพิ่มอีก 14–19 ราย
+              และสูงกว่าค่ามัธยฐาน 5 ปีย้อนหลัง 2.3 เท่า จุดเสี่ยงหลักอยู่ที่
+              <mark className="bg-[#fde68a] px-1 rounded"> ม.4 บ้านคลองใหม่ </mark>
+              ซึ่งมีค่าดัชนีลูกน้ำ (HI) 24.1% สูงกว่าเกณฑ์มาตรฐาน 2.4 เท่า ประกอบกับปริมาณฝนสะสม
+              7 วันที่ 84 มม. คาดว่าอีก 2 สัปดาห์จะพบผู้ป่วยเพิ่มอีก 4–6 ราย
               หากยังไม่มีมาตรการกำจัดแหล่งเพาะพันธุ์อย่างเข้มข้น
             </p>
           </div>
@@ -56,8 +56,8 @@ export default function AreaAi() {
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4 mb-5">
-        <Stat label="คะแนนความเสี่ยงพื้นที่" value="78" unit="/ 100" icon="shield" tone="var(--danger)" />
-        <Stat label="พยากรณ์ผู้ป่วย 2 สัปดาห์" value="16" unit="ราย (±3)" icon="chart" delta={22} />
+        <Stat label="คะแนนความเสี่ยงพื้นที่" value="81" unit="/ 100" icon="shield" tone="var(--danger)" />
+        <Stat label="พยากรณ์ผู้ป่วย 2 สัปดาห์" value="5" unit="ราย (±1)" icon="chart" delta={22} />
         <Stat label="ค่า Rt โดยประมาณ" value="1.34" icon="sparkles" tone="var(--warn)" />
         <Stat label="ฝนสะสม 7 วัน" value="84" unit="มม." icon="map" tone="var(--info)" />
       </div>
@@ -72,9 +72,9 @@ export default function AreaAi() {
             height={230}
             labels={["W32", "W33", "W34", "W35", "W36*", "W37*", "W38*", "W39*"]}
             series={[
-              { name: "ข้อมูลจริง", color: "#7c3aed", points: [31, 38, 46, 41, 0, 0, 0, 0] },
-              { name: "ค่าพยากรณ์", color: "#c4b5fd", points: [0, 0, 0, 41, 47, 54, 58, 52] },
-              { name: "ขอบบนความเชื่อมั่น", color: "#fca5a5", points: [0, 0, 0, 41, 55, 66, 74, 69] },
+              { name: "ข้อมูลจริง", color: "#7c3aed", points: [8, 11, 14, 12, 0, 0, 0, 0] },
+              { name: "ค่าพยากรณ์", color: "#c4b5fd", points: [0, 0, 0, 12, 14, 16, 17, 15] },
+              { name: "ขอบบนความเชื่อมั่น", color: "#fca5a5", points: [0, 0, 0, 12, 17, 20, 22, 20] },
             ]}
           />
           <p className="sub mt-2">* = สัปดาห์ที่พยากรณ์ · ช่วงความเชื่อมั่น 95%</p>
@@ -111,14 +111,14 @@ export default function AreaAi() {
           <div className="grid gap-3">
             {[
               [
-                "เร่งกำจัดแหล่งเพาะพันธุ์ ม.4 ต.ในเมือง ภายใน 3 วัน",
-                "คาดลดผู้ป่วยได้ 8–11 ราย ใน 4 สัปดาห์",
+                "เร่งกำจัดแหล่งเพาะพันธุ์ ม.4 บ้านคลองใหม่ ภายใน 3 วัน",
+                "คาดลดผู้ป่วยได้ 3–5 ราย ใน 4 สัปดาห์",
                 "สูงมาก",
                 "#fee2e2",
                 "#b91c1c",
               ],
               [
-                "พ่นสารเคมีกำจัดยุงตัวเต็มวัยรัศมี 100 ม. รอบบ้านผู้ป่วย 3 ราย",
+                "พ่นสารเคมีกำจัดยุงตัวเต็มวัยรัศมี 100 ม. รอบบ้านผู้ป่วย 2 ราย",
                 "ตัดวงจรการแพร่เชื้อระยะสั้น 7–10 วัน",
                 "สูง",
                 "#ffedd5",
@@ -132,7 +132,7 @@ export default function AreaAi() {
                 "#b45309",
               ],
               [
-                "สำรวจศูนย์เด็กเล็ก ต.บ้านคลอง (มือ เท้า ปาก 5 ราย)",
+                "สำรวจศูนย์เด็กเล็ก ม.7 บ้านท่าโรง (มือ เท้า ปาก 3 ราย)",
                 "ป้องกันการระบาดในสถานศึกษา",
                 "ปานกลาง",
                 "#fef3c7",
@@ -164,13 +164,13 @@ export default function AreaAi() {
           <Card title="สัดส่วนโรคในพื้นที่" icon="chart">
             <Donut
               size={140}
-              center="58"
+              center="14"
               centerSub="ราย"
               slices={[
-                { label: "ไข้เลือดออก", value: 38, color: "#dc2626" },
-                { label: "มือ เท้า ปาก", value: 12, color: "#059669" },
-                { label: "ไข้หวัดใหญ่", value: 5, color: "#2563eb" },
-                { label: "อื่นๆ", value: 3, color: "#94a3b8" },
+                { label: "ไข้เลือดออก", value: 9, color: "#dc2626" },
+                { label: "มือ เท้า ปาก", value: 3, color: "#059669" },
+                { label: "ไข้หวัดใหญ่", value: 1, color: "#2563eb" },
+                { label: "อื่นๆ", value: 1, color: "#94a3b8" },
               ]}
             />
           </Card>
@@ -180,19 +180,19 @@ export default function AreaAi() {
               className="rounded-xl p-3 text-[12.5px] mb-2.5"
               style={{ background: "#f8fafc", border: "1px solid var(--border)" }}
             >
-              &ldquo;ตำบลไหนมีผู้ป่วยไข้เลือดออกเพิ่มเร็วที่สุดใน 2 สัปดาห์&rdquo;
+              &ldquo;หมู่บ้านไหนในเขตมีผู้ป่วยไข้เลือดออกเพิ่มเร็วที่สุดใน 2 สัปดาห์&rdquo;
             </div>
             <div
               className="rounded-xl p-3 text-[12.5px] leading-relaxed"
               style={{ background: "#f5f3ff", color: "#4c1d95" }}
             >
-              ต.ในเมือง เพิ่มขึ้น 125% (4 → 9 ราย) รองลงมาคือ ต.อรัญญิก 100% (3 → 6 ราย)
-              ทั้งสองตำบลอยู่ติดกันและมีค่า HI เกินเกณฑ์
+              ม.4 บ้านคลองใหม่ เพิ่มขึ้น 200% (2 → 6 ราย) รองลงมาคือ ม.2 บ้านคลองเหนือ 100% (2 → 4 ราย)
+              ทั้งสองหมู่บ้านอยู่ติดกันและมีค่า HI เกินเกณฑ์
             </div>
             <div className="flex items-center gap-2 mt-3 h-10 px-3 rounded-xl border border-line-brd">
               <input
                 className="bg-transparent text-[12.5px] outline-none w-full placeholder:text-faint"
-                placeholder="พิมพ์คำถามเกี่ยวกับข้อมูลในพื้นที่…"
+                placeholder="พิมพ์คำถามเกี่ยวกับข้อมูลในเขต รพ.สต.…"
                 readOnly
               />
               <span style={{ color: "var(--accent)" }}>
@@ -204,7 +204,7 @@ export default function AreaAi() {
       </div>
 
       <Card
-        title="ตารางวิเคราะห์รายตำบล"
+        title="ตารางวิเคราะห์รายหมู่บ้าน"
         desc="ค่าที่ระบบคำนวณอัตโนมัติทุกวันเวลา 06:00 น."
         icon="db"
         pad={false}
@@ -213,7 +213,7 @@ export default function AreaAi() {
           <table className="w-full border-collapse min-w-[820px]">
             <thead>
               <tr>
-                <th className="th">ตำบล</th>
+                <th className="th">หมู่บ้าน</th>
                 <th className="th">ผู้ป่วย 28 วัน</th>
                 <th className="th">อัตราต่อแสน</th>
                 <th className="th">HI</th>
@@ -225,15 +225,15 @@ export default function AreaAi() {
             </thead>
             <tbody>
               {[
-                ["ในเมือง", 18, 62.4, "22.4%", "9.1%", 1.52, "6–8 ราย", 92],
-                ["อรัญญิก", 12, 48.1, "18.1%", "7.6%", 1.38, "4–6 ราย", 81],
-                ["บ้านคลอง", 8, 34.2, "12.6%", "5.2%", 1.16, "2–4 ราย", 64],
-                ["หัวรอ", 6, 26.8, "9.8%", "4.4%", 1.04, "1–3 ราย", 51],
-                ["ท่าทอง", 4, 18.2, "6.2%", "2.8%", 0.92, "0–2 ราย", 33],
-                ["วัดจันทร์", 3, 14.6, "5.4%", "2.1%", 0.87, "0–1 ราย", 26],
+                ["ม.4 บ้านคลองใหม่", 6, 62.4, "24.1%", "9.8%", 1.58, "2–3 ราย", 92],
+                ["ม.2 บ้านคลองเหนือ", 4, 48.1, "18.6%", "7.6%", 1.41, "1–2 ราย", 81],
+                ["ม.7 บ้านท่าโรง", 2, 34.2, "12.4%", "5.2%", 1.16, "0–2 ราย", 64],
+                ["ม.1 บ้านคลองใต้", 1, 26.8, "9.2%", "4.4%", 1.04, "0–1 ราย", 51],
+                ["ม.5 บ้านหนองไผ่", 1, 18.2, "6.0%", "2.8%", 0.92, "0–1 ราย", 33],
+                ["ม.9 บ้านดงยาง", 0, 0.0, "4.2%", "1.8%", 0.81, "0 ราย", 18],
               ].map(([t, n, r, hi, ci, rt, f, s]) => (
                 <tr key={String(t)} className="hover:bg-surface2">
-                  <td className="td font-medium">ต.{t}</td>
+                  <td className="td font-medium">{t}</td>
                   <td className="td tabular-nums">{n}</td>
                   <td className="td tabular-nums">{r}</td>
                   <td className="td tabular-nums" style={{ color: Number(s) > 60 ? "var(--danger)" : undefined }}>

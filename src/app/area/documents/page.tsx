@@ -7,11 +7,11 @@ export default function AreaDocs() {
     <>
       <PageHead
         title="ระบบจัดเก็บและค้นคืนเอกสาร"
-        desc="เอกสารงานควบคุมโรคของหน่วยบริการเจ้าของพื้นที่ · แชร์ร่วมกับ รพ.สต. ในสังกัดได้"
+        desc="เอกสารงานควบคุมโรคของ รพ.สต.บ้านคลอง · แชร์ร่วมกับ สสอ. และ สสจ. ได้"
         actions={
           <>
             <button className="btn btn-sm">
-              <Icon name="users" size={15} /> แชร์ให้ รพ.สต.
+              <Icon name="users" size={15} /> แชร์ให้ สสอ./สสจ.
             </button>
             <button className="btn btn-sm">
               <Icon name="settings" size={15} /> สิทธิ์การเข้าถึง
@@ -19,7 +19,7 @@ export default function AreaDocs() {
           </>
         }
       />
-      <DocumentLibrary owner="สสอ.เมืองพิษณุโลก" />
+      <DocumentLibrary owner="รพ.สต.บ้านคลอง" />
     </>
   );
 }

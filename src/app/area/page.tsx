@@ -1,17 +1,26 @@
 import Link from "next/link";
 import { PageHead } from "@/components/DesktopShell";
-import { Card, Chip, Stat, Progress, LineChart, PlkMap, Legend } from "@/components/ui";
+import { Card, Chip, Stat, Progress, LineChart, Legend } from "@/components/ui";
+import LocalMap from "@/components/LocalMap";
 import { Icon } from "@/components/icons";
-import { WEEKLY, DISTRICT_LOAD } from "@/lib/mock";
 
-const VALUES = Object.fromEntries(DISTRICT_LOAD.map((d) => [d.d, d.n]));
+const VILLAGE_WEEKLY = [
+  { w: "W28", n: 2 },
+  { w: "W29", n: 3 },
+  { w: "W30", n: 4 },
+  { w: "W31", n: 6 },
+  { w: "W32", n: 8 },
+  { w: "W33", n: 11 },
+  { w: "W34", n: 14 },
+  { w: "W35", n: 12 },
+];
 
 export default function AreaHome() {
   return (
     <>
       <PageHead
         title="ภาพรวมพื้นที่รับผิดชอบ"
-        desc="อ.เมืองพิษณุโลก · 20 ตำบล · 21 รพ.สต. · ประชากร 289,412 คน"
+        desc="รพ.สต.บ้านคลอง · ต.บ้านคลอง อ.เมืองพิษณุโลก · 9 หมู่บ้าน · 2,184 หลังคาเรือน · ประชากร 8,742 คน"
         actions={
           <>
             <button className="btn btn-sm">
@@ -25,47 +34,96 @@ export default function AreaHome() {
       />
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4 mb-5">
-        <Stat label="ผู้ป่วยสะสมในพื้นที่" value={58} unit="ราย" icon="hospital" delta={12} />
-        <Stat label="หมู่บ้านที่มีการระบาด" value={7} unit="หมู่บ้าน" icon="pin" tone="var(--danger)" />
-        <Stat label="ค่าดัชนีลูกน้ำ (HI)" value="14.2" unit="% (เกณฑ์ ≤10)" icon="shield" tone="var(--warn)" />
-        <Stat label="ประชาชนที่เข้าถึงข่าวสาร" value="42,180" unit="คน" icon="megaphone" tone="var(--ok)" />
+        <Stat label="ผู้ป่วยสะสมในเขต รพ.สต." value={14} unit="ราย" icon="hospital" delta={17} />
+        <Stat label="หมู่บ้านที่มีการระบาด" value={3} unit="/ 9 หมู่บ้าน" icon="pin" tone="var(--danger)" />
+        <Stat label="ค่าดัชนีลูกน้ำ (HI)" value="16.8" unit="% (เกณฑ์ ≤10)" icon="shield" tone="var(--warn)" />
+        <Stat label="ประชาชนที่เข้าถึงข่าวสาร" value="5,120" unit="คน" icon="megaphone" tone="var(--ok)" />
       </div>
 
-      <div className="grid gap-4 xl:grid-cols-[1fr_400px] mb-5">
+      {/* งานที่ต้องทำวันนี้ — ฟีเจอร์ใหม่ตาม spec */}
+      <div className="grid gap-4 sm:grid-cols-2 mb-5">
+        <Link
+          href="/area/investigate"
+          className="card p-4 flex items-center gap-3.5 hover:bg-surface2 transition-colors"
+          style={{ borderLeft: "4px solid var(--accent)" }}
+        >
+          <span
+            className="grid place-items-center rounded-xl shrink-0"
+            style={{
+              width: 40,
+              height: 40,
+              background: "color-mix(in srgb, var(--accent) 12%, #fff)",
+              color: "var(--accent)",
+            }}
+          >
+            <Icon name="clipboard" size={20} />
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className="block text-[13.5px] font-bold">บันทึกข้อมูลสอบสวนควบคุมโรค</span>
+            <span className="sub">มี 2 เคสในเขตที่ยังบันทึกไม่ครบ</span>
+          </span>
+          <Chip bg="#fee2e2" fg="#b91c1c">
+            2 เคส
+          </Chip>
+        </Link>
+
+        <Link
+          href="/area/exclude"
+          className="card p-4 flex items-center gap-3.5 hover:bg-surface2 transition-colors"
+          style={{ borderLeft: "4px solid var(--warn)" }}
+        >
+          <span
+            className="grid place-items-center rounded-xl shrink-0"
+            style={{ width: 40, height: 40, background: "#fef3c7", color: "#b45309" }}
+          >
+            <Icon name="shield" size={20} />
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className="block text-[13.5px] font-bold">ยื่นคำร้องตัดเคสออก</span>
+            <span className="sub">เคสที่ที่อยู่จริงไม่อยู่ในเขตรับผิดชอบ</span>
+          </span>
+          <Chip bg="#fef3c7" fg="#b45309">
+            รอผล 1
+          </Chip>
+        </Link>
+      </div>
+
+      <div className="grid gap-4 xl:grid-cols-[1fr_420px] mb-5">
         <Card
-          title="แนวโน้มผู้ป่วยรายสัปดาห์ในพื้นที่"
-          desc="เปรียบเทียบกับค่ามัธยฐาน 5 ปีย้อนหลัง"
+          title="แนวโน้มผู้ป่วยรายสัปดาห์ในเขต รพ.สต."
+          desc="เปรียบเทียบกับค่ามัธยฐาน 5 ปีย้อนหลังของตำบล"
           icon="chart"
           action={<Chip bg="#fee2e2" fg="#b91c1c" dot>สูงกว่าค่ามัธยฐาน 5 ปี</Chip>}
         >
           <LineChart
             height={210}
-            labels={WEEKLY.map((w) => w.w)}
+            labels={VILLAGE_WEEKLY.map((w) => w.w)}
             series={[
-              { name: "ปี 2569", color: "#7c3aed", points: WEEKLY.map((w) => w.dengue) },
-              { name: "ค่ามัธยฐาน 5 ปี", color: "#94a3b8", points: [10, 12, 14, 16, 18, 20, 22, 21] },
-              { name: "เส้นเตือนภัย", color: "#dc2626", points: [30, 30, 30, 30, 30, 30, 30, 30] },
+              { name: "ปี 2569", color: "#7c3aed", points: VILLAGE_WEEKLY.map((w) => w.n) },
+              { name: "ค่ามัธยฐาน 5 ปี", color: "#94a3b8", points: [2, 3, 3, 4, 5, 5, 6, 6] },
+              { name: "เส้นเตือนภัยตำบล", color: "#dc2626", points: [8, 8, 8, 8, 8, 8, 8, 8] },
             ]}
           />
         </Card>
 
         <Card
-          title="ความหนาแน่นผู้ป่วยรายอำเภอ"
-          desc="เน้นพื้นที่รับผิดชอบและอำเภอข้างเคียง"
+          title="แผนที่ผู้ป่วยในเขตรับผิดชอบ"
+          desc="ต.บ้านคลอง · 9 หมู่บ้าน"
           icon="map"
           action={
             <Link href="/area/map" className="btn btn-sm">
               เปิดแผนที่เต็ม
             </Link>
           }
+          pad={false}
         >
-          <PlkMap values={VALUES} scaleFrom="#ede9fe" scaleTo="#6d28d9" height={300} />
-          <div className="mt-2">
+          <LocalMap height={300} />
+          <div className="p-4 border-t border-line-brd">
             <Legend
               items={[
-                { label: "ต่ำ", color: "#ede9fe" },
-                { label: "ปานกลาง", color: "#a78bfa" },
-                { label: "สูง", color: "#6d28d9" },
+                { label: "ไข้เลือดออก", color: "#dc2626" },
+                { label: "มือ เท้า ปาก", color: "#059669" },
+                { label: "แหล่งเพาะพันธุ์", color: "#0891b2" },
               ]}
             />
           </div>
@@ -84,7 +142,7 @@ export default function AreaHome() {
             <table className="w-full border-collapse min-w-[680px]">
               <thead>
                 <tr>
-                  <th className="th">พื้นที่</th>
+                  <th className="th">หมู่บ้าน</th>
                   <th className="th">ผู้ป่วย 4 สัปดาห์</th>
                   <th className="th">ค่า HI</th>
                   <th className="th">ระดับเสี่ยง</th>
@@ -93,11 +151,11 @@ export default function AreaHome() {
               </thead>
               <tbody>
                 {[
-                  ["ม.4 ต.ในเมือง", 9, "22.4%", "สูงมาก", "#fee2e2", "#b91c1c", 85],
-                  ["ม.2 ต.อรัญญิก", 6, "18.1%", "สูง", "#ffedd5", "#c2410c", 60],
-                  ["ม.7 ต.บ้านคลอง", 4, "12.6%", "ปานกลาง", "#fef3c7", "#b45309", 45],
-                  ["ม.1 ต.หัวรอ", 3, "9.8%", "ปานกลาง", "#fef3c7", "#b45309", 70],
-                  ["ม.5 ต.ท่าทอง", 2, "6.2%", "ต่ำ", "#dcfce7", "#15803d", 100],
+                  ["ม.4 บ้านคลองใหม่", 6, "24.1%", "สูงมาก", "#fee2e2", "#b91c1c", 85],
+                  ["ม.2 บ้านคลองเหนือ", 4, "18.6%", "สูง", "#ffedd5", "#c2410c", 60],
+                  ["ม.7 บ้านท่าโรง", 2, "12.4%", "ปานกลาง", "#fef3c7", "#b45309", 45],
+                  ["ม.1 บ้านคลองใต้", 1, "9.2%", "ปานกลาง", "#fef3c7", "#b45309", 70],
+                  ["ม.5 บ้านหนองไผ่", 1, "6.0%", "ต่ำ", "#dcfce7", "#15803d", 100],
                 ].map(([p, n, hi, lv, bg, fg, done]) => (
                   <tr key={String(p)} className="hover:bg-surface2">
                     <td className="td font-medium">{p}</td>
@@ -126,6 +184,8 @@ export default function AreaHome() {
         <Card title="ทางลัดระบบงาน" icon="grid">
           <div className="grid gap-2">
             {[
+              ["/area/investigate", "clipboard", "บันทึกข้อมูลสอบสวน", "กรอกแบบสอบสวนในเขต"],
+              ["/area/exclude", "shield", "ยื่นคำร้องตัดเคสออก", "ส่งคำร้องถึง Admin จังหวัด"],
               ["/area/map", "map", "แผนที่การระบาด", "ดูจุดผู้ป่วยและ cluster"],
               ["/area/ai", "sparkles", "วิเคราะห์ด้วย AI", "พยากรณ์และข้อเสนอแนะ"],
               ["/area/media", "image", "ผลิตสื่อประชาสัมพันธ์", "สร้างโปสเตอร์/คลิปสั้น"],

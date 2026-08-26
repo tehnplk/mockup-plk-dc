@@ -8,8 +8,8 @@ export default function FlexChat() {
     <PhoneShell
       accent="line"
       title="หมอพร้อม"
-      subtitle="Official Account · ตอบกลับอัตโนมัติ"
-      caption="Flex Message หมอพร้อม · มุมมองเจ้าหน้าที่"
+      subtitle="Official Account · มุมมองเจ้าหน้าที่"
+      caption="Flex Message หมอพร้อม สำหรับเจ้าหน้าที่ · Line OA"
       right={
         <div className="flex gap-3 opacity-90">
           <Icon name="search" size={18} />
@@ -79,15 +79,15 @@ export default function FlexChat() {
               </p>
               <p className="text-[11.5px] leading-relaxed text-[#64748b] mt-1.5">
                 เวลา 09:44 น. · ระบบได้แจ้งศูนย์ข้อมูลกลาง สสจ.พิษณุโลก
-                และเปิดสิทธิ์เข้าถึงข้อมูลเคสให้ท่านแล้ว
+                และเปิดสิทธิ์ให้ท่านเข้าระบบงานภาคสนามเพื่อรับเคสนี้แล้ว
               </p>
               <div className="h-px bg-[#e2e8f0] my-2.5" />
               <Link
-                href="/flex/phr"
+                href="/field/case"
                 className="w-full rounded-lg py-2.5 text-[12.5px] font-bold text-white flex items-center justify-center gap-1.5"
                 style={{ background: "#06c755" }}
               >
-                <Icon name="file" size={15} /> เปิด PHR ผู้ป่วย
+                <Icon name="clipboard" size={15} /> เปิดระบบงานภาคสนาม
               </Link>
             </div>
             <p className="text-[10px] text-white/85 mt-1">09:44</p>
@@ -109,6 +109,16 @@ export default function FlexChat() {
             <FlexCard width={268} acked />
             <p className="text-[10px] text-white/85 mt-1">14:08</p>
           </div>
+        </div>
+
+        <div className="flex justify-center pb-2">
+          <Link
+            href="/flex/public"
+            className="chip"
+            style={{ background: "#ffffffe6", color: "#0f766e" }}
+          >
+            ดู Flex สำหรับประชาชน <Icon name="arrowRight" size={12} />
+          </Link>
         </div>
       </div>
 

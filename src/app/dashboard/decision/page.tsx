@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { PageHead } from "@/components/DesktopShell";
 import { Card, Chip, Stat, Progress, Donut, LineChart } from "@/components/ui";
 import { Icon } from "@/components/icons";
@@ -49,7 +50,7 @@ export default function Decision() {
           <div className="flex flex-wrap gap-2 mt-3.5">
             {[
               "ข้อมูล ณ 27 ส.ค. 2569 09:41",
-              "แหล่งข้อมูล: 15 โรงพยาบาล + 9 สสอ.",
+              "แหล่งข้อมูล: 15 โรงพยาบาล + 148 รพ.สต.",
               "ความเชื่อมั่นโมเดล 87%",
             ].map((t) => (
               <Chip key={t} bg="#dbeafe" fg="#1d4ed8">
@@ -145,7 +146,15 @@ export default function Decision() {
       </div>
 
       <div className="grid gap-4 xl:grid-cols-3 mb-5">
-        <Card title="ทรัพยากรที่พร้อมใช้งาน" icon="db">
+        <Card
+          title="ทรัพยากรที่พร้อมใช้งาน"
+          icon="db"
+          action={
+            <Link href="/dashboard/resources" className="btn btn-sm">
+              จัดสรร
+            </Link>
+          }
+        >
           <div className="grid gap-3.5">
             {[
               ["ทีมสอบสวนควบคุมโรค", "18 / 24 ทีม", 75, "#16a34a"],

@@ -12,9 +12,10 @@ const POINTS = [
 export default function GpsPage() {
   return (
     <PhoneShell
+      url="cdc.plkhealth.go.th/field/gps"
       title="เก็บพิกัดภาคสนาม"
       subtitle="PLK-6809-0142 · 3 จุด"
-      caption="ระบบงานภาคสนาม · เก็บพิกัด GPS"
+      caption="ระบบงานภาคสนาม · Web Mobile · เก็บพิกัด GPS"
       tabs={FIELD_TABS}
     >
       {/* map */}
@@ -104,7 +105,7 @@ export default function GpsPage() {
           <Row label="ละติจูด" value="16.821103" icon="pin" />
           <Row label="ลองจิจูด" value="100.265904" icon="pin" />
           <Row label="ความแม่นยำ" value="±4 เมตร" icon="shield" />
-          <Row label="ที่อยู่โดยประมาณ" value="ม.4 ต.ในเมือง อ.เมืองพิษณุโลก" icon="home" />
+          <Row label="ที่อยู่โดยประมาณ" value="ม.4 ต.บ้านคลอง อ.เมืองพิษณุโลก" icon="home" />
           <Row label="เวลา" value="27 ส.ค. 2569 10:22 น." icon="clock" />
         </Sheet>
 

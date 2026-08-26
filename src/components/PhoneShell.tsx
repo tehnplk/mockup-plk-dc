@@ -17,6 +17,7 @@ export default function PhoneShell({
   caption,
   headerTone = "solid",
   statusDark = false,
+  url,
 }: {
   accent?: "field" | "line" | "central";
   title: string;
@@ -28,9 +29,14 @@ export default function PhoneShell({
   caption?: string;
   headerTone?: "solid" | "light";
   statusDark?: boolean;
+  /** ถ้าระบุ จะแสดงแถบ URL ของเบราว์เซอร์ = Web Mobile (ไม่ใช่แอปติดตั้ง) */
+  url?: string;
 }) {
   const path = usePathname();
   const solid = headerTone === "solid";
+  const browser = Boolean(url);
+  // เมื่อจำลองเป็น Web Mobile แถบสถานะจะเป็นสีของเบราว์เซอร์ ไม่ใช่สีแอป
+  const statusSolid = solid && !browser;
 
   return (
     <div
@@ -61,8 +67,8 @@ export default function PhoneShell({
           <div
             className="relative h-11 shrink-0 flex items-center justify-between px-6 text-[12.5px] font-semibold z-20"
             style={{
-              background: solid ? "var(--accent)" : "var(--surface)",
-              color: solid || statusDark ? "#fff" : "var(--text)",
+              background: statusSolid ? "var(--accent)" : "var(--surface)",
+              color: statusSolid || statusDark ? "#fff" : "var(--text)",
             }}
           >
             <span>09:41</span>
@@ -87,6 +93,21 @@ export default function PhoneShell({
               </svg>
             </span>
           </div>
+
+          {/* mobile browser url bar — บอกว่าเป็น Web Mobile */}
+          {browser && (
+            <div className="shrink-0 flex items-center gap-2 px-3 pb-2 bg-surface border-b border-line-brd">
+              <div className="flex-1 h-8 rounded-lg bg-surface2 border border-line-brd flex items-center gap-1.5 px-2.5 min-w-0">
+                <span className="text-ok shrink-0">
+                  <Icon name="shield" size={12} />
+                </span>
+                <span className="text-[11px] text-muted truncate">{url}</span>
+              </div>
+              <button className="text-faint shrink-0">
+                <Icon name="grid" size={16} />
+              </button>
+            </div>
+          )}
 
           {/* app header */}
           <header

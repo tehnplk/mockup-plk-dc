@@ -12,9 +12,10 @@ const CLIPS = [
 export default function VoiceField() {
   return (
     <PhoneShell
+      url="cdc.plkhealth.go.th/field/voice"
       title="อัดเสียงภาคสนาม"
       subtitle="PLK-6809-0142 · 3 คลิป"
-      caption="ระบบงานภาคสนาม · บันทึกเสียง"
+      caption="ระบบงานภาคสนาม · Web Mobile · บันทึกเสียง"
       tabs={FIELD_TABS}
     >
       {/* recorder */}

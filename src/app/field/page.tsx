@@ -11,9 +11,10 @@ export default function FieldInbox() {
 
   return (
     <PhoneShell
+      url="cdc.plkhealth.go.th/field"
       title="กล่องเคสสอบสวน"
       subtitle="ทีม SRRT อ.เมืองพิษณุโลก"
-      caption="ระบบงานภาคสนาม · Mobile App"
+      caption="ระบบงานภาคสนาม · Web Mobile (เบราว์เซอร์บนมือถือ)"
       tabs={FIELD_TABS}
       right={
         <button className="relative opacity-90">
@@ -142,6 +143,27 @@ export default function FieldInbox() {
             </div>
           </Link>
         ))}
+
+        <Link
+          href="/field/desktop"
+          className="flex items-center gap-2.5 rounded-2xl border border-dashed border-line-brd bg-surface p-3.5 mt-1"
+        >
+          <span
+            className="grid place-items-center rounded-xl shrink-0"
+            style={{ width: 34, height: 34, background: "#dbeafe", color: "#2563eb" }}
+          >
+            <Icon name="grid" size={17} />
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className="block text-[12.5px] font-semibold">เปิดมุมมองเดสก์ท็อป</span>
+            <span className="block text-[11px] text-muted">
+              ระบบเดียวกัน ใช้บนคอมพิวเตอร์ที่สำนักงานได้
+            </span>
+          </span>
+          <span className="text-faint">
+            <Icon name="arrowRight" size={16} />
+          </span>
+        </Link>
       </div>
     </PhoneShell>
   );

@@ -17,7 +17,7 @@ export default function HospitalLayout({ children }: LayoutProps<"/hospital">) {
       system="HOSPITAL CDC"
       org="รพ.พุทธชินราช พิษณุโลก"
       url="https://cdc.plkhealth.go.th/hospital"
-      device="Web Application"
+      device="Webapp Desktop · Web Mobile"
       nav={NAV}
       user={{ name: "พญ.นภัสสร ชัยวัฒน์", role: "แพทย์เวรควบคุมโรค" }}
     >

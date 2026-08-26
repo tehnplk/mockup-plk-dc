@@ -64,7 +64,7 @@ export default function CaseForm() {
               <Field label="อาชีพ" value="รับจ้างก่อสร้าง" source="USER" />
               <Field
                 label="ที่อยู่ขณะป่วย"
-                value="บ้านเลขที่ 128/4 หมู่ 4 ต.ในเมือง อ.เมืองพิษณุโลก จ.พิษณุโลก 65000"
+                value="บ้านเลขที่ 128/4 หมู่ 4 ต.บ้านคลอง อ.เมืองพิษณุโลก จ.พิษณุโลก 65000"
                 source="HIS"
                 wide
               />
