@@ -10,18 +10,16 @@ import { UNIT_PROFILE } from "@/components/UnitRole";
 const NAV: NavItem[] = [
   {
     href: "/unit/agent",
-    label: "ตรวจจับจากรหัส ICD-10",
-    icon: "sparkles",
-    badge: "12",
+    label: "ทะเบียนผู้ป่วยเข้าข่ายต้องแจ้งจาก HosXP",
+    icon: "db",
     section: "1. ระบบงานแจ้งเคส",
   },
-  { href: "/unit/new", label: "คัดเข้า / เปิดเคสใหม่", icon: "plus" },
-  { href: "/unit/case", label: "ดึงข้อมูลจาก HIS", icon: "db" },
-  { href: "/unit/investigate", label: "บันทึกข้อมูลสอบสวนโรค", icon: "clipboard", badge: "2" },
-  { href: "/unit/voice", label: "สรุปสนทนา Voice→Text", icon: "mic" },
-  { href: "/unit/notify", label: "แจ้งทีม SRRT/CDCU", icon: "send" },
-  { href: "/unit/registry", label: "ทะเบียนแจ้งเคส/ผลตอบกลับ", icon: "clock", badge: "2" },
-  { href: "/unit/push", label: "Push เข้า Dashboard กลาง", icon: "wave" },
+  { href: "/unit/registry", label: "ทะเบียนแจ้งเคส", icon: "clipboard" },
+  {
+    href: "/unit/screening-settings",
+    label: "ตั้งค่าวิธีคัดผู้ป่วยเข้าระบบ",
+    icon: "settings",
+  },
 
   {
     href: "/unit/inbox",

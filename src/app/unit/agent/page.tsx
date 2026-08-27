@@ -1,484 +1,352 @@
 "use client";
 
-import Link from "next/link";
+import { useState } from "react";
 import { PageHead } from "@/components/DesktopShell";
-import { Card, Chip, Stat, Progress, Avatar } from "@/components/ui";
+import LargeModal from "@/components/LargeModal";
 import { Icon } from "@/components/icons";
-import { useUnitRole } from "@/components/UnitRole";
+import { Card, Chip } from "@/components/ui";
 
-/* รหัส ICD-10 ที่คัดเข้าเฝ้าระวัง (watchlist) */
-const ICD_GROUPS = [
-  {
-    g: "ไข้เลือดออกและโรคนำโดยยุง",
-    color: "#dc2626",
-    tone: "#fee2e2",
-    rows: [
-      ["A90", "Dengue fever", true, 12],
-      ["A91", "Dengue haemorrhagic fever", true, 9],
-      ["A92.0", "Chikungunya virus disease", true, 2],
-      ["B50–B54", "Malaria", true, 0],
-      ["A83.-", "Mosquito-borne viral encephalitis", false, 0],
-    ],
-  },
-  {
-    g: "โรคติดต่อทางอาหารและน้ำ",
-    color: "#d97706",
-    tone: "#fef3c7",
-    rows: [
-      ["A00", "Cholera", true, 0],
-      ["A01.0", "Typhoid fever", true, 1],
-      ["A05.-", "Bacterial foodborne intoxications", true, 6],
-      ["A09", "Diarrhoea and gastroenteritis", false, 148],
-      ["A27.-", "Leptospirosis", true, 3],
-    ],
-  },
-  {
-    g: "โรคติดต่อระบบทางเดินหายใจ",
-    color: "#2563eb",
-    tone: "#dbeafe",
-    rows: [
-      ["J09–J11", "Influenza", true, 14],
-      ["U07.1", "COVID-19", true, 8],
-      ["A15–A19", "Tuberculosis", true, 5],
-      ["A36", "Diphtheria", true, 0],
-      ["A37", "Whooping cough", true, 0],
-    ],
-  },
-  {
-    g: "โรคป้องกันได้ด้วยวัคซีนและอื่นๆ",
-    color: "#7c3aed",
-    tone: "#ede9fe",
-    rows: [
-      ["B05", "Measles", true, 1],
-      ["B08.4", "Hand, foot and mouth disease", true, 12],
-      ["A39", "Meningococcal infection", true, 0],
-      ["A80", "Acute poliomyelitis", true, 0],
-      ["B15", "Acute hepatitis A", false, 2],
-    ],
-  },
-];
+type Candidate = {
+  serviceAt: string;
+  hn: string;
+  cid: string;
+  name: string;
+  phone: string;
+  chiefComplaint: string;
+  icd10: string;
+  disease: string;
+  urgency: "เร่งด่วน" | "เฝ้าระวัง";
+};
 
-const ALERTS = [
+type CandidateAction = "history" | "investigate" | "register";
+
+const CANDIDATES: Candidate[] = [
   {
-    t: "08:14",
-    icd: "A91",
-    dx: "Dengue haemorrhagic fever",
+    serviceAt: "27 ส.ค. 2569 08:14",
     hn: "0045218",
-    ward: "OPD ห้องตรวจอายุรกรรม 3",
-    dr: "นพ.ศุภชัย เรืองรอง",
-    to: "3 คน",
-    color: "#dc2626",
-    status: "แจ้งแล้ว · เปิดเคสแล้ว",
-    bg: "#dcfce7",
-    fg: "#15803d",
+    cid: "3-6501-00452-18-1",
+    name: "นายกฤษฎา พรมเรือง",
+    phone: "081-542-2148",
+    chiefComplaint: "ไข้สูง 3 วัน ปวดศีรษะ",
+    icd10: "A91",
+    disease: "ไข้เลือดออก",
+    urgency: "เร่งด่วน",
   },
   {
-    t: "07:52",
-    icd: "B08.4",
-    dx: "Hand, foot and mouth disease",
+    serviceAt: "27 ส.ค. 2569 07:52",
     hn: "0093117",
-    ward: "OPD กุมารเวชกรรม",
-    dr: "พญ.อรอุมา แจ่มจันทร์",
-    to: "3 คน",
-    color: "#059669",
-    status: "แจ้งแล้ว · เปิดเคสแล้ว",
-    bg: "#dcfce7",
-    fg: "#15803d",
+    cid: "1-6506-00193-17-4",
+    name: "ด.ญ.ปุณยนุช แสนคำ",
+    phone: "089-731-0931",
+    chiefComplaint: "ไข้ มีตุ่มที่มือและปาก",
+    icd10: "B08.4",
+    disease: "มือ เท้า ปาก",
+    urgency: "เฝ้าระวัง",
   },
   {
-    t: "07:31",
-    icd: "J10",
-    dx: "Influenza due to identified influenza virus",
-    hn: "0071265",
-    ward: "ER",
-    dr: "นพ.ปิยะ ทองสุข",
-    to: "2 คน",
-    color: "#2563eb",
-    status: "รอเปิดแบบสอบสวน",
-    bg: "#fef3c7",
-    fg: "#b45309",
-  },
-  {
-    t: "06:58",
-    icd: "A27.0",
-    dx: "Leptospirosis icterohaemorrhagica",
+    serviceAt: "27 ส.ค. 2569 06:58",
     hn: "0011084",
-    ward: "หอผู้ป่วยอายุรกรรมชาย 1",
-    dr: "นพ.ธีรวุฒิ สายทอง",
-    to: "3 คน",
-    color: "#ca8a04",
-    status: "แจ้งแล้ว · เปิดเคสแล้ว",
-    bg: "#dcfce7",
-    fg: "#15803d",
+    cid: "3-6508-00110-84-7",
+    name: "นายบรรจง คำใส",
+    phone: "086-110-8472",
+    chiefComplaint: "ไข้สูง ปวดน่อง ตาแดง",
+    icd10: "A27.0",
+    disease: "เลปโตสไปโรซิส",
+    urgency: "เร่งด่วน",
   },
   {
-    t: "06:20",
-    icd: "A09",
-    dx: "Diarrhoea and gastroenteritis",
+    serviceAt: "26 ส.ค. 2569 19:31",
+    hn: "0067720",
+    cid: "1-6507-00677-20-9",
+    name: "นางสาวศิริลักษณ์ เกิดผล",
+    phone: "092-677-2094",
+    chiefComplaint: "ไข้ ไอ มีผื่นขึ้นตามตัว",
+    icd10: "B05.9",
+    disease: "โรคหัด",
+    urgency: "เร่งด่วน",
+  },
+  {
+    serviceAt: "26 ส.ค. 2569 15:06",
     hn: "0088412",
-    ward: "OPD",
-    dr: "พญ.กมลชนก ใจงาม",
-    to: "—",
-    color: "#94a3b8",
-    status: "ไม่อยู่ใน watchlist",
-    bg: "#f1f5f9",
-    fg: "#475569",
+    cid: "3-6510-00884-12-5",
+    name: "นายอนุชิต แซ่ลิ้ม",
+    phone: "084-884-1256",
+    chiefComplaint: "ถ่ายเหลว 6 ครั้ง อาเจียน",
+    icd10: "A09",
+    disease: "อุจจาระร่วงเฉียบพลัน",
+    urgency: "เฝ้าระวัง",
+  },
+  {
+    serviceAt: "26 ส.ค. 2569 11:42",
+    hn: "0052241",
+    cid: "1-6505-00522-41-3",
+    name: "ด.ช.ธนภัทร พูลสวัสดิ์",
+    phone: "095-522-4138",
+    chiefComplaint: "ไข้ ไอ หายใจเร็ว",
+    icd10: "J10.1",
+    disease: "ไข้หวัดใหญ่",
+    urgency: "เฝ้าระวัง",
   },
 ];
 
-export default function AgentPage() {
-  const { role } = useUnitRole();
-  const watched = ICD_GROUPS.flatMap((g) => g.rows).filter((r) => r[2]).length;
-  const total = ICD_GROUPS.flatMap((g) => g.rows).length;
+const ACTION_TITLES: Record<CandidateAction, string> = {
+  history: "ประวัติเจ็บป่วย",
+  investigate: "สอบสวนโรค",
+  register: "ส่งเข้าทะเบียนแจ้งเคส",
+};
+
+function PatientSummary({ patient }: { patient: Candidate }) {
+  return (
+    <div className="card mb-4 grid gap-3 p-4 sm:grid-cols-2 lg:grid-cols-4">
+      {[
+        ["ชื่อ–นามสกุล", patient.name],
+        ["HN", patient.hn],
+        ["CID", patient.cid],
+        ["เบอร์โทร", patient.phone],
+      ].map(([label, value]) => (
+        <div key={label}>
+          <p className="text-[11px] font-semibold text-faint">{label}</p>
+          <p className="mt-1 text-[13px] font-semibold">{value}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function CandidateModal({
+  selection,
+  onClose,
+}: {
+  selection: { action: CandidateAction; patient: Candidate } | null;
+  onClose: () => void;
+}) {
+  const action = selection?.action ?? "history";
+  const patient = selection?.patient;
 
   return (
-    <>
-      <PageHead
-        title="ตรวจจับจากรหัส ICD-10"
-        desc="Agent อ่านรหัสวินิจฉัยของแพทย์จาก HIS แบบต่อเนื่อง เมื่อพบรหัสที่คัดเข้าไว้จะแจ้งเตือนผู้รับผิดชอบงานสอบสวนโรคทันที"
-        actions={
-          <>
-            <button className="btn btn-sm">
-              <Icon name="clock" size={15} /> ประวัติการแจ้งเตือน
+    <LargeModal
+      open={Boolean(selection)}
+      onClose={onClose}
+      title={ACTION_TITLES[action]}
+      subtitle={patient ? `${patient.name} · HN ${patient.hn} · ${patient.icd10} ${patient.disease}` : undefined}
+      footer={
+        <>
+          <button type="button" className="btn" onClick={onClose}>ปิด</button>
+          {action !== "history" && (
+            <button type="button" className="btn btn-primary" onClick={onClose}>
+              <Icon name={action === "register" ? "send" : "check"} size={15} />
+              {action === "register" ? "ยืนยันส่งเข้าทะเบียน" : "บันทึกแบบสอบสวน"}
             </button>
-            <button className="btn btn-sm">
-              <Icon name="settings" size={15} /> ตั้งค่า Agent
-            </button>
-            <button className="btn btn-primary btn-sm">
-              <Icon name="check" size={15} /> บันทึกรายการคัดเข้า
-            </button>
-          </>
-        }
-      />
+          )}
+        </>
+      }
+    >
+      {patient && <PatientSummary patient={patient} />}
 
-      {/* agent status */}
-      <div
-        className="card p-4 mb-5 flex flex-wrap items-center gap-x-6 gap-y-3"
-        style={{ borderLeft: "4px solid var(--ok)" }}
-      >
-        <div className="flex items-center gap-2.5">
-          <span
-            className="grid place-items-center rounded-lg text-white shrink-0"
-            style={{ width: 34, height: 34, background: "var(--ok)" }}
-          >
-            <Icon name="sparkles" size={18} />
-          </span>
-          <div>
-            <p className="text-[13px] font-semibold flex items-center gap-2">
-              Agent กำลังทำงาน
-              <Chip bg="#dcfce7" fg="#15803d" dot>
-                ONLINE
-              </Chip>
-            </p>
-            <p className="sub">
-              อ่าน HIS ทุก 2 นาที · สแกนล่าสุด 09:40 น. · เชื่อมต่อ {role.his} ปกติ
-            </p>
+      {patient && action === "history" && (
+        <Card title="ประวัติการรับบริการย้อนหลัง" icon="clock" pad={false}>
+          <div className="scroll-x nice">
+            <table className="w-full min-w-[820px] border-collapse">
+              <thead>
+                <tr>
+                  <th className="th">วันเวลารับบริการ</th>
+                  <th className="th">จุดบริการ</th>
+                  <th className="th">อาการสำคัญ</th>
+                  <th className="th">การวินิจฉัย</th>
+                  <th className="th">การรักษา</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="td whitespace-nowrap">{patient.serviceAt}</td>
+                  <td className="td">OPD อายุรกรรม</td>
+                  <td className="td">{patient.chiefComplaint}</td>
+                  <td className="td font-semibold">{patient.icd10} · {patient.disease}</td>
+                  <td className="td">ตรวจ CBC และให้การรักษาตามอาการ</td>
+                </tr>
+                <tr>
+                  <td className="td whitespace-nowrap">18 มิ.ย. 2569 10:22</td>
+                  <td className="td">คลินิกโรคทั่วไป</td>
+                  <td className="td">ไข้ ไอ มีน้ำมูก</td>
+                  <td className="td">J06.9 · URI</td>
+                  <td className="td">ยาลดไข้และยาตามอาการ</td>
+                </tr>
+                <tr>
+                  <td className="td whitespace-nowrap">03 ก.พ. 2569 14:08</td>
+                  <td className="td">OPD</td>
+                  <td className="td">ปวดกล้ามเนื้อ</td>
+                  <td className="td">M79.1 · Myalgia</td>
+                  <td className="td">ยาแก้ปวด</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-        </div>
-        <div className="flex-1 min-w-[180px] max-w-[300px]">
-          <div className="flex justify-between text-[11.5px] mb-1.5">
-            <span className="text-muted">รหัสที่คัดเข้าเฝ้าระวัง</span>
-            <span className="font-semibold tabular-nums">
-              {watched} / {total} รหัส
-            </span>
-          </div>
-          <Progress value={(watched / total) * 100} color="var(--ok)" />
-        </div>
-        <span
-          className="w-11 h-6 rounded-full p-0.5 shrink-0 flex"
-          style={{ background: "var(--ok)", justifyContent: "flex-end" }}
-        >
-          <span className="w-5 h-5 rounded-full bg-white" />
-        </span>
-      </div>
+        </Card>
+      )}
 
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4 mb-5">
-        <Stat label="แจ้งเตือนวันนี้" value={12} unit="ครั้ง" icon="bell" />
-        <Stat label="เปิดแบบสอบสวนแล้ว" value={9} unit="เคส" icon="check" tone="var(--ok)" />
-        <Stat label="รอผู้รับผิดชอบดำเนินการ" value={3} unit="เคส" icon="clock" tone="var(--warn)" />
-        <Stat
-          label="เวลาเฉลี่ยจาก Dx → แจ้งเตือน"
-          value="1.8"
-          unit="นาที"
-          icon="sparkles"
-          tone="var(--info)"
-        />
-      </div>
-
-      <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_400px]">
-        {/* ICD-10 picker */}
-        <div className="flex flex-col gap-4 min-w-0">
-          <Card
-            title="หน้าจอคัดเข้า ICD-10"
-            desc="ติ๊กรหัสที่ต้องการให้ Agent เฝ้าระวัง · เมื่อแพทย์วินิจฉัยด้วยรหัสนี้ ระบบจะแจ้งผู้รับผิดชอบทันที"
-            icon="grid"
-            pad={false}
-            action={
-              <div className="flex items-center gap-2">
-                <div className="hidden sm:flex items-center gap-2 h-8 px-3 rounded-lg bg-surface2 border border-line-brd w-[220px]">
-                  <span className="text-faint">
-                    <Icon name="search" size={14} />
-                  </span>
-                  <input
-                    className="bg-transparent text-[12.5px] outline-none w-full placeholder:text-faint"
-                    placeholder="ค้นหารหัส / ชื่อโรค"
-                    readOnly
-                  />
-                </div>
-                <Chip bg="#dcfce7" fg="#15803d">
-                  คัดเข้าแล้ว {watched}
-                </Chip>
-              </div>
-            }
-          >
-            {ICD_GROUPS.map((grp) => (
-              <section key={grp.g} className="border-b border-line-brd last:border-0">
-                <header className="flex items-center gap-2.5 px-4 sm:px-5 py-3 bg-surface2">
-                  <span
-                    className="w-2.5 h-2.5 rounded-full shrink-0"
-                    style={{ background: grp.color }}
-                  />
-                  <h3 className="text-[13px] font-bold flex-1">{grp.g}</h3>
-                  <Chip bg={grp.tone} fg={grp.color}>
-                    {grp.rows.filter((r) => r[2]).length} / {grp.rows.length} รหัส
-                  </Chip>
-                </header>
-                <div className="scroll-x nice">
-                  <table className="w-full border-collapse min-w-[640px]">
-                    <thead>
-                      <tr>
-                        <th className="th w-12">คัดเข้า</th>
-                        <th className="th w-[110px]">รหัส ICD-10</th>
-                        <th className="th">คำวินิจฉัย</th>
-                        <th className="th">พบใน 30 วัน</th>
-                        <th className="th">ผู้รับผิดชอบ</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {grp.rows.map(([code, name, on, n]) => (
-                        <tr
-                          key={String(code)}
-                          className="hover:bg-surface2"
-                          style={{
-                            background: on
-                              ? "color-mix(in srgb, var(--accent) 5%, transparent)"
-                              : undefined,
-                          }}
-                        >
-                          <td className="td">
-                            <span
-                              className="grid place-items-center rounded w-[18px] h-[18px] border-2"
-                              style={{
-                                background: on ? "var(--accent)" : "#fff",
-                                borderColor: on ? "var(--accent)" : "#cbd5e1",
-                                color: "#fff",
-                              }}
-                            >
-                              {on ? <Icon name="check" size={11} /> : null}
-                            </span>
-                          </td>
-                          <td className="td font-mono text-[12.5px] font-semibold">{code}</td>
-                          <td className="td">{name}</td>
-                          <td className="td tabular-nums">
-                            <span
-                              style={{
-                                color: Number(n) > 0 ? "var(--text)" : "var(--faint)",
-                                fontWeight: Number(n) > 0 ? 600 : 400,
-                              }}
-                            >
-                              {n} ราย
-                            </span>
-                          </td>
-                          <td className="td">
-                            {on ? (
-                              <Chip bg={grp.tone} fg={grp.color}>
-                                ทีมสอบสวนโรค รพ.
-                              </Chip>
-                            ) : (
-                              <span className="text-[12px] text-faint">—</span>
-                            )}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </section>
-            ))}
-
-            <div className="flex flex-wrap items-center gap-2 p-4">
-              <button className="btn btn-sm">
-                <Icon name="plus" size={14} /> เพิ่มรหัส ICD-10 เอง
-              </button>
-              <button className="btn btn-sm">นำเข้าชุดรหัสมาตรฐาน 506</button>
-              <span className="flex-1" />
-              <span className="sub">แก้ไขล่าสุด 26 ส.ค. 2569 โดย นางนภัสสร ชัยวัฒน์</span>
-            </div>
-          </Card>
-
-          {/* alert feed */}
-          <Card
-            title="การแจ้งเตือนจาก Agent วันนี้"
-            desc="เรียงตามเวลาที่แพทย์บันทึกวินิจฉัยใน HIS"
-            icon="bell"
-            pad={false}
-            action={<Chip bg="#dcfce7" fg="#15803d" dot>เรียลไทม์</Chip>}
-          >
-            <ul>
-              {ALERTS.map((a, i) => (
-                <li
-                  key={i}
-                  className="px-4 sm:px-5 py-3.5 border-b border-line-brd last:border-0"
-                  style={{ borderLeft: `3px solid ${a.color}` }}
-                >
-                  <div className="flex flex-wrap items-start gap-3">
-                    <span className="text-[12px] font-bold tabular-nums text-muted shrink-0 mt-0.5">
-                      {a.t}
-                    </span>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <span
-                          className="font-mono text-[12.5px] font-bold px-1.5 py-0.5 rounded"
-                          style={{ background: `${a.color}18`, color: a.color }}
-                        >
-                          {a.icd}
-                        </span>
-                        <span className="text-[13px] font-semibold">{a.dx}</span>
-                      </div>
-                      <p className="sub mt-1">
-                        HN {a.hn} · {a.ward} · Dx โดย {a.dr}
-                      </p>
-                      <p className="text-[11.5px] text-muted mt-0.5">
-                        แจ้งผู้รับผิดชอบ {a.to}
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-2 shrink-0">
-                      <Chip bg={a.bg} fg={a.fg}>
-                        {a.status}
-                      </Chip>
-                      {a.status.includes("รอ") && (
-                        <Link href="/unit/new" className="btn btn-sm btn-primary">
-                          เปิดเคส
-                        </Link>
-                      )}
-                    </div>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </Card>
-        </div>
-
-        {/* right rail */}
-        <div className="flex flex-col gap-4 min-w-0">
-          <Card title="ผู้รับผิดชอบที่จะได้รับแจ้ง" icon="users">
-            <div className="grid gap-2.5">
+      {patient && action === "investigate" && (
+        <div className="grid gap-4 lg:grid-cols-2">
+          <Card title="ข้อมูลเริ่มต้นจาก HosXP" icon="db">
+            <div className="grid gap-3 sm:grid-cols-2">
               {[
-                ["นางนภัสสร ชัยวัฒน์", "นักสาธารณสุขชำนาญการ", "ทุกกลุ่มโรค"],
-                ["นางพรทิพย์ ชูเกียรติ", "นักสาธารณสุขชำนาญการ", "ทุกกลุ่มโรค"],
-                ["นายสมคิด บุญเรือง", "นักสาธารณสุขปฏิบัติการ", "โรคนำโดยยุง"],
-                ["น.ส.กนกวรรณ ดีมาก", "นักสาธารณสุขปฏิบัติการ", "ทางเดินหายใจ"],
-              ].map(([n, r, scope]) => (
-                <div key={String(n)} className="flex items-center gap-2.5">
-                  <Avatar name={String(n)} size={30} />
-                  <span className="min-w-0 flex-1">
-                    <span className="block text-[12.5px] font-semibold truncate">{n}</span>
-                    <span className="block text-[11px] text-muted truncate">{r}</span>
-                  </span>
-                  <Chip bg="#f1f5f9" fg="#475569">
-                    {scope}
-                  </Chip>
-                </div>
-              ))}
-            </div>
-            <button className="btn btn-sm w-full mt-3">
-              <Icon name="plus" size={14} /> เพิ่มผู้รับผิดชอบ
-            </button>
-          </Card>
-
-          <Card title="ช่องทางแจ้งเตือน" icon="send">
-            <div className="grid gap-2">
-              {[
-                ["แจ้งเตือนในระบบ (Bell)", "ทันที", true],
-                ["Flex Message หมอพร้อม", "ทันที", true],
-                ["อีเมลสรุปรายวัน", "18:00 น.", true],
-                ["SMS (เฉพาะโรคติดต่ออันตราย)", "ทันที", true],
-                ["เสียงเตือนที่เคาน์เตอร์พยาบาล", "ปิดอยู่", false],
-              ].map(([n, when, on]) => (
-                <label
-                  key={String(n)}
-                  className="flex items-center gap-3 rounded-lg border border-line-brd p-2.5"
-                >
-                  <span
-                    className="w-9 h-5 rounded-full p-0.5 shrink-0 flex"
-                    style={{
-                      background: on ? "var(--accent)" : "#cbd5e1",
-                      justifyContent: on ? "flex-end" : "flex-start",
-                    }}
-                  >
-                    <span className="w-4 h-4 rounded-full bg-white" />
-                  </span>
-                  <span className="min-w-0 flex-1">
-                    <span className="block text-[12.5px] font-semibold truncate">{n}</span>
-                    <span className="block text-[11px] text-muted">{when}</span>
-                  </span>
+                ["วันเริ่มป่วย", "22 ส.ค. 2569"],
+                ["อาการสำคัญ", patient.chiefComplaint],
+                ["รหัสวินิจฉัย", patient.icd10],
+                ["ชื่อโรค", patient.disease],
+              ].map(([label, value]) => (
+                <label key={label}>
+                  <span className="lbl">{label}</span>
+                  <input className="inp" value={value} readOnly />
                 </label>
               ))}
             </div>
           </Card>
-
-          <Card title="เงื่อนไขเสริมของ Agent" icon="settings">
-            <div className="grid gap-2.5">
-              {[
-                ["ตรวจจับตอนบันทึก Dx ครั้งแรก", true],
-                ["ตรวจจับเมื่อแพทย์แก้ไข Dx ภายหลัง", true],
-                ["ตรวจจับจากผลแล็บที่ยืนยันโรค", true],
-                ["ข้ามผู้ป่วยที่เคยเปิดเคสแล้ว", true],
-                ["แจ้งซ้ำถ้าไม่มีใครรับใน 30 นาที", true],
-                ["ตรวจจับจากคำสำคัญในบันทึกแพทย์ (AI)", false],
-              ].map(([t, on]) => (
-                <div key={String(t)} className="flex items-center gap-2.5">
-                  <span
-                    className="grid place-items-center rounded w-[17px] h-[17px] shrink-0 border-2"
-                    style={{
-                      background: on ? "var(--accent)" : "#fff",
-                      borderColor: on ? "var(--accent)" : "#cbd5e1",
-                      color: "#fff",
-                    }}
-                  >
-                    {on ? <Icon name="check" size={11} /> : null}
-                  </span>
-                  <span
-                    className="text-[12.5px]"
-                    style={{ color: on ? "var(--text)" : "var(--muted)" }}
-                  >
-                    {t}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </Card>
-
-          <Card title="ประสิทธิภาพ Agent" desc="30 วันล่าสุด" icon="chart">
-            <div className="grid gap-3.5">
-              {[
-                ["ตรวจจับได้ (Recall)", 96, "#16a34a"],
-                ["ความแม่นยำ (Precision)", 91, "#16a34a"],
-                ["เปิดเคสภายใน 3 ชม.", 87, "#16a34a"],
-                ["แจ้งเตือนที่ถูกปฏิเสธ", 9, "#f59e0b"],
-              ].map(([l, v, c]) => (
-                <div key={String(l)}>
-                  <div className="flex justify-between text-[12.5px] mb-1.5">
-                    <span className="text-muted">{l}</span>
-                    <span className="font-semibold tabular-nums">{v}%</span>
-                  </div>
-                  <Progress value={Number(v)} color={String(c)} />
-                </div>
-              ))}
+          <Card title="ข้อมูลสอบสวนเพิ่มเติม" icon="clipboard">
+            <div className="grid gap-3">
+              <label>
+                <span className="lbl">ที่อยู่ขณะป่วย</span>
+                <input className="inp" defaultValue="128/4 ม.4 ต.บางกระทุ่ม อ.บางกระทุ่ม จ.พิษณุโลก" />
+              </label>
+              <label>
+                <span className="lbl">ปัจจัยเสี่ยง / ประวัติสัมผัสโรค</span>
+                <textarea className="inp min-h-[86px] resize-none" defaultValue="ทำงานกลางแจ้งและพบแหล่งน้ำขังใกล้ที่พัก" />
+              </label>
+              <label>
+                <span className="lbl">ผู้สัมผัสใกล้ชิดที่มีอาการ</span>
+                <input className="inp" defaultValue="1 ราย" />
+              </label>
             </div>
           </Card>
         </div>
-      </div>
+      )}
+
+      {patient && action === "register" && (
+        <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_340px]">
+          <Card title="ตรวจสอบข้อมูลก่อนส่ง" icon="clipboard">
+            <div className="grid gap-3 sm:grid-cols-2">
+              {[
+                ["วันพบ", patient.serviceAt],
+                ["ผู้ป่วย", patient.name],
+                ["อาการสำคัญ", patient.chiefComplaint],
+                ["รหัสวินิจฉัย / โรค", `${patient.icd10} · ${patient.disease}`],
+                ["ที่อยู่", "128/4 ม.4 ต.บางกระทุ่ม อ.บางกระทุ่ม"],
+                ["ผู้บันทึก", "นางนภัสสร ชัยวัฒน์"],
+              ].map(([label, value]) => (
+                <div key={label} className="rounded-xl border border-line-brd bg-surface2 p-3">
+                  <p className="text-[11px] font-semibold text-faint">{label}</p>
+                  <p className="mt-1 text-[13px] font-medium">{value}</p>
+                </div>
+              ))}
+            </div>
+          </Card>
+          <Card title="ความพร้อมของข้อมูล" icon="check">
+            <div className="grid gap-2.5">
+              {["ข้อมูลบุคคลครบถ้วน", "มีรหัสวินิจฉัย", "มีเบอร์โทรติดต่อ", "ระบุพื้นที่รับผิดชอบแล้ว"].map((item) => (
+                <div key={item} className="flex items-center gap-2 rounded-lg bg-[#f0fdf4] px-3 py-2.5 text-[12.5px] font-medium text-[#15803d]">
+                  <Icon name="check" size={15} /> {item}
+                </div>
+              ))}
+              <p className="mt-2 text-[11.5px] text-muted">
+                เมื่อยืนยัน เคสจะปรากฏในทะเบียนแจ้งเคสด้วยสถานะ “รอแจ้งเคส”
+              </p>
+            </div>
+          </Card>
+        </div>
+      )}
+    </LargeModal>
+  );
+}
+
+export default function CandidateRegistryPage() {
+  const [selection, setSelection] = useState<{ action: CandidateAction; patient: Candidate } | null>(null);
+
+  return (
+    <>
+      <PageHead
+        title="ทะเบียนผู้ป่วยเข้าข่ายต้องแจ้งจาก HosXP"
+        actions={
+          <button type="button" className="btn btn-sm">
+            <Icon name="clock" size={15} /> อัปเดตล่าสุด 09:40 น.
+          </button>
+        }
+      />
+
+      <Card
+        title="ผู้ป่วยเข้าข่ายต้องแจ้ง"
+        icon="db"
+        pad={false}
+        action={<Chip bg="#e0f2fe" fg="#0369a1">ทั้งหมด {CANDIDATES.length} ราย</Chip>}
+      >
+        <div className="flex flex-wrap gap-2 border-b border-line-brd p-3 sm:p-4">
+          <div className="flex h-9 min-w-[240px] flex-1 items-center gap-2 rounded-[10px] border border-line-brd bg-surface2 px-3">
+            <Icon name="search" size={15} />
+            <span className="text-[12.5px] text-faint">ค้นหา HN, CID, ชื่อผู้ป่วย หรือรหัสวินิจฉัย…</span>
+          </div>
+          <button type="button" className="btn btn-sm">วันที่: วันนี้</button>
+          <button type="button" className="btn btn-sm">ทุกกลุ่มโรค</button>
+        </div>
+
+        <div className="scroll-x nice">
+          <table className="w-full min-w-[1540px] border-collapse">
+            <thead>
+              <tr>
+                <th className="th">วันเวลารับบริการ</th>
+                <th className="th">HN</th>
+                <th className="th">CID</th>
+                <th className="th">ชื่อ–นามสกุล</th>
+                <th className="th">เบอร์โทร</th>
+                <th className="th">อาการสำคัญ</th>
+                <th className="th">รหัสวินิจฉัย</th>
+                <th className="th">ชื่อโรค</th>
+                <th className="th">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {CANDIDATES.map((patient) => (
+                <tr key={`${patient.hn}-${patient.serviceAt}`} className="hover:bg-surface2">
+                  <td className="td whitespace-nowrap text-muted">{patient.serviceAt}</td>
+                  <td className="td font-mono font-semibold">{patient.hn}</td>
+                  <td className="td whitespace-nowrap font-mono text-[12px]">{patient.cid}</td>
+                  <td className="td whitespace-nowrap font-semibold">{patient.name}</td>
+                  <td className="td whitespace-nowrap">{patient.phone}</td>
+                  <td className="td min-w-[190px]">{patient.chiefComplaint}</td>
+                  <td className="td">
+                    <span className="rounded-md bg-[#fee2e2] px-2 py-1 font-mono text-[12px] font-bold text-[#b91c1c]">
+                      {patient.icd10}
+                    </span>
+                  </td>
+                  <td className="td whitespace-nowrap">
+                    <div className="flex items-center gap-2">
+                      <span className="font-medium">{patient.disease}</span>
+                      <Chip
+                        bg={patient.urgency === "เร่งด่วน" ? "#ffedd5" : "#e0f2fe"}
+                        fg={patient.urgency === "เร่งด่วน" ? "#c2410c" : "#0369a1"}
+                      >
+                        {patient.urgency}
+                      </Chip>
+                    </div>
+                  </td>
+                  <td className="td">
+                    <div className="flex min-w-[420px] items-center gap-1.5">
+                      <button type="button" className="btn btn-sm" onClick={() => setSelection({ action: "history", patient })}>
+                        <Icon name="clock" size={14} /> ประวัติเจ็บป่วย
+                      </button>
+                      <button type="button" className="btn btn-sm" onClick={() => setSelection({ action: "investigate", patient })}>
+                        <Icon name="clipboard" size={14} /> สอบสวนโรค
+                      </button>
+                      <button type="button" className="btn btn-primary btn-sm" onClick={() => setSelection({ action: "register", patient })}>
+                        <Icon name="send" size={14} /> ส่งเข้าทะเบียนแจ้งเคส
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Card>
+
+      <CandidateModal selection={selection} onClose={() => setSelection(null)} />
     </>
   );
 }
