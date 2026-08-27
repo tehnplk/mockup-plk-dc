@@ -28,8 +28,8 @@ export const UNIT_NAV: NavItem[] = [
     section: "2. ระบบงานรับเคส",
   },
   { href: "/area/patients", label: "ทะเบียนผู้ป่วย", icon: "clipboard" },
-  { href: "/area/alert", label: "แจ้งเตือนกลุ่มเสี่ยง", icon: "chat" },
   { href: "/area/exclude", label: "ยื่นคำร้องตัดเคสออก", icon: "shield" },
+  { href: "/area/alert", label: "แจ้งเตือนกลุ่มเสี่ยง", icon: "chat" },
 
   {
     href: "/analysis/map",
