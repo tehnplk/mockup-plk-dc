@@ -1,5 +1,5 @@
 import { PageHead } from "@/components/DesktopShell";
-import { Card, Chip, Stat, Progress } from "@/components/ui";
+import { Card, Chip, Stat } from "@/components/ui";
 import { Icon } from "@/components/icons";
 
 /** เคสที่ Dashboard กลางมอบหมายมาให้หน่วยบริการกดรับ */
@@ -34,12 +34,6 @@ const ASSIGNED = [
     at: "26 ส.ค. 19:31",
     urgent: true,
   },
-];
-
-const ACCEPTED = [
-  ["PLK-6809-0136", "ไข้เลือดออก", "รับเมื่อ 27 ส.ค. 07:20", "กำลังสอบสวน", 45],
-  ["PLK-6809-0133", "อาหารเป็นพิษ", "รับเมื่อ 26 ส.ค. 16:02", "รอผลแล็บ", 70],
-  ["PLK-6809-0131", "ไข้หวัดใหญ่", "รับเมื่อ 26 ส.ค. 11:44", "สอบสวนเสร็จ", 100],
 ];
 
 export default function UnitInbox() {
@@ -117,52 +111,6 @@ export default function UnitInbox() {
                 </li>
               ))}
             </ul>
-          </Card>
-
-          <Card
-            title="เคสที่รับแล้ว"
-            desc="กดรับแล้วระบบจะเปิดแบบสอบสวนและแจ้งกลับ Dashboard กลางอัตโนมัติ"
-            icon="clipboard"
-            pad={false}
-          >
-            <div className="scroll-x nice">
-              <table className="w-full border-collapse min-w-[620px]">
-                <thead>
-                  <tr>
-                    <th className="th">รหัสเคส</th>
-                    <th className="th">โรค</th>
-                    <th className="th">เวลารับ</th>
-                    <th className="th">สถานะ</th>
-                    <th className="th w-[190px]">ความก้าวหน้า</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {ACCEPTED.map(([id, dz, at, st, pg]) => (
-                    <tr key={String(id)} className="hover:bg-surface2">
-                      <td className="td font-mono text-[12px]">{id}</td>
-                      <td className="td">{dz}</td>
-                      <td className="td text-muted tabular-nums">{at}</td>
-                      <td className="td">
-                        <Chip
-                          bg={pg === 100 ? "#dcfce7" : "#fef3c7"}
-                          fg={pg === 100 ? "#15803d" : "#b45309"}
-                        >
-                          {st}
-                        </Chip>
-                      </td>
-                      <td className="td">
-                        <div className="flex items-center gap-2.5">
-                          <Progress value={Number(pg)} />
-                          <span className="text-[11.5px] font-semibold tabular-nums w-9 text-right">
-                            {pg}%
-                          </span>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
           </Card>
         </div>
       </div>
