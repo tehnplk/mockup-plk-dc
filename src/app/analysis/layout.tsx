@@ -4,7 +4,7 @@ import DesktopShell from "@/components/DesktopShell";
 import { UNIT_NAV } from "@/components/UnitNav";
 import { UNIT_PROFILE } from "@/components/UnitRole";
 
-export default function HosLayout({ children }: LayoutProps<"/hos">) {
+export default function AnalysisLayout({ children }: LayoutProps<"/analysis">) {
   const role = UNIT_PROFILE;
 
   return (

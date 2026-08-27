@@ -260,7 +260,7 @@ export default function CaseForm() {
               <Link href="/hos/voice" className="btn justify-start">
                 <Icon name="mic" size={16} /> สรุปสนทนาผู้ป่วยด้วยเสียง
               </Link>
-              <Link href="/hos/documents" className="btn justify-start">
+              <Link href="/analysis/documents" className="btn justify-start">
                 <Icon name="file" size={16} /> แนบเอกสาร / ผลแล็บ
               </Link>
               <button className="btn justify-start">

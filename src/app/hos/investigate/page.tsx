@@ -104,7 +104,7 @@ export default function AreaInvestigate() {
               </div>
               <Progress value={68} />
             </div>
-            <Link href="/hos/exclude" className="btn btn-sm">
+            <Link href="/area/exclude" className="btn btn-sm">
               <Icon name="shield" size={14} /> เคสนี้ไม่อยู่ในเขต?
             </Link>
           </div>

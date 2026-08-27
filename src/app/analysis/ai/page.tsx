@@ -11,7 +11,7 @@ export default function AreaAiAssistant() {
         desc="ผู้ช่วยสรุปแนวโน้ม พยากรณ์ความเสี่ยง ตอบคำถามจากข้อมูลในเขตรับผิดชอบ และเสนอมาตรการให้เจ้าหน้าที่พิจารณา"
         actions={
           <>
-            <Link href="/hos/analytics" className="btn btn-sm">
+            <Link href="/analysis/analytics" className="btn btn-sm">
               <Icon name="chart" size={15} /> รายงานวิเคราะห์พื้นที่
             </Link>
             <button className="btn btn-sm">
