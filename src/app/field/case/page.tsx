@@ -42,14 +42,14 @@ export default function FieldCaseDetail() {
         <Sheet title="ข้อมูลผู้ป่วย">
           <Row label="วันเริ่มป่วย" value="22 ส.ค. 2569" icon="clock" />
           <Row label="วันรับไว้" value="26 ส.ค. 2569" icon="hospital" />
-          <Row label="โรงพยาบาล" value="รพ.พุทธชินราช" icon="hospital" />
+          <Row label="โรงพยาบาล" value="รพ.บางกระทุ่ม" icon="hospital" />
           <Row label="สถานะ" value="ผู้ป่วยใน · อายุรกรรมชาย 2" icon="clipboard" />
           <Row label="อาชีพ" value="รับจ้างก่อสร้าง" icon="users" />
         </Sheet>
 
         <Sheet title="ที่อยู่ขณะป่วย" action={<Chip bg="#dcfce7" fg="#15803d">มีพิกัด</Chip>}>
           <p className="text-[13px] leading-relaxed">
-            128/4 หมู่ 4 ต.บ้านคลอง อ.เมืองพิษณุโลก จ.พิษณุโลก 65000
+            128/4 หมู่ 4 ต.บางกระทุ่ม อ.บางกระทุ่ม จ.พิษณุโลก 65110
           </p>
           {/* mini map */}
           <div className="mt-3 rounded-xl overflow-hidden border border-line-brd">
@@ -117,9 +117,9 @@ export default function FieldCaseDetail() {
 
         <Sheet title="ทีมที่เกี่ยวข้อง">
           {[
-            ["นางนภัสสร ชัยวัฒน์", "ผู้แจ้งเคส · รพ.พุทธชินราช"],
+            ["นางนภัสสร ชัยวัฒน์", "ผู้แจ้งเคส · รพ.บางกระทุ่ม"],
             ["นายสมชาติ ยั่งยืน", "หัวหน้าทีม SRRT · สสจ."],
-            ["นายกิตติศักดิ์ แสงเพชร", "นักสาธารณสุขปฏิบัติการ · รพ.สต.บ้านคลอง"],
+            ["นายกิตติศักดิ์ แสงเพชร", "นักสาธารณสุขปฏิบัติการ · ทีม SRRT บางกระทุ่ม"],
           ].map(([n, r]) => (
             <div key={String(n)} className="flex items-center gap-3 py-2.5 border-b border-line-brd last:border-0">
               <span

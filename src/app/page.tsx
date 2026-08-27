@@ -27,7 +27,7 @@ const MODULES: Module[] = [
     no: "01",
     href: "/unit",
     title: "โมดูลของหน่วยบริการ",
-    sub: "ใช้ชุดเดียวกันทั้งโรงพยาบาล (รัฐ/เอกชน) และหน่วยบริการเจ้าของพื้นที่ (รพ.สต.) สลับบทบาทได้ในระบบ",
+    sub: "ตัวอย่าง รพ.บางกระทุ่ม ใช้พื้นที่ทำงานเดียวสำหรับสอบสวนผู้ป่วย แจ้งเครือข่าย รับเคส และวิเคราะห์ข้อมูลในพื้นที่รับผิดชอบ",
     accent: "#0d9488",
     tone: "#ccfbf1",
     icon: "hospital",
@@ -188,7 +188,7 @@ export default function Home() {
         <h2 className="text-[15px] font-bold mb-1">โมดูลทั้งหมดตาม UX/UI spec</h2>
         <p className="sub mb-6 max-w-[780px]">
           ทุกหัวข้อในการ์ดคือฟีเจอร์ที่ระบุไว้ใน doc/spec.md และกดเข้าไปดูหน้าจอ mockup ได้ทันที ·
-          โมดูล 01 ใช้ชุดหน้าจอเดียวกันทั้งโรงพยาบาลและ รพ.สต. โดยสลับบทบาทได้จากแถบเมนูด้านซ้าย
+          โมดูล 01 ใช้ รพ.บางกระทุ่ม เป็นตัวอย่างหน่วยบริการเดียว ครอบคลุมทั้งงานในโรงพยาบาลและพื้นที่รับผิดชอบ
         </p>
 
         <div className="grid gap-5 lg:grid-cols-2 xl:grid-cols-3 items-start">
@@ -355,7 +355,7 @@ export default function Home() {
         {/* flow */}
         <section className="card p-5 sm:p-6 mt-6">
           <h2 className="text-[15px] font-bold mb-1">เส้นทางข้อมูลของหนึ่งเคส</h2>
-          <p className="sub mb-5">ตัวอย่างเคส PLK-6809-0142 · ไข้เลือดออก · ม.4 ต.บ้านคลอง</p>
+          <p className="sub mb-5">ตัวอย่างเคส PLK-6809-0142 · ไข้เลือดออก · ม.4 ต.บางกระทุ่ม</p>
           <ol className="grid gap-3 md:grid-cols-3 xl:grid-cols-6">
             {FLOW.map(([no, t, d, c], i, arr) => (
               <li key={t} className="relative">

@@ -126,7 +126,7 @@ export default function NewCase() {
                 ["แบบฟอร์มที่จะใช้", "แบบ ร.507 (Dengue)"],
                 ["ระยะเวลาแจ้ง", "ภายใน 3 ชั่วโมง"],
                 ["รัศมีควบคุมโรค", "100 เมตรรอบบ้านผู้ป่วย"],
-                ["ทีมที่รับผิดชอบ", "SRRT อำเภอ + รพ.สต. พื้นที่"],
+                ["ทีมที่รับผิดชอบ", "ทีม SRRT/CDCU บางกระทุ่ม"],
               ].map(([k, v]) => (
                 <div key={k} className="flex justify-between gap-3">
                   <dt className="text-muted shrink-0">{k}</dt>

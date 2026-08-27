@@ -68,12 +68,12 @@ export default function CaseForm() {
               <Field label="อาชีพ" value="รับจ้างก่อสร้าง" source="USER" />
               <Field
                 label="ที่อยู่ขณะป่วย"
-                value="บ้านเลขที่ 128/4 หมู่ 4 ต.บ้านคลอง อ.เมืองพิษณุโลก จ.พิษณุโลก 65000"
+                value="บ้านเลขที่ 128/4 หมู่ 4 ต.บางกระทุ่ม อ.บางกระทุ่ม จ.พิษณุโลก 65110"
                 source="HIS"
                 wide
               />
               <Field label="โทรศัพท์" value="08x-xxx-4471" source="HIS" />
-              <Field label="สิทธิการรักษา" value="ประกันสังคม (รพ.พุทธชินราช)" source="HIS" />
+              <Field label="สิทธิการรักษา" value="สิทธิบัตรทอง (รพ.บางกระทุ่ม)" source="HIS" />
             </div>
           </Card>
 

@@ -5,10 +5,10 @@ import { Icon } from "@/components/icons";
 import { DISEASES } from "@/lib/mock";
 
 const CLUSTERS = [
-  { n: "ม.4 บ้านคลองใหม่", c: 6, lv: "สูงมาก", bg: "#fee2e2", fg: "#b91c1c", d: "ไข้เลือดออก" },
-  { n: "ม.2 บ้านคลองเหนือ", c: 4, lv: "สูง", bg: "#ffedd5", fg: "#c2410c", d: "ไข้เลือดออก" },
-  { n: "ศูนย์เด็กเล็ก ม.7 บ้านท่าโรง", c: 3, lv: "สูง", bg: "#ffedd5", fg: "#c2410c", d: "มือ เท้า ปาก" },
-  { n: "ม.1 บ้านคลองใต้", c: 1, lv: "ปานกลาง", bg: "#fef3c7", fg: "#b45309", d: "ไข้เลือดออก" },
+  { n: "ม.4 ต.บางกระทุ่ม", c: 6, lv: "สูงมาก", bg: "#fee2e2", fg: "#b91c1c", d: "ไข้เลือดออก" },
+  { n: "ม.2 ต.สนามคลี", c: 4, lv: "สูง", bg: "#ffedd5", fg: "#c2410c", d: "ไข้เลือดออก" },
+  { n: "ศูนย์เด็กเล็ก ม.7 ต.โคกสลุด", c: 3, lv: "สูง", bg: "#ffedd5", fg: "#c2410c", d: "มือ เท้า ปาก" },
+  { n: "ม.1 ต.ไผ่ล้อม", c: 1, lv: "ปานกลาง", bg: "#fef3c7", fg: "#b45309", d: "ไข้เลือดออก" },
 ];
 
 export default function AreaMap() {
@@ -16,7 +16,7 @@ export default function AreaMap() {
     <>
       <PageHead
         title="แผนที่การระบาด"
-        desc="แสดงตำแหน่งผู้ป่วยในเขต รพ.สต. กลุ่มก้อนการระบาด (Cluster) และรัศมีควบคุมโรคแบบเรียลไทม์"
+        desc="แสดงตำแหน่งผู้ป่วยในพื้นที่รับผิดชอบของ รพ.บางกระทุ่ม กลุ่มก้อนการระบาด และรัศมีควบคุมโรคแบบเรียลไทม์"
         actions={
           <>
             <button className="btn btn-sm">
@@ -114,8 +114,8 @@ export default function AreaMap() {
 
         {/* map canvas */}
         <Card
-          title="แผนที่ ต.บ้านคลอง"
-          desc="เขตรับผิดชอบของหน่วยบริการ · 9 หมู่บ้าน · ระบบพิกัด WGS84"
+          title="แผนที่ อ.บางกระทุ่ม"
+          desc="พื้นที่รับผิดชอบของ รพ.บางกระทุ่ม · ระบบพิกัด WGS84"
           icon="map"
           pad={false}
           action={<Chip bg="#dcfce7" fg="#15803d" dot>อัปเดต 3 นาทีที่แล้ว</Chip>}
@@ -191,9 +191,9 @@ export default function AreaMap() {
           <Card title="ทีมภาคสนามในพื้นที่" icon="users">
             <div className="grid gap-2.5">
               {[
-                ["ทีม รพ.สต.บ้านคลอง", "ม.4 บ้านคลองใหม่", "#16a34a"],
-                ["ทีม SRRT อำเภอ", "ม.2 บ้านคลองเหนือ", "#16a34a"],
-                ["อสม. ม.7 บ้านท่าโรง", "กำลังเดินทาง", "#f59e0b"],
+                ["ทีม รพ.บางกระทุ่ม", "ม.4 ต.บางกระทุ่ม", "#16a34a"],
+                ["ทีม SRRT บางกระทุ่ม", "ม.2 ต.สนามคลี", "#16a34a"],
+                ["อสม. ม.7 ต.โคกสลุด", "กำลังเดินทาง", "#f59e0b"],
               ].map(([n, l, c]) => (
                 <div key={String(n)} className="flex items-center gap-2.5">
                   <span className="w-2 h-2 rounded-full shrink-0" style={{ background: String(c) }} />

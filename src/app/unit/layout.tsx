@@ -1,17 +1,11 @@
 "use client";
 
 import DesktopShell, { type NavItem } from "@/components/DesktopShell";
-import {
-  UnitRoleContext,
-  UnitRoleSwitcher,
-  UnitRoleToggle,
-  UnitScopeBar,
-  useUnitRoleState,
-} from "@/components/UnitRole";
+import { UNIT_PROFILE, UnitScopeBar } from "@/components/UnitRole";
 
 /**
  * เมนูของ "โมดูลหน่วยบริการ" ตาม doc/spec.md
- * ใช้ชุดเดียวกันทั้งโรงพยาบาลและ รพ.สต. (สลับบทบาทได้ที่แถบด้านซ้าย)
+ * ตัวอย่างเดียว: รพ.บางกระทุ่ม ครอบคลุมงานในโรงพยาบาลและพื้นที่รับผิดชอบ
  */
 const NAV: NavItem[] = [
   { href: "/unit", label: "ภาพรวมหน่วยบริการ", icon: "home" },
@@ -57,26 +51,21 @@ const NAV: NavItem[] = [
 ];
 
 export default function UnitLayout({ children }: LayoutProps<"/unit">) {
-  const ctx = useUnitRoleState("hospital");
-  const { role } = ctx;
+  const role = UNIT_PROFILE;
 
   return (
-    <UnitRoleContext.Provider value={ctx}>
-      <DesktopShell
-        accent={role.accent}
-        system={role.system}
-        org={role.org}
-        url={role.url}
-        device="Webapp Desktop · Web Mobile"
-        nav={NAV}
-        user={role.user}
-        collapsibleSections
-        sidebarExtra={<UnitRoleSwitcher {...ctx} />}
-        headerExtra={<UnitRoleToggle {...ctx} />}
-      >
-        <UnitScopeBar role={role} />
-        {children}
-      </DesktopShell>
-    </UnitRoleContext.Provider>
+    <DesktopShell
+      accent={role.accent}
+      system={role.system}
+      org={role.org}
+      url={role.url}
+      device="Webapp Desktop · Web Mobile"
+      nav={NAV}
+      user={role.user}
+      collapsibleSections
+    >
+      <UnitScopeBar role={role} />
+      {children}
+    </DesktopShell>
   );
 }

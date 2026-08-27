@@ -10,7 +10,7 @@ export default function FieldDesktopLayout({ children }: LayoutProps<"/field/des
     <DesktopShell
       accent="field"
       system="SRRT / CDCU · DESKTOP"
-      org="ทีมสอบสวนควบคุมโรค SRRT อ.เมืองพิษณุโลก"
+      org="ทีมสอบสวนควบคุมโรค SRRT อ.บางกระทุ่ม"
       url="https://cdc.plkhealth.go.th/field"
       device="Webapp Desktop · Web Mobile"
       nav={NAV}

@@ -7,8 +7,8 @@ const NOTIFICATIONS = [
   {
     id: "PLK-6809-0142",
     disease: "ไข้เลือดออก",
-    area: "ต.บ้านคลอง อ.เมือง",
-    recipients: "ทีม SRRT เมือง 5 คน",
+    area: "ต.บางกระทุ่ม อ.บางกระทุ่ม",
+    recipients: "ทีม SRRT บางกระทุ่ม 5 คน",
     sentAt: "วันนี้ 09:41",
     status: "รับเคสแล้ว",
     response: "นายกิตติศักดิ์ · 09:44",
@@ -161,7 +161,7 @@ export default function NotificationRegistryPage() {
           <Card title="เส้นทางตอบกลับล่าสุด" icon="clock" desc="เคส PLK-6809-0142">
             <ol className="grid gap-0">
               {[
-                ["09:41", "ส่ง Flex Message", "ถึงทีม SRRT เมือง 5 คน", "send", true],
+                ["09:41", "ส่ง Flex Message", "ถึงทีม SRRT บางกระทุ่ม 5 คน", "send", true],
                 ["09:42", "อ่านข้อความแล้ว", "4 จาก 5 คน", "chat", true],
                 ["09:44", "กดรับทราบ", "นายกิตติศักดิ์ แสงเพชร", "check", true],
                 ["09:44", "รับเคสเข้าทีม", "กำหนดลงพื้นที่ภายใน 3 ชม.", "shield", true],

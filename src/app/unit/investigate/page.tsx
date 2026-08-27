@@ -35,7 +35,7 @@ export default function AreaInvestigate() {
         {/* case list */}
         <Card
           title="เคสในเขตรับผิดชอบ"
-          desc="ต.บ้านคลอง · 9 หมู่บ้าน"
+          desc="อ.บางกระทุ่ม · พื้นที่รับผิดชอบของ รพ.บางกระทุ่ม"
           icon="clipboard"
           pad={false}
         >
@@ -94,7 +94,7 @@ export default function AreaInvestigate() {
               </span>
               <div>
                 <p className="text-[13px] font-semibold">PLK-6809-0142 · นายกฤษฎา พรมเรือง</p>
-                <p className="sub">ไข้เลือดออก · ม.4 บ้านคลองใหม่ · รับเคสจาก รพ.พุทธชินราช</p>
+                <p className="sub">ไข้เลือดออก · ม.4 ต.บางกระทุ่ม · ตรวจพบที่ รพ.บางกระทุ่ม</p>
               </div>
             </div>
             <div className="flex-1 min-w-[180px] max-w-[300px]">
@@ -117,11 +117,11 @@ export default function AreaInvestigate() {
               <Field label="การวินิจฉัย" value="A91 · DHF Grade II" source="HIS" />
               <Field
                 label="ที่อยู่ขณะป่วย"
-                value="128/4 หมู่ 4 ต.บ้านคลอง อ.เมืองพิษณุโลก"
+                value="128/4 หมู่ 4 ต.บางกระทุ่ม อ.บางกระทุ่ม"
                 source="HIS"
                 wide
               />
-              <Field label="หมู่บ้านที่รับผิดชอบ" value="ม.4 บ้านคลองใหม่" source="USER" />
+              <Field label="พื้นที่รับผิดชอบ" value="ม.4 ต.บางกระทุ่ม" source="USER" />
               <Field label="อสม. ประจำครัวเรือน" value="นางสมพร ดีใจ" source="USER" />
             </div>
           </Card>
@@ -257,7 +257,7 @@ export default function AreaInvestigate() {
             </div>
 
             <div className="mt-4">
-              <span className="lbl">บันทึกเพิ่มเติมของเจ้าหน้าที่ รพ.สต.</span>
+              <span className="lbl">บันทึกเพิ่มเติมของเจ้าหน้าที่ รพ.บางกระทุ่ม</span>
               <textarea
                 className="inp min-h-[92px] resize-none"
                 readOnly

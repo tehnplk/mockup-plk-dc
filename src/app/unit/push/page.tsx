@@ -8,8 +8,8 @@ import { useUnitRole } from "@/components/UnitRole";
 
 const PAYLOAD = `{
   "case_id": "PLK-6809-0142",
-  "hospital_code": "10708",
-  "hospital_name": "รพ.พุทธชินราช พิษณุโลก",
+  "hospital_code": "BKT-MOCK",
+  "hospital_name": "รพ.บางกระทุ่ม",
   "disease": { "code": "66", "name": "ไข้เลือดออก", "icd10": "A91" },
   "patient": {
     "hn_hash": "sha256:7f3a…c19",
@@ -17,7 +17,7 @@ const PAYLOAD = `{
     "age": 34, "sex": "M", "nationality": "TH"
   },
   "address": {
-    "tambon": "บ้านคลอง", "amphoe": "เมืองพิษณุโลก",
+    "tambon": "บางกระทุ่ม", "amphoe": "บางกระทุ่ม",
     "province": "พิษณุโลก",
     "lat": 16.8211, "lng": 100.2659
   },

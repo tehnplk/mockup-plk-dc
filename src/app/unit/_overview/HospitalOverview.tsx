@@ -8,7 +8,7 @@ export default function HospitalOverview() {
   return (
     <>
       <PageHead
-        title="ภาพรวมงานสอบสวนโรค — โรงพยาบาล"
+        title="ภาพรวมงานสอบสวนโรค — รพ.บางกระทุ่ม"
         desc="ข้อมูล ณ 27 ส.ค. 2569 เวลา 09:41 น. · เชื่อมต่อ HIS: HOSxP XE (ปกติ)"
         actions={
           <>
@@ -167,7 +167,7 @@ export default function HospitalOverview() {
           <ol className="relative pl-5">
             <span className="absolute left-[5px] top-2 bottom-2 w-px bg-line-brd" />
             {[
-              ["09:12", "ส่ง Flex Message แจ้งทีม SRRT เมือง 5 คน", "send"],
+              ["09:12", "ส่ง Flex Message แจ้งทีม SRRT บางกระทุ่ม 5 คน", "send"],
               ["08:47", "Push เคส PLK-6809-0142 เข้า Dashboard กลาง", "db"],
               ["08:31", "AI สรุปบทสนทนาผู้ป่วย HN 0045218 เสร็จสิ้น", "sparkles"],
               ["08:14", "HIS แจ้งผู้ป่วยเข้าเกณฑ์ไข้เลือดออก 1 ราย", "hospital"],

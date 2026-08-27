@@ -105,7 +105,7 @@ export default function GpsPage() {
           <Row label="ละติจูด" value="16.821103" icon="pin" />
           <Row label="ลองจิจูด" value="100.265904" icon="pin" />
           <Row label="ความแม่นยำ" value="±4 เมตร" icon="shield" />
-          <Row label="ที่อยู่โดยประมาณ" value="ม.4 ต.บ้านคลอง อ.เมืองพิษณุโลก" icon="home" />
+          <Row label="ที่อยู่โดยประมาณ" value="ม.4 ต.บางกระทุ่ม อ.บางกระทุ่ม" icon="home" />
           <Row label="เวลา" value="27 ส.ค. 2569 10:22 น." icon="clock" />
         </Sheet>
 

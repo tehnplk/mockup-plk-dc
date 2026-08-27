@@ -38,7 +38,7 @@ export default function PublicFlexCard({
             <path d="M7 1 l11 5 M7 2 l10 8" stroke="#ffffff" strokeWidth="1.4" />
           </g>
           <text x="20" y="28" fontSize="11" fill="#ccfbf1" fontWeight="700">
-            สสจ.พิษณุโลก · รพ.สต.บ้านคลอง
+            สสจ.พิษณุโลก · รพ.บางกระทุ่ม
           </text>
           <text x="20" y="88" fontSize="16" fill="#ffffff" fontWeight="800">
             แจ้งเตือนพื้นที่ระบาด
@@ -51,7 +51,7 @@ export default function PublicFlexCard({
           พื้นที่ของท่านพบผู้ป่วยไข้เลือดออก 6 ราย
         </p>
         <p className="text-[11.5px] text-[#64748b] mt-1 leading-relaxed">
-          ม.4 บ้านคลองใหม่ ต.บ้านคลอง · ข้อมูล ณ 27 ส.ค. 2569
+          ม.4 ต.บางกระทุ่ม อ.บางกระทุ่ม · ข้อมูล ณ 27 ส.ค. 2569
         </p>
 
         <div className="mt-3 rounded-xl px-3 py-2.5" style={{ background: "#f0fdfa" }}>
@@ -152,7 +152,7 @@ export default function PublicFlexCard({
             นายวิรัตน์ สุขเกษม
           </span>
           <span className="block text-[10.5px] text-[#64748b] leading-tight">
-            นักสาธารณสุขชำนาญการ · รพ.สต.บ้านคลอง
+            นักสาธารณสุขชำนาญการ · รพ.บางกระทุ่ม
           </span>
         </span>
       </div>

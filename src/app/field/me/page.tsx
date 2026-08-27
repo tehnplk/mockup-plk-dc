@@ -10,7 +10,7 @@ export default function MePage() {
     <PhoneShell
       url="cdc.plkhealth.go.th/field/me"
       title="ทีมและโปรไฟล์"
-      subtitle="ทีม SRRT อ.เมืองพิษณุโลก"
+      subtitle="ทีม SRRT อ.บางกระทุ่ม"
       caption="ระบบงานภาคสนาม · Web Mobile · ทีม/โปรไฟล์"
       tabs={FIELD_TABS}
     >
@@ -23,7 +23,7 @@ export default function MePage() {
           ก
         </span>
         <p className="text-[16px] font-bold mt-3">นายกิตติศักดิ์ แสงเพชร</p>
-        <p className="text-[12px] text-muted">นักสาธารณสุขปฏิบัติการ (SRRT) · รพ.สต.บ้านคลอง</p>
+        <p className="text-[12px] text-muted">นักสาธารณสุขปฏิบัติการ (SRRT) · รพ.บางกระทุ่ม</p>
         <div className="flex justify-center gap-2 mt-2.5">
           <Chip bg="#dcfce7" fg="#15803d" dot>
             ออนไลน์
@@ -98,7 +98,7 @@ export default function MePage() {
 
         <Sheet title="งานที่ได้รับมอบหมายวันนี้">
           {[
-            ["สำรวจลูกน้ำ ม.4 ต.บ้านคลอง", "09:00–12:00", true],
+            ["สำรวจลูกน้ำ ม.4 ต.บางกระทุ่ม", "09:00–12:00", true],
             ["พ่นหมอกควันรัศมี 100 ม.", "13:00–15:00", false],
             ["ให้ความรู้ชุมชน ศาลาหมู่บ้าน", "15:30–16:30", false],
           ].map(([t, time, done]) => (

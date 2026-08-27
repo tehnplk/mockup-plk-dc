@@ -7,20 +7,20 @@ import { FIELD_TABS } from "./tabs";
 
 export default function FieldInbox() {
   const incoming = [
-    { c: CASES[0], src: "รพ.พุทธชินราช", srcType: "hospital" as const, via: "Flex หมอพร้อม" },
+    { c: CASES[0], src: "รพ.บางกระทุ่ม", srcType: "hospital" as const, via: "Flex หมอพร้อม" },
     {
       c: {
         ...CASES[1],
         id: "RPT-6809-027",
         name: "ด.ช.ปัณณวิชญ์ เรืองทอง",
         age: 4,
-        hospital: "รพ.สต.บ้านคลอง",
-        tambon: "บ้านคลอง",
-        district: "เมืองพิษณุโลก",
+        hospital: "รพ.บางกระทุ่ม",
+        tambon: "บางกระทุ่ม",
+        district: "บางกระทุ่ม",
         reportedAt: "27 ส.ค. 09:15",
         severity: "เร่งด่วน" as const,
       },
-      src: "รพ.สต.บ้านคลอง (อสม. แจ้ง)",
+      src: "รพ.บางกระทุ่ม (อสม. แจ้ง)",
       srcType: "area" as const,
       via: "Dashboard กลาง",
     },
@@ -32,7 +32,7 @@ export default function FieldInbox() {
     <PhoneShell
       url="cdc.plkhealth.go.th/field"
       title="กล่องเคสสอบสวน"
-      subtitle="ทีม SRRT อ.เมืองพิษณุโลก"
+      subtitle="ทีม SRRT อ.บางกระทุ่ม"
       caption="ระบบงานภาคสนาม · Web Mobile (เบราว์เซอร์บนมือถือ)"
       tabs={FIELD_TABS}
       right={
@@ -86,7 +86,7 @@ export default function FieldInbox() {
                     <Chip {...severityTone[c.severity]}>{c.severity}</Chip>
                     {srcType === "area" && (
                       <Chip bg="#ede9fe" fg="#6d28d9">
-                        แจ้งจาก รพ.สต.
+                        แจ้งจากหน่วยบริการ
                       </Chip>
                     )}
                     <Chip

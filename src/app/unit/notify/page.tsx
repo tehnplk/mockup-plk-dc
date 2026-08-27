@@ -86,9 +86,9 @@ export default function NotifyPage() {
               </p>
               <div className="flex flex-wrap gap-2">
                 {[
-                  "ทีม SRRT อำเภอเมือง (5)",
+                  "ทีม SRRT บางกระทุ่ม (5)",
                   "ทีม CDCU จังหวัด (8)",
-                  "รพ.สต. ในพื้นที่ (12)",
+                  "เครือข่ายหน่วยบริการในอำเภอ (12)",
                   "ผู้บริหาร สสจ. (4)",
                   "สคร.2 พิษณุโลก (3)",
                 ].map((g, i) => (
@@ -141,7 +141,7 @@ export default function NotifyPage() {
                 <input
                   className="inp"
                   readOnly
-                  defaultValue="[เร่งด่วน] เคสไข้เลือดออกรายใหม่ อ.เมืองพิษณุโลก กรุณากดรับทราบ"
+                  defaultValue="[เร่งด่วน] เคสไข้เลือดออกรายใหม่ อ.บางกระทุ่ม กรุณากดรับทราบ"
                 />
               </div>
               <div className="sm:col-span-2">
@@ -149,7 +149,7 @@ export default function NotifyPage() {
                 <div className="grid gap-2.5 sm:grid-cols-3">
                   <input className="inp" readOnly defaultValue="นางนภัสสร ชัยวัฒน์" />
                   <input className="inp" readOnly defaultValue="นักสาธารณสุขชำนาญการ" />
-                  <input className="inp" readOnly defaultValue="รพ.พุทธชินราช พิษณุโลก" />
+                  <input className="inp" readOnly defaultValue="รพ.บางกระทุ่ม" />
                 </div>
                 <p className="sub mt-1.5">
                   ชื่อ · ตำแหน่ง · หน่วยงาน — ผู้รับจะเห็นว่าใครเป็นผู้ส่งข้อความนี้

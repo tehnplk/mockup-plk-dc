@@ -6,20 +6,20 @@ import { CASES, severityTone, stageTone } from "@/lib/mock";
 
 export default function FieldDesktop() {
   const incoming = [
-    { c: CASES[0], src: "รพ.พุทธชินราช", area: false },
+    { c: CASES[0], src: "รพ.บางกระทุ่ม", area: false },
     {
       c: {
         ...CASES[1],
         id: "RPT-6809-027",
         name: "ด.ช.ปัณณวิชญ์ เรืองทอง",
         age: 4,
-        hospital: "รพ.สต.บ้านคลอง",
-        tambon: "บ้านคลอง",
-        district: "เมืองพิษณุโลก",
+        hospital: "รพ.บางกระทุ่ม",
+        tambon: "บางกระทุ่ม",
+        district: "บางกระทุ่ม",
         reportedAt: "27 ส.ค. 09:15",
         severity: "เร่งด่วน" as const,
       },
-      src: "รพ.สต.บ้านคลอง (อสม. แจ้ง)",
+      src: "รพ.บางกระทุ่ม (อสม. แจ้ง)",
       area: true,
     },
     { c: CASES[7], src: "รพ.วัดโบสถ์", area: false },
@@ -80,7 +80,7 @@ export default function FieldDesktop() {
                     <Chip {...severityTone[c.severity]}>{c.severity}</Chip>
                     {area && (
                       <Chip bg="#ede9fe" fg="#6d28d9">
-                        แจ้งจาก รพ.สต.
+                        แจ้งจากหน่วยบริการ
                       </Chip>
                     )}
                   </div>
@@ -147,7 +147,7 @@ export default function FieldDesktop() {
               </span>
               <div>
                 <p className="text-[13px] font-semibold">PLK-6809-0142 · นายกฤษฎา พรมเรือง</p>
-                <p className="sub">ไข้เลือดออก · ม.4 ต.บ้านคลอง · ทีม SRRT เมือง-1</p>
+                <p className="sub">ไข้เลือดออก · ม.4 ต.บางกระทุ่ม · ทีม SRRT บางกระทุ่ม-1</p>
               </div>
             </div>
             <div className="flex-1 min-w-[180px] max-w-[300px]">
@@ -172,7 +172,7 @@ export default function FieldDesktop() {
               <Field label="วันเริ่มป่วย" value="22 ส.ค. 2569" source="HIS" />
               <Field
                 label="ที่อยู่ขณะป่วย"
-                value="128/4 หมู่ 4 ต.บ้านคลอง อ.เมืองพิษณุโลก"
+                value="128/4 หมู่ 4 ต.บางกระทุ่ม อ.บางกระทุ่ม"
                 source="HIS"
                 wide
               />

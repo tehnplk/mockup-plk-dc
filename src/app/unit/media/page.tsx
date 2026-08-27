@@ -87,7 +87,7 @@ export default function AreaMedia() {
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="sm:col-span-2">
                 <span className="lbl">หัวเรื่อง</span>
-                <input className="inp" readOnly defaultValue="เตือนภัย! ไข้เลือดออกระบาด ม.4 ต.บ้านคลอง" />
+                <input className="inp" readOnly defaultValue="เตือนภัย! ไข้เลือดออกระบาด ม.4 ต.บางกระทุ่ม" />
               </div>
               <div className="sm:col-span-2">
                 <span className="lbl">ข้อความหลัก</span>
@@ -99,11 +99,11 @@ export default function AreaMedia() {
               </div>
               <div>
                 <span className="lbl">หน่วยงานเจ้าของสื่อ</span>
-                <input className="inp" readOnly defaultValue="รพ.สต.บ้านคลอง" />
+                <input className="inp" readOnly defaultValue="รพ.บางกระทุ่ม" />
               </div>
               <div>
                 <span className="lbl">ข้อมูลติดต่อ</span>
-                <input className="inp" readOnly defaultValue="สายด่วน 1422 · รพ.สต.บ้านคลอง 055-xxx-xxx" />
+                <input className="inp" readOnly defaultValue="สายด่วน 1422 · รพ.บางกระทุ่ม 055-xxx-xxx" />
               </div>
               <div className="sm:col-span-2">
                 <span className="lbl">ข้อมูลสถานการณ์ที่ดึงมาอัตโนมัติ</span>
@@ -111,7 +111,7 @@ export default function AreaMedia() {
                   {[
                     "ผู้ป่วยสะสม 6 ราย",
                     "ค่า HI 24.1%",
-                    "พื้นที่ ม.4 ต.บ้านคลอง",
+                    "พื้นที่ ม.4 ต.บางกระทุ่ม",
                     "ข้อมูล ณ 27 ส.ค. 2569",
                   ].map((c) => (
                     <Chip key={c} bg="#ede9fe" fg="#6d28d9">
@@ -145,7 +145,7 @@ export default function AreaMedia() {
                 <circle cx="40" cy="370" r="90" fill="#00000018" />
 
                 <text x="24" y="52" fontSize="12" fill="#fecaca" fontWeight="600">
-                  รพ.สต.บ้านคลอง · สสจ.พิษณุโลก
+                  รพ.บางกระทุ่ม · สสจ.พิษณุโลก
                 </text>
                 <text x="24" y="94" fontSize="28" fill="#fff" fontWeight="800">
                   เตือนภัย!
@@ -154,7 +154,7 @@ export default function AreaMedia() {
                   ไข้เลือดออกระบาด
                 </text>
                 <text x="24" y="150" fontSize="15" fill="#fde68a" fontWeight="700">
-                  ม.4 ต.บ้านคลอง อ.เมือง
+                  ม.4 ต.บางกระทุ่ม อ.บางกระทุ่ม
                 </text>
 
                 <rect x="24" y="172" width="252" height="72" rx="10" fill="#ffffff1f" />
@@ -212,8 +212,8 @@ export default function AreaMedia() {
             <div className="grid gap-2">
               {[
                 ["ไลน์หมอพร้อม (ประชาชนในเขต)", "5,120 คน", true],
-                ["Facebook รพ.สต.บ้านคลอง", "1,840 คน", true],
-                ["กลุ่มไลน์ อสม. ต.บ้านคลอง", "96 คน", true],
+                ["Facebook รพ.บางกระทุ่ม", "1,840 คน", true],
+                ["กลุ่มไลน์ อสม. ต.บางกระทุ่ม", "96 คน", true],
                 ["ป้ายไวนิลจุดชุมชน", "9 จุด", false],
                 ["เสียงตามสายหมู่บ้าน", "9 หมู่บ้าน", false],
               ].map(([n, r, on]) => (

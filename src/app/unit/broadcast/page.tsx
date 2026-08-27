@@ -185,7 +185,7 @@ export default function Broadcast() {
                 <textarea
                   className="inp min-h-[120px] resize-none"
                   readOnly
-                  defaultValue={`เรียน พี่น้องประชาชน ม.4 บ้านคลองใหม่ ต.บ้านคลอง
+                  defaultValue={`เรียน พี่น้องประชาชน ม.4 ต.บางกระทุ่ม อ.บางกระทุ่ม
 
 ขณะนี้พบผู้ป่วยไข้เลือดออกในพื้นที่ของท่าน 6 ราย ขอความร่วมมือ
 • สำรวจและทำลายแหล่งเพาะพันธุ์ยุงลายรอบบ้านทุก 7 วัน
@@ -193,7 +193,7 @@ export default function Broadcast() {
 • นอนในมุ้งหรือห้องที่มีมุ้งลวด ทายากันยุง
 • หากมีไข้สูงเกิน 2 วัน อย่าซื้อยากลุ่ม NSAIDs กินเอง ให้รีบพบแพทย์
 
-สอบถามเพิ่มเติม: รพ.สต.บ้านคลอง หรือสายด่วนกรมควบคุมโรค 1422`}
+สอบถามเพิ่มเติม: รพ.บางกระทุ่ม หรือสายด่วนกรมควบคุมโรค 1422`}
                 />
               </div>
               <div>
@@ -201,7 +201,7 @@ export default function Broadcast() {
                 <div className="grid gap-2.5 sm:grid-cols-3">
                   <input className="inp" readOnly defaultValue="นายวิรัตน์ สุขเกษม" />
                   <input className="inp" readOnly defaultValue="นักสาธารณสุขชำนาญการ" />
-                  <input className="inp" readOnly defaultValue="สสอ.เมืองพิษณุโลก" />
+                  <input className="inp" readOnly defaultValue="สสอ.บางกระทุ่ม" />
                 </div>
               </div>
 
@@ -241,7 +241,7 @@ export default function Broadcast() {
           <Card title="ประวัติการส่งล่าสุด" icon="clock" pad={false}>
             <ul>
               {[
-                ["เตือนภัยไข้เลือดออก ม.4 บ้านคลองใหม่", "24 ส.ค.", "1,840", 78],
+                ["เตือนภัยไข้เลือดออก ม.4 ต.บางกระทุ่ม", "24 ส.ค.", "1,840", 78],
                 ["รณรงค์ 3 เก็บ 3 โรค ทั้งตำบล", "18 ส.ค.", "5,120", 71],
                 ["แจ้งพบมือเท้าปาก ศูนย์เด็กเล็ก ม.7", "12 ส.ค.", "480", 84],
                 ["ประชาสัมพันธ์ฉีดวัคซีนไข้หวัดใหญ่", "5 ส.ค.", "5,120", 62],
