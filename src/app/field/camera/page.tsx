@@ -17,7 +17,7 @@ export default function CameraPage() {
     <PhoneShell
       url="cdc.plkhealth.go.th/field/camera"
       title="ถ่ายรูปหลักฐาน"
-      subtitle="PLK-6809-0142 · 6 รูป"
+      subtitle="69082702 · 6 รูป"
       caption="ระบบงานภาคสนาม · Web Mobile · กล้องถ่ายภาพ"
       tabs={FIELD_TABS}
     >

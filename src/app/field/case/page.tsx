@@ -7,7 +7,7 @@ export default function FieldCaseDetail() {
   return (
     <PhoneShell
       url="cdc.plkhealth.go.th/field/case"
-      title="PLK-6809-0142"
+      title="69082702"
       subtitle="รายละเอียดเคสจากโรงพยาบาล"
       back="/field"
       caption="ระบบงานภาคสนาม · Web Mobile · หน้ารายละเอียดเคส"

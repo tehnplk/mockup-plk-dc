@@ -12,7 +12,7 @@ export default function CaseForm() {
     <>
       <PageHead
         title="แบบสอบสวนโรค ร.507 — ไข้เลือดออก"
-        desc="เคส PLK-6809-0142 · HN 0045218 · ขั้นตอนที่ 3 จาก 5"
+        desc="เคส 69082702 · HN 0045218 · ขั้นตอนที่ 3 จาก 5"
         actions={
           <>
             <Chip bg="#dcfce7" fg="#15803d" dot>

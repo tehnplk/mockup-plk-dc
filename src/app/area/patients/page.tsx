@@ -22,7 +22,7 @@ type AcceptedPatient = {
 const PATIENTS: AcceptedPatient[] = [
   {
     acceptedAt: "27 ส.ค. 2569 07:20",
-    caseId: "PLK-6809-0136",
+    caseId: "69082602",
     hn: "0045218",
     cid: "3-6501-00452-18-1",
     name: "นายกฤษฎา พรมเรือง",
@@ -33,7 +33,7 @@ const PATIENTS: AcceptedPatient[] = [
   },
   {
     acceptedAt: "26 ส.ค. 2569 16:02",
-    caseId: "PLK-6809-0133",
+    caseId: "69082601",
     hn: "0088412",
     cid: "3-6510-00884-12-5",
     name: "นายอนุชิต แซ่ลิ้ม",
@@ -44,7 +44,7 @@ const PATIENTS: AcceptedPatient[] = [
   },
   {
     acceptedAt: "26 ส.ค. 2569 11:44",
-    caseId: "PLK-6809-0131",
+    caseId: "69082406",
     hn: "0052241",
     cid: "1-6505-00522-41-3",
     name: "ด.ช.ธนภัทร พูลสวัสดิ์",
@@ -55,7 +55,7 @@ const PATIENTS: AcceptedPatient[] = [
   },
   {
     acceptedAt: "25 ส.ค. 2569 14:35",
-    caseId: "PLK-6809-0128",
+    caseId: "69082503",
     hn: "0011084",
     cid: "3-6508-00110-84-7",
     name: "นายบรรจง คำใส",
@@ -66,7 +66,7 @@ const PATIENTS: AcceptedPatient[] = [
   },
   {
     acceptedAt: "25 ส.ค. 2569 09:12",
-    caseId: "PLK-6809-0125",
+    caseId: "69082501",
     hn: "0093117",
     cid: "1-6506-00193-17-4",
     name: "ด.ญ.ปุณยนุช แสนคำ",

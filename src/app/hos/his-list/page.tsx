@@ -287,7 +287,7 @@ export default function CandidateRegistryPage() {
         </div>
 
         <div className="scroll-x nice">
-          <table className="w-full min-w-[1540px] border-collapse">
+          <table className="w-full min-w-[1680px] border-collapse">
             <thead>
               <tr>
                 <th className="th">วันเวลารับบริการ</th>
@@ -298,6 +298,7 @@ export default function CandidateRegistryPage() {
                 <th className="th">อาการสำคัญ</th>
                 <th className="th">รหัสวินิจฉัย</th>
                 <th className="th">ชื่อโรค</th>
+                <th className="th">ระดับความเร่งด่วน</th>
                 <th className="th">Action</th>
               </tr>
             </thead>
@@ -315,16 +316,15 @@ export default function CandidateRegistryPage() {
                       {patient.icd10}
                     </span>
                   </td>
+                  <td className="td whitespace-nowrap font-medium">{patient.disease}</td>
                   <td className="td whitespace-nowrap">
-                    <div className="flex items-center gap-2">
-                      <span className="font-medium">{patient.disease}</span>
-                      <Chip
-                        bg={patient.urgency === "เร่งด่วน" ? "#ffedd5" : "#e0f2fe"}
-                        fg={patient.urgency === "เร่งด่วน" ? "#c2410c" : "#0369a1"}
-                      >
-                        {patient.urgency}
-                      </Chip>
-                    </div>
+                    <Chip
+                      bg={patient.urgency === "เร่งด่วน" ? "#ffedd5" : "#e0f2fe"}
+                      fg={patient.urgency === "เร่งด่วน" ? "#c2410c" : "#0369a1"}
+                      dot
+                    >
+                      {patient.urgency}
+                    </Chip>
                   </td>
                   <td className="td">
                     <div className="flex min-w-[420px] items-center gap-1.5">

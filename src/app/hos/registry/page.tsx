@@ -223,8 +223,8 @@ export default function NotificationRegistryPage() {
                 <th className="th">CID</th>
                 <th className="th">ชื่อ–นามสกุล</th>
                 <th className="th">ที่อยู่</th>
+                <th className="th">ส่งถึง</th>
                 <th className="th">สถานะ</th>
-                <th className="th">ผู้รับเคส</th>
                 <th className="th">Action</th>
               </tr>
             </thead>
@@ -241,10 +241,10 @@ export default function NotificationRegistryPage() {
                       <p className="mt-0.5 text-[11px] font-normal text-muted">{item.disease}</p>
                     </td>
                     <td className="td min-w-[250px]">{item.address}</td>
+                    <td className="td min-w-[180px]">{item.assignee}</td>
                     <td className="td">
                       <Chip bg={tone.bg} fg={tone.fg} dot>{item.status}</Chip>
                     </td>
-                    <td className="td min-w-[180px]">{item.assignee}</td>
                     <td className="td">
                       <button type="button" className="btn btn-primary btn-sm whitespace-nowrap" onClick={() => setSelectedCase(item)}>
                         <Icon name="send" size={14} /> แจ้งเคส

@@ -14,7 +14,7 @@ export default function GpsPage() {
     <PhoneShell
       url="cdc.plkhealth.go.th/field/gps"
       title="เก็บพิกัดภาคสนาม"
-      subtitle="PLK-6809-0142 · 3 จุด"
+      subtitle="69082702 · 3 จุด"
       caption="ระบบงานภาคสนาม · Web Mobile · เก็บพิกัด GPS"
       tabs={FIELD_TABS}
     >

@@ -7,7 +7,7 @@ import { Icon } from "@/components/icons";
 import { useUnitRole } from "@/components/UnitRole";
 
 const PAYLOAD = `{
-  "case_id": "PLK-6809-0142",
+  "case_id": "69082702",
   "hospital_code": "BKT-MOCK",
   "hospital_name": "รพ.บางกระทุ่ม",
   "disease": { "code": "66", "name": "ไข้เลือดออก", "icd10": "A91" },
@@ -63,7 +63,7 @@ export default function PushPage() {
       <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_380px]">
         <div className="flex flex-col gap-4 min-w-0">
           <Card
-            title="ตรวจสอบก่อนส่ง — เคส PLK-6809-0142"
+            title="ตรวจสอบก่อนส่ง — เคส 69082702"
             desc="ระบบตรวจความครบถ้วนตามกติกาที่ Admin จังหวัดกำหนดไว้"
             icon="shield"
           >
@@ -145,11 +145,11 @@ export default function PushPage() {
           <Card title="คิวการส่งข้อมูล" icon="clock" pad={false}>
             <ul>
               {[
-                ["PLK-6809-0142", "ไข้เลือดออก", "รอส่ง", "#f1f5f9", "#475569", 0],
-                ["PLK-6809-0141", "มือ เท้า ปาก", "กำลังส่ง", "#dbeafe", "#1d4ed8", 62],
-                ["PLK-6809-0139", "เลปโตสไปโรซิส", "ส่งสำเร็จ", "#dcfce7", "#15803d", 100],
-                ["PLK-6809-0138", "อาหารเป็นพิษ", "ส่งไม่สำเร็จ", "#fee2e2", "#b91c1c", 100],
-                ["PLK-6809-0137", "โรคหัด", "ส่งสำเร็จ", "#dcfce7", "#15803d", 100],
+                ["69082702", "ไข้เลือดออก", "รอส่ง", "#f1f5f9", "#475569", 0],
+                ["69082703", "มือ เท้า ปาก", "กำลังส่ง", "#dbeafe", "#1d4ed8", 62],
+                ["69082604", "เลปโตสไปโรซิส", "ส่งสำเร็จ", "#dcfce7", "#15803d", 100],
+                ["69082603", "อาหารเป็นพิษ", "ส่งไม่สำเร็จ", "#fee2e2", "#b91c1c", 100],
+                ["69082605", "โรคหัด", "ส่งสำเร็จ", "#dcfce7", "#15803d", 100],
               ].map(([id, d, s, bg, fg, p]) => (
                 <li key={String(id)} className="px-4 py-3 border-b border-line-brd last:border-0">
                   <div className="flex items-center gap-2">

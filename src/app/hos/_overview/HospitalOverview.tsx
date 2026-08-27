@@ -168,7 +168,7 @@ export default function HospitalOverview() {
             <span className="absolute left-[5px] top-2 bottom-2 w-px bg-line-brd" />
             {[
               ["09:12", "ส่ง Flex Message แจ้งทีม SRRT บางกระทุ่ม 5 คน", "send"],
-              ["08:47", "Push เคส PLK-6809-0142 เข้า Dashboard กลาง", "db"],
+              ["08:47", "Push เคส 69082702 เข้า Dashboard กลาง", "db"],
               ["08:31", "AI สรุปบทสนทนาผู้ป่วย HN 0045218 เสร็จสิ้น", "sparkles"],
               ["08:14", "HIS แจ้งผู้ป่วยเข้าเกณฑ์ไข้เลือดออก 1 ราย", "hospital"],
               ["07:58", "แนบผลตรวจ NS1 เข้าคลังเอกสาร", "file"],

@@ -14,7 +14,7 @@ export default function VoiceField() {
     <PhoneShell
       url="cdc.plkhealth.go.th/field/voice"
       title="อัดเสียงภาคสนาม"
-      subtitle="PLK-6809-0142 · 3 คลิป"
+      subtitle="69082702 · 3 คลิป"
       caption="ระบบงานภาคสนาม · Web Mobile · บันทึกเสียง"
       tabs={FIELD_TABS}
     >

@@ -15,7 +15,7 @@ const notoThai = Noto_Sans_Thai({
 });
 
 export const metadata: Metadata = {
-  title: "Plk SRRT Network Operating System | สสจ.พิษณุโลก",
+  title: "PLK SRRT Network Operating System | สสจ.พิษณุโลก",
   description:
     "Mockup ระบบปฏิบัติการเครือข่ายเฝ้าระวังสอบสวนเคลื่อนที่เร็ว จังหวัดพิษณุโลก",
 };

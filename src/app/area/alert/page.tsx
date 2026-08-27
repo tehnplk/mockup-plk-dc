@@ -87,7 +87,7 @@ export default function UnitAlert() {
       <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_320px]">
         <div className="flex flex-col gap-4 min-w-0">
           <Card
-            title="รายชื่อที่คัดเข้าจากเคส PLK-6809-0142"
+            title="รายชื่อที่คัดเข้าจากเคส 69082702"
             desc="ระบบดึงรายชื่อจากแบบสอบสวนและรัศมีควบคุมโรคบนแผนที่โดยอัตโนมัติ"
             icon="users"
             pad={false}

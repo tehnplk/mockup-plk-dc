@@ -5,7 +5,7 @@ import { Icon } from "@/components/icons";
 const REQUESTS = [
   {
     id: "REQ-6809-014",
-    case: "PLK-6809-0138",
+    case: "69082603",
     name: "อนุชิต แซ่ลิ้ม",
     disease: "ไข้เลือดออก",
     color: "#dc2626",
@@ -23,7 +23,7 @@ const REQUESTS = [
   },
   {
     id: "REQ-6809-013",
-    case: "PLK-6809-0129",
+    case: "69082504",
     name: "ด.ช.ภัทรดนัย ห่วงเพชร",
     disease: "มือ เท้า ปาก",
     color: "#059669",
@@ -41,7 +41,7 @@ const REQUESTS = [
   },
   {
     id: "REQ-6809-012",
-    case: "PLK-6809-0124",
+    case: "69082405",
     name: "ประเทือง ชูจันทร์",
     disease: "เลปโตสไปโรซิส",
     color: "#ca8a04",
@@ -244,7 +244,7 @@ export default function Requests() {
         <div className="flex flex-col gap-4 min-w-0">
           <Card
             title="รายละเอียดคำร้อง REQ-6809-014"
-            desc="อนุชิต แซ่ลิ้ม · เคส PLK-6809-0138"
+            desc="อนุชิต แซ่ลิ้ม · เคส 69082603"
             icon="shield"
             action={<Chip bg="#fef3c7" fg="#b45309">รอพิจารณา</Chip>}
           >

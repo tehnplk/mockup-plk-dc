@@ -193,7 +193,7 @@ export default function CasesProgress() {
         {/* case detail */}
         <div className="flex flex-col gap-4 min-w-0">
           <Card
-            title="ไทม์ไลน์เคส PLK-6809-0142"
+            title="ไทม์ไลน์เคส 69082702"
             desc="นายกฤษฎา พรมเรือง · ไข้เลือดออก"
             icon="clock"
             action={<Chip {...severityTone["เร่งด่วน"]}>เร่งด่วน</Chip>}
@@ -241,10 +241,10 @@ export default function CasesProgress() {
           <Card title="เคสที่เกินเวลามาตรฐาน" icon="bell" pad={false}>
             <ul>
               {[
-                ["PLK-6809-0139", "เลปโตสไปโรซิส", "เกิน 6 ชม.", "ทีม CDCU บางระกำ"],
-                ["PLK-6809-0121", "ไข้เลือดออก", "เกิน 14 ชม.", "ทีม SRRT พรหมพิราม"],
-                ["PLK-6809-0118", "อาหารเป็นพิษ", "เกิน 22 ชม.", "ทีม CDCU ชาติตระการ"],
-                ["PLK-6809-0109", "วัณโรค", "เกิน 3 วัน", "ทีม SRRT นครไทย"],
+                ["69082604", "เลปโตสไปโรซิส", "เกิน 6 ชม.", "ทีม CDCU บางระกำ"],
+                ["69082404", "ไข้เลือดออก", "เกิน 14 ชม.", "ทีม SRRT พรหมพิราม"],
+                ["69082402", "อาหารเป็นพิษ", "เกิน 22 ชม.", "ทีม CDCU ชาติตระการ"],
+                ["69082302", "วัณโรค", "เกิน 3 วัน", "ทีม SRRT นครไทย"],
               ].map(([id, d, t, team]) => (
                 <li key={String(id)} className="px-4 py-3 border-b border-line-brd last:border-0">
                   <div className="flex items-center gap-2">

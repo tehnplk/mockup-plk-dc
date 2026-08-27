@@ -76,14 +76,14 @@ export type CaseRow = {
 };
 
 export const CASES: CaseRow[] = [
-  { id: "PLK-6809-0142", hn: "0045218", name: "กฤษฎา พรมเรือง", age: 34, sex: "ช", disease: "ไข้เลือดออก", diseaseColor: "#dc2626", hospital: "รพ.บางกระทุ่ม", district: "บางกระทุ่ม", tambon: "บางกระทุ่ม", reportedAt: "27 ส.ค. 08:14", stage: "รอรับเคส", severity: "เร่งด่วน", team: "-", progress: 10 },
-  { id: "PLK-6809-0141", hn: "0093117", name: "ปุณยนุช แสนคำ", age: 8, sex: "ญ", disease: "มือ เท้า ปาก", diseaseColor: "#059669", hospital: "รพ.วังทอง", district: "วังทอง", tambon: "ชัยนาม", reportedAt: "27 ส.ค. 07:52", stage: "รับเคสแล้ว", severity: "เฝ้าระวัง", team: "ทีม SRRT วังทอง", progress: 32 },
-  { id: "PLK-6809-0139", hn: "0011084", name: "บรรจง คำใส", age: 57, sex: "ช", disease: "เลปโตสไปโรซิส", diseaseColor: "#ca8a04", hospital: "รพ.บางระกำ", district: "บางระกำ", tambon: "ท่านางงาม", reportedAt: "26 ส.ค. 19:31", stage: "ลงพื้นที่", severity: "เร่งด่วน", team: "ทีม CDCU บางระกำ", progress: 58 },
-  { id: "PLK-6809-0137", hn: "0067720", name: "ศิริลักษณ์ เกิดผล", age: 21, sex: "ญ", disease: "โรคหัด", diseaseColor: "#db2777", hospital: "รพ.พรหมพิราม", district: "พรหมพิราม", tambon: "วงฆ้อง", reportedAt: "26 ส.ค. 14:05", stage: "สอบสวนเสร็จ", severity: "วิกฤต", team: "ทีม SRRT จังหวัด", progress: 86 },
-  { id: "PLK-6809-0132", hn: "0038890", name: "ธีระชัย นาคเงิน", age: 45, sex: "ช", disease: "อาหารเป็นพิษ", diseaseColor: "#d97706", hospital: "รพ.นครไทย", district: "นครไทย", tambon: "บ้านแยง", reportedAt: "25 ส.ค. 11:20", stage: "ปิดเคส", severity: "เฝ้าระวัง", team: "ทีม CDCU นครไทย", progress: 100 },
-  { id: "PLK-6809-0130", hn: "0052341", name: "ละมัย พุ่มไสว", age: 63, sex: "ญ", disease: "ไข้เลือดออก", diseaseColor: "#dc2626", hospital: "รพ.รวมแพทย์พิษณุโลก", district: "เมืองพิษณุโลก", tambon: "อรัญญิก", reportedAt: "25 ส.ค. 09:47", stage: "ปิดเคส", severity: "เร่งด่วน", team: "ทีม SRRT เมือง", progress: 100 },
-  { id: "PLK-6809-0128", hn: "0071265", name: "ณรงค์ฤทธิ์ อ่อนตา", age: 29, sex: "ช", disease: "ไข้หวัดใหญ่", diseaseColor: "#2563eb", hospital: "รพ.เนินมะปราง", district: "เนินมะปราง", tambon: "ชมพู", reportedAt: "24 ส.ค. 16:02", stage: "ลงพื้นที่", severity: "เฝ้าระวัง", team: "ทีม CDCU เนินมะปราง", progress: 47 },
-  { id: "PLK-6809-0125", hn: "0019903", name: "กัญญาณัฐ ดวงแก้ว", age: 12, sex: "ญ", disease: "ไข้เลือดออก", diseaseColor: "#dc2626", hospital: "รพ.วัดโบสถ์", district: "วัดโบสถ์", tambon: "ท่างาม", reportedAt: "24 ส.ค. 10:38", stage: "สอบสวนเสร็จ", severity: "เร่งด่วน", team: "ทีม SRRT วัดโบสถ์", progress: 91 },
+  { id: "69082702", hn: "0045218", name: "กฤษฎา พรมเรือง", age: 34, sex: "ช", disease: "ไข้เลือดออก", diseaseColor: "#dc2626", hospital: "รพ.บางกระทุ่ม", district: "บางกระทุ่ม", tambon: "บางกระทุ่ม", reportedAt: "27 ส.ค. 08:14", stage: "รอรับเคส", severity: "เร่งด่วน", team: "-", progress: 10 },
+  { id: "69082703", hn: "0093117", name: "ปุณยนุช แสนคำ", age: 8, sex: "ญ", disease: "มือ เท้า ปาก", diseaseColor: "#059669", hospital: "รพ.วังทอง", district: "วังทอง", tambon: "ชัยนาม", reportedAt: "27 ส.ค. 07:52", stage: "รับเคสแล้ว", severity: "เฝ้าระวัง", team: "ทีม SRRT วังทอง", progress: 32 },
+  { id: "69082604", hn: "0011084", name: "บรรจง คำใส", age: 57, sex: "ช", disease: "เลปโตสไปโรซิส", diseaseColor: "#ca8a04", hospital: "รพ.บางระกำ", district: "บางระกำ", tambon: "ท่านางงาม", reportedAt: "26 ส.ค. 19:31", stage: "ลงพื้นที่", severity: "เร่งด่วน", team: "ทีม CDCU บางระกำ", progress: 58 },
+  { id: "69082605", hn: "0067720", name: "ศิริลักษณ์ เกิดผล", age: 21, sex: "ญ", disease: "โรคหัด", diseaseColor: "#db2777", hospital: "รพ.พรหมพิราม", district: "พรหมพิราม", tambon: "วงฆ้อง", reportedAt: "26 ส.ค. 14:05", stage: "สอบสวนเสร็จ", severity: "วิกฤต", team: "ทีม SRRT จังหวัด", progress: 86 },
+  { id: "69082506", hn: "0038890", name: "ธีระชัย นาคเงิน", age: 45, sex: "ช", disease: "อาหารเป็นพิษ", diseaseColor: "#d97706", hospital: "รพ.นครไทย", district: "นครไทย", tambon: "บ้านแยง", reportedAt: "25 ส.ค. 11:20", stage: "ปิดเคส", severity: "เฝ้าระวัง", team: "ทีม CDCU นครไทย", progress: 100 },
+  { id: "69082505", hn: "0052341", name: "ละมัย พุ่มไสว", age: 63, sex: "ญ", disease: "ไข้เลือดออก", diseaseColor: "#dc2626", hospital: "รพ.รวมแพทย์พิษณุโลก", district: "เมืองพิษณุโลก", tambon: "อรัญญิก", reportedAt: "25 ส.ค. 09:47", stage: "ปิดเคส", severity: "เร่งด่วน", team: "ทีม SRRT เมือง", progress: 100 },
+  { id: "69082503", hn: "0071265", name: "ณรงค์ฤทธิ์ อ่อนตา", age: 29, sex: "ช", disease: "ไข้หวัดใหญ่", diseaseColor: "#2563eb", hospital: "รพ.เนินมะปราง", district: "เนินมะปราง", tambon: "ชมพู", reportedAt: "24 ส.ค. 16:02", stage: "ลงพื้นที่", severity: "เฝ้าระวัง", team: "ทีม CDCU เนินมะปราง", progress: 47 },
+  { id: "69082501", hn: "0019903", name: "กัญญาณัฐ ดวงแก้ว", age: 12, sex: "ญ", disease: "ไข้เลือดออก", diseaseColor: "#dc2626", hospital: "รพ.วัดโบสถ์", district: "วัดโบสถ์", tambon: "ท่างาม", reportedAt: "24 ส.ค. 10:38", stage: "สอบสวนเสร็จ", severity: "เร่งด่วน", team: "ทีม SRRT วัดโบสถ์", progress: 91 },
 ];
 
 export const HOSPITALS = [
@@ -107,7 +107,7 @@ export const TEAM_MEMBERS = [
 ];
 
 export const DOCUMENTS = [
-  { id: "DOC-2409-881", name: "แบบ ร.507 ไข้เลือดออก - PLK-6809-0142.pdf", type: "แบบสอบสวนโรค", size: "1.2 MB", by: "รพ.บางกระทุ่ม", date: "27 ส.ค. 2569", tag: "ร.507" },
+  { id: "DOC-2409-881", name: "แบบ ร.507 ไข้เลือดออก - 69082702.pdf", type: "แบบสอบสวนโรค", size: "1.2 MB", by: "รพ.บางกระทุ่ม", date: "27 ส.ค. 2569", tag: "ร.507" },
   { id: "DOC-2409-877", name: "ผลตรวจ NS1 + CBC - HN 0045218.pdf", type: "ผลตรวจทางห้องปฏิบัติการ", size: "480 KB", by: "LAB รพ.บางกระทุ่ม", date: "27 ส.ค. 2569", tag: "LAB" },
   { id: "DOC-2409-870", name: "ภาพถ่ายแหล่งเพาะพันธุ์ลูกน้ำ ม.4 ต.บางกระทุ่ม.zip", type: "ภาพถ่ายภาคสนาม", size: "18.4 MB", by: "ทีม SRRT บางกระทุ่ม", date: "26 ส.ค. 2569", tag: "ภาคสนาม" },
   { id: "DOC-2409-864", name: "สรุปการสนทนาผู้ป่วย (Voice-to-Text).docx", type: "บันทึกเสียงถอดความ", size: "96 KB", by: "ระบบ AI ถอดเสียง", date: "26 ส.ค. 2569", tag: "AI" },

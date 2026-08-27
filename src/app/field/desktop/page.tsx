@@ -146,7 +146,7 @@ export default function FieldDesktop() {
                 <Icon name="clipboard" size={18} />
               </span>
               <div>
-                <p className="text-[13px] font-semibold">PLK-6809-0142 · นายกฤษฎา พรมเรือง</p>
+                <p className="text-[13px] font-semibold">69082702 · นายกฤษฎา พรมเรือง</p>
                 <p className="sub">ไข้เลือดออก · ม.4 ต.บางกระทุ่ม · ทีม SRRT บางกระทุ่ม-1</p>
               </div>
             </div>

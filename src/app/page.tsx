@@ -145,16 +145,10 @@ export default function Home() {
             <span className="w-1.5 h-1.5 rounded-full bg-[#34d399]" /> UX/UI Mockup · doc/spec.md
           </span>
           <h1 className="mt-4 text-[27px] sm:text-[38px] font-bold tracking-tight leading-[1.2] max-w-[820px]">
-            Plk SRRT Network
-            <br />
-            <span className="text-[#7dd3fc]">Operating System</span>
+            PLK SRRT Network <span className="text-[#7dd3fc]">Operating System</span>
           </h1>
           <p className="mt-3 text-[15px] sm:text-[17px] font-semibold text-slate-200">
             ระบบปฏิบัติการเครือข่ายเฝ้าระวังสอบสวนเคลื่อนที่เร็ว จังหวัดพิษณุโลก
-          </p>
-          <p className="mt-2.5 text-[14px] sm:text-[15px] text-slate-400 max-w-[660px] leading-relaxed">
-            3 โมดูลหลักทำงานต่อเนื่องกันตั้งแต่หน่วยบริการพบเคส ทีม SRRT/CDCU ลงพื้นที่
-            จนถึงศูนย์บัญชาการระดับจังหวัด โดยใช้ Flex Message บนไลน์หมอพร้อมเป็นช่องทางสื่อสารร่วม
           </p>
 
           <div className="mt-6 flex flex-wrap gap-2.5">
@@ -355,7 +349,7 @@ export default function Home() {
         {/* flow */}
         <section className="card p-5 sm:p-6 mt-6">
           <h2 className="text-[15px] font-bold mb-1">เส้นทางข้อมูลของหนึ่งเคส</h2>
-          <p className="sub mb-5">ตัวอย่างเคส PLK-6809-0142 · ไข้เลือดออก · ม.4 ต.บางกระทุ่ม</p>
+          <p className="sub mb-5">ตัวอย่างเคส 69082702 · ไข้เลือดออก · ม.4 ต.บางกระทุ่ม</p>
           <ol className="grid gap-3 md:grid-cols-3 xl:grid-cols-6">
             {FLOW.map(([no, t, d, c], i, arr) => (
               <li key={t} className="relative">

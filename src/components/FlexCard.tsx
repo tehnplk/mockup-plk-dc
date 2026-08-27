@@ -33,7 +33,7 @@ export default function FlexCard({
 
       <div className="px-4 py-3.5">
         <p className="text-[13px] font-bold leading-snug">
-          เคสใหม่ PLK-6809-0142
+          เคสใหม่ 69082702
         </p>
         <p className="text-[11.5px] text-[#64748b] mt-0.5">
           รพ.บางกระทุ่ม
