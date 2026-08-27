@@ -157,7 +157,7 @@ export default function NewCase() {
 
           <div className="flex gap-2">
             <button className="btn flex-1">ย้อนกลับ</button>
-            <Link href="/unit/case" className="btn btn-primary flex-1">
+            <Link href="/hos/case" className="btn btn-primary flex-1">
               ถัดไป <Icon name="arrowRight" size={16} />
             </Link>
           </div>

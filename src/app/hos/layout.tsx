@@ -9,44 +9,44 @@ import { UNIT_PROFILE } from "@/components/UnitRole";
  */
 const NAV: NavItem[] = [
   {
-    href: "/unit/hos/his-list",
+    href: "/hos/his-list",
     label: "ทะเบียนผู้ป่วยเข้าข่ายต้องแจ้งจาก HosXP",
     icon: "db",
     section: "1. ระบบงานแจ้งเคส",
   },
-  { href: "/unit/registry", label: "ทะเบียนแจ้งเคส", icon: "clipboard" },
+  { href: "/hos/registry", label: "ทะเบียนแจ้งเคส", icon: "clipboard" },
   {
-    href: "/unit/screening-settings",
+    href: "/hos/screening-settings",
     label: "ตั้งค่าวิธีคัดผู้ป่วยเข้าระบบ",
     icon: "settings",
   },
 
   {
-    href: "/unit/inbox",
+    href: "/hos/inbox",
     label: "รับเคส (Dashboard/Flex)",
     icon: "check",
     badge: "3",
     section: "2. ระบบงานรับเคส",
   },
-  { href: "/unit/alert", label: "แจ้งเตือนประชาชนที่คัดเข้า", icon: "chat" },
-  { href: "/unit/report", label: "แจ้งเคสที่พบในชุมชน", icon: "pin" },
-  { href: "/unit/exclude", label: "ยื่นคำร้องตัดเคสออก", icon: "shield" },
+  { href: "/hos/alert", label: "แจ้งเตือนประชาชนที่คัดเข้า", icon: "chat" },
+  { href: "/hos/report", label: "แจ้งเคสที่พบในชุมชน", icon: "pin" },
+  { href: "/hos/exclude", label: "ยื่นคำร้องตัดเคสออก", icon: "shield" },
 
   {
-    href: "/unit/map",
+    href: "/hos/map",
     label: "แผนที่การระบาด (GIS)",
     icon: "map",
     section: "3. งานวิเคราะห์ข้อมูลในพื้นที่รับผิดชอบ",
   },
-  { href: "/unit/analytics", label: "วิเคราะห์ข้อมูลพื้นที่", icon: "chart" },
-  { href: "/unit/media", label: "ผลิตสื่อประชาสัมพันธ์", icon: "image" },
-  { href: "/unit/broadcast", label: "แจ้งข่าวประชาชน", icon: "megaphone" },
-  { href: "/unit/followup", label: "ติดตามพฤติกรรมสุขภาพ", icon: "heart" },
-  { href: "/unit/documents", label: "จัดเก็บ/ค้นคืนเอกสาร", icon: "file" },
-  { href: "/unit/ai", label: "Assistant ด้วย AI", icon: "sparkles" },
+  { href: "/hos/analytics", label: "วิเคราะห์ข้อมูลพื้นที่", icon: "chart" },
+  { href: "/hos/media", label: "ผลิตสื่อประชาสัมพันธ์", icon: "image" },
+  { href: "/hos/broadcast", label: "แจ้งข่าวประชาชน", icon: "megaphone" },
+  { href: "/hos/followup", label: "ติดตามพฤติกรรมสุขภาพ", icon: "heart" },
+  { href: "/hos/documents", label: "จัดเก็บ/ค้นคืนเอกสาร", icon: "file" },
+  { href: "/hos/ai", label: "Assistant ด้วย AI", icon: "sparkles" },
 ];
 
-export default function UnitLayout({ children }: LayoutProps<"/unit">) {
+export default function UnitLayout({ children }: LayoutProps<"/hos">) {
   const role = UNIT_PROFILE;
 
   return (

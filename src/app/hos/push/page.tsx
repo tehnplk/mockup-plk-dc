@@ -100,7 +100,7 @@ export default function PushPage() {
               })}
             </ul>
             <div className="flex flex-wrap gap-2 mt-4">
-              <Link href="/unit/case" className="btn btn-sm">
+              <Link href="/hos/case" className="btn btn-sm">
                 กลับไปแก้แบบฟอร์ม
               </Link>
               <button className="btn btn-sm btn-primary">ยืนยันและส่งข้อมูล</button>
@@ -175,7 +175,7 @@ export default function PushPage() {
               เมื่อส่งสำเร็จ ระบบจะแจ้งทีมเจ้าหน้าที่ที่คัดเลือกไว้ผ่าน Flex Message
               บนไลน์หมอพร้อมโดยอัตโนมัติ
             </p>
-            <Link href="/unit/notify" className="btn btn-primary w-full">
+            <Link href="/hos/notify" className="btn btn-primary w-full">
               <Icon name="chat" size={16} /> ไปหน้าส่ง Flex Message
             </Link>
           </Card>

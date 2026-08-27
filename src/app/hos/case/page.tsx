@@ -21,7 +21,7 @@ export default function CaseForm() {
             <button className="btn btn-sm">
               <Icon name="file" size={15} /> พิมพ์
             </button>
-            <Link href="/unit/push" className="btn btn-primary btn-sm">
+            <Link href="/hos/push" className="btn btn-primary btn-sm">
               บันทึก &amp; ส่งต่อ <Icon name="arrowRight" size={15} />
             </Link>
           </>
@@ -257,10 +257,10 @@ export default function CaseForm() {
 
           <Card title="เครื่องมือช่วยกรอก" icon="sparkles">
             <div className="grid gap-2">
-              <Link href="/unit/voice" className="btn justify-start">
+              <Link href="/hos/voice" className="btn justify-start">
                 <Icon name="mic" size={16} /> สรุปสนทนาผู้ป่วยด้วยเสียง
               </Link>
-              <Link href="/unit/documents" className="btn justify-start">
+              <Link href="/hos/documents" className="btn justify-start">
                 <Icon name="file" size={16} /> แนบเอกสาร / ผลแล็บ
               </Link>
               <button className="btn justify-start">

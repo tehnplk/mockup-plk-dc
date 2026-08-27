@@ -15,7 +15,7 @@ export default function NotifyPage() {
         desc="แจ้งเตือนทีม SRRT/CDCU ที่คัดเลือกไว้ พร้อมปุ่มกดรับทราบและลิงก์เปิดโมดูลทีมภาคสนาม · การ์ดมี footer ระบุผู้ส่ง"
         actions={
           <>
-            <Link href="/unit/registry" className="btn btn-sm">
+            <Link href="/hos/registry" className="btn btn-sm">
               <Icon name="clipboard" size={15} /> ทะเบียนแจ้งเคส
             </Link>
             <button className="btn btn-sm">

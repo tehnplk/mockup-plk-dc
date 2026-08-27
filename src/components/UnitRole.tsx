@@ -18,7 +18,7 @@ export const UNIT_PROFILE: UnitProfile = {
   kind: "โรงพยาบาลชุมชน",
   org: "รพ.บางกระทุ่ม",
   system: "SRRT UNIT",
-  url: "https://srrt.plkhealth.go.th/unit/bangkrathum",
+  url: "https://srrt.plkhealth.go.th/hos/bangkrathum",
   accent: "hospital",
   icon: "hospital",
   his: "HOSxP XE",

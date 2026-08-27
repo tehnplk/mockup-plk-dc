@@ -15,7 +15,7 @@ export default function HospitalOverview() {
             <button className="btn btn-sm">
               <Icon name="clock" size={15} /> ช่วงเวลา: วันนี้
             </button>
-            <Link href="/unit/new" className="btn btn-primary btn-sm">
+            <Link href="/hos/new" className="btn btn-primary btn-sm">
               <Icon name="plus" size={15} /> เปิดเคสสอบสวนใหม่
             </Link>
           </>
@@ -30,7 +30,7 @@ export default function HospitalOverview() {
       </div>
 
       <Link
-        href="/unit/hos/his-list"
+        href="/hos/his-list"
         className="card p-4 mb-5 flex flex-wrap items-center gap-3 hover:bg-surface2 transition-colors"
         style={{ borderLeft: "4px solid var(--ok)" }}
       >
@@ -101,7 +101,7 @@ export default function HospitalOverview() {
                       <Chip {...severityTone[c.severity]}>{c.severity}</Chip>
                     </td>
                     <td className="td text-right">
-                      <Link href="/unit/case" className="btn btn-sm btn-primary">
+                      <Link href="/hos/case" className="btn btn-sm btn-primary">
                         เปิดแบบสอบสวน
                       </Link>
                     </td>
@@ -199,7 +199,7 @@ export default function HospitalOverview() {
         desc="ติดตามการตอบกลับและสถานะจากทีมสอบสวนแบบเรียลไทม์"
         icon="field"
         action={
-          <Link href="/unit/registry" className="btn btn-sm">
+          <Link href="/hos/registry" className="btn btn-sm">
             ดูทะเบียนทั้งหมด <Icon name="arrowRight" size={14} />
           </Link>
         }
