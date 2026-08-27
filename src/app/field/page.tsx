@@ -6,7 +6,26 @@ import { CASES, severityTone, stageTone } from "@/lib/mock";
 import { FIELD_TABS } from "./tabs";
 
 export default function FieldInbox() {
-  const incoming = [CASES[0], CASES[7], CASES[3]];
+  const incoming = [
+    { c: CASES[0], src: "รพ.พุทธชินราช", srcType: "hospital" as const, via: "Flex หมอพร้อม" },
+    {
+      c: {
+        ...CASES[1],
+        id: "RPT-6809-027",
+        name: "ด.ช.ภูมิพัฒน์ แก้วมณี",
+        age: 4,
+        hospital: "รพ.สต.บ้านคลอง",
+        tambon: "บ้านคลอง",
+        district: "เมืองพิษณุโลก",
+        reportedAt: "27 ส.ค. 09:15",
+        severity: "เร่งด่วน" as const,
+      },
+      src: "รพ.สต.บ้านคลอง (อสม. แจ้ง)",
+      srcType: "area" as const,
+      via: "Dashboard กลาง",
+    },
+    { c: CASES[7], src: "รพ.วัดโบสถ์", srcType: "hospital" as const, via: "Dashboard กลาง" },
+  ];
   const mine = CASES.filter((c) => c.stage === "รับเคสแล้ว" || c.stage === "ลงพื้นที่");
 
   return (
@@ -42,13 +61,16 @@ export default function FieldInbox() {
       {/* incoming */}
       <div className="px-4 pt-4">
         <div className="flex items-center justify-between mb-2.5">
-          <h2 className="text-[13.5px] font-bold">เคสใหม่จากโรงพยาบาล</h2>
+          <h2 className="text-[13.5px] font-bold">เคสใหม่ที่รอรับ</h2>
           <Chip bg="#fee2e2" fg="#b91c1c" dot>
             {incoming.length} เคสรอรับ
           </Chip>
         </div>
+        <p className="text-[11.5px] text-muted mb-2.5 -mt-1">
+          กดรับเคสได้ทั้งจาก Dashboard กลางของจังหวัด และจาก Flex Message บนไลน์หมอพร้อม
+        </p>
 
-        {incoming.map((c, i) => (
+        {incoming.map(({ c, src, srcType, via }, i) => (
           <article
             key={c.id + i}
             className="bg-surface rounded-2xl border border-line-brd mb-3 overflow-hidden"
@@ -62,6 +84,17 @@ export default function FieldInbox() {
                       {c.disease}
                     </Chip>
                     <Chip {...severityTone[c.severity]}>{c.severity}</Chip>
+                    {srcType === "area" && (
+                      <Chip bg="#ede9fe" fg="#6d28d9">
+                        แจ้งจาก รพ.สต.
+                      </Chip>
+                    )}
+                    <Chip
+                      bg={via === "Dashboard กลาง" ? "#dbeafe" : "#dcfce7"}
+                      fg={via === "Dashboard กลาง" ? "#1d4ed8" : "#15803d"}
+                    >
+                      รับผ่าน {via}
+                    </Chip>
                   </div>
                   <p className="text-[14.5px] font-bold mt-2 leading-tight">
                     {c.name} <span className="text-muted font-medium">· {c.age} ปี</span>
@@ -78,7 +111,7 @@ export default function FieldInbox() {
 
               <div className="mt-3 grid gap-1.5">
                 {[
-                  ["hospital", c.hospital],
+                  [srcType === "area" ? "area" : "hospital", src],
                   ["pin", `ม.4 ต.${c.tambon} อ.${c.district}`],
                   ["clock", `แจ้งเมื่อ ${c.reportedAt} · ต้องรับภายใน 3 ชม.`],
                 ].map(([ic, t]) => (

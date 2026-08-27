@@ -134,7 +134,7 @@ export default function Resources() {
         <button className="btn btn-sm">ขอสนับสนุนจาก สคร.2</button>
       </div>
 
-      <div className="grid gap-4 xl:grid-cols-[1fr_400px] mb-5">
+      <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_400px] mb-5">
         {/* stock */}
         <Card
           title="คลังทรัพยากรกลางจังหวัด"
@@ -212,7 +212,7 @@ export default function Resources() {
         </Card>
       </div>
 
-      <div className="grid gap-4 xl:grid-cols-[1fr_400px] mb-5">
+      <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_400px] mb-5">
         {/* allocation requests */}
         <Card
           title="คำขอจัดสรรทรัพยากรจากพื้นที่"
@@ -274,7 +274,7 @@ export default function Resources() {
           </ul>
         </Card>
 
-        <div className="grid gap-4 content-start">
+        <div className="flex flex-col gap-4 min-w-0">
           {/* AI allocation */}
           <Card
             title="ข้อเสนอการจัดสรรจาก AI"

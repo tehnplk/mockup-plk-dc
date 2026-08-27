@@ -80,8 +80,8 @@ export default function Admin() {
         <Stat label="หน่วยงานที่เชื่อมต่อ" value="42" unit="แห่ง" icon="hospital" />
       </div>
 
-      <div className="grid gap-4 xl:grid-cols-[1fr_360px]">
-        <div className="grid gap-4">
+      <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_360px]">
+        <div className="flex flex-col gap-4 min-w-0">
           <Card
             title="กติกาการทำงานอัตโนมัติ (Rule Engine)"
             desc="เงื่อนไข → การกระทำ · ระบบตรวจสอบทุกครั้งที่มีข้อมูลเข้า"
@@ -219,7 +219,7 @@ export default function Admin() {
         </div>
 
         {/* right */}
-        <div className="grid gap-4 content-start">
+        <div className="flex flex-col gap-4 min-w-0">
           <Card title="บทบาทและสิทธิ์ผู้ใช้" icon="users" pad={false}>
             <ul>
               {ROLES.map(([n, c, d]) => (

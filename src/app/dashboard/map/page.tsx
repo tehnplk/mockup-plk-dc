@@ -42,14 +42,14 @@ export default function DashboardMap() {
         }
       />
 
-      <div className="grid gap-4 xl:grid-cols-[1fr_340px]">
+      <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_340px]">
         <Card
           title="แผนที่เชิงพื้นที่ (Choropleth + จุดผู้ป่วย)"
           desc="ระดับสีแสดงจำนวนผู้ป่วยสะสม 28 วัน · จุดแสดงตำแหน่ง cluster"
           icon="map"
           action={<Chip bg="#dcfce7" fg="#15803d" dot>อัปเดต 5 นาทีที่แล้ว</Chip>}
         >
-          <div className="grid gap-4 lg:grid-cols-[1fr_200px]">
+          <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_200px]">
             <div className="rounded-xl bg-surface2 p-3">
               <PlkMap
                 values={VALUES}
@@ -60,7 +60,7 @@ export default function DashboardMap() {
               />
             </div>
 
-            <div className="grid gap-4 content-start">
+            <div className="flex flex-col gap-4 min-w-0">
               <div>
                 <p className="text-[11px] font-bold text-faint uppercase tracking-wide mb-2">
                   ระดับสี (ผู้ป่วยสะสม)
@@ -131,7 +131,7 @@ export default function DashboardMap() {
           </div>
         </Card>
 
-        <div className="grid gap-4 content-start">
+        <div className="flex flex-col gap-4 min-w-0">
           <Card title="อันดับอำเภอ" desc="เรียงตามจำนวนผู้ป่วยสะสม" icon="chart" pad={false}>
             <ul>
               {DISTRICT_LOAD.map((d, i) => (

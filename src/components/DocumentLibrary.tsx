@@ -21,9 +21,9 @@ export default function DocumentLibrary({ owner }: { owner: string }) {
         <Stat label="เอกสารรอตรวจสอบ" value={5} unit="ไฟล์" icon="clock" tone="var(--warn)" />
       </div>
 
-      <div className="grid gap-4 xl:grid-cols-[240px_1fr]">
+      <div className="grid gap-4 xl:grid-cols-[240px_minmax(0,1fr)]">
         {/* filters */}
-        <div className="grid gap-4 content-start">
+        <div className="flex flex-col gap-4 min-w-0">
           <Card title="หมวดเอกสาร" icon="grid">
             <ul className="grid gap-1">
               {[

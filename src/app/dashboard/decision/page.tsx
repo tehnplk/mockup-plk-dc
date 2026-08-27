@@ -22,7 +22,7 @@ export default function Decision() {
       />
 
       {/* situation banner */}
-      <div className="grid gap-4 xl:grid-cols-[1fr_320px] mb-5">
+      <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_320px] mb-5">
         <div
           className="card p-5"
           style={{ background: "linear-gradient(120deg,#eff6ff,#f8fafc)", borderColor: "#bfdbfe" }}
@@ -60,13 +60,13 @@ export default function Decision() {
           </div>
         </div>
 
-        <div className="grid gap-4">
+        <div className="flex flex-col gap-4 min-w-0">
           <Stat label="ระดับความเสี่ยงจังหวัด" value="ระดับ 2" unit="จาก 4 ระดับ" icon="shield" tone="var(--danger)" />
           <Stat label="อำเภอที่เกินเส้นเตือนภัย" value={2} unit="/ 9 อำเภอ" icon="map" tone="var(--warn)" />
         </div>
       </div>
 
-      <div className="grid gap-4 xl:grid-cols-[1fr_380px] mb-5">
+      <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_380px] mb-5">
         <Card
           title="เปรียบเทียบทางเลือกมาตรการ"
           desc="ผลลัพธ์ที่คาดการณ์จากแบบจำลอง เมื่อเริ่มดำเนินการภายใน 3 วัน"

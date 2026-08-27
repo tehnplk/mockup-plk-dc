@@ -8,8 +8,8 @@ const NAV: NavItem[] = [
 export default function FieldDesktopLayout({ children }: LayoutProps<"/field/desktop">) {
   return (
     <DesktopShell
-      accent="central"
-      system="FIELD CDC · DESKTOP"
+      accent="field"
+      system="SRRT / CDCU · DESKTOP"
       org="ทีมสอบสวนควบคุมโรค SRRT อ.เมืองพิษณุโลก"
       url="https://cdc.plkhealth.go.th/field"
       device="Webapp Desktop · Web Mobile"

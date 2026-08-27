@@ -5,7 +5,14 @@ import { usePathname } from "next/navigation";
 import { Icon, type IconName } from "./icons";
 import { initial } from "./ui";
 
-export type NavItem = { href: string; label: string; icon: IconName; badge?: string };
+export type NavItem = {
+  href: string;
+  label: string;
+  icon: IconName;
+  badge?: string;
+  /** render a section heading above this item */
+  section?: string;
+};
 
 export default function DesktopShell({
   accent,
@@ -15,15 +22,21 @@ export default function DesktopShell({
   device = "Desktop Web Application",
   nav,
   user,
+  sidebarExtra,
+  headerExtra,
   children,
 }: {
-  accent: "hospital" | "area" | "central";
+  accent: "hospital" | "area" | "central" | "field";
   system: string;
   org: string;
   url: string;
   device?: string;
   nav: NavItem[];
   user: { name: string; role: string };
+  /** e.g. a role switcher, rendered under the sidebar brand */
+  sidebarExtra?: React.ReactNode;
+  /** extra control rendered in the top bar */
+  headerExtra?: React.ReactNode;
   children: React.ReactNode;
 }) {
   const path = usePathname();
@@ -67,12 +80,21 @@ export default function DesktopShell({
               </Link>
             </div>
 
+            {sidebarExtra && (
+              <div className="px-3 py-3 border-b border-line-brd">{sidebarExtra}</div>
+            )}
+
             <nav className="flex-1 p-2.5 overflow-y-auto nice">
               {nav.map((n) => {
                 const active = path === n.href;
                 return (
+                  <div key={n.href}>
+                    {n.section && (
+                      <p className="px-3 pt-3.5 pb-1.5 text-[10.5px] font-bold uppercase tracking-wider text-faint">
+                        {n.section}
+                      </p>
+                    )}
                   <Link
-                    key={n.href}
                     href={n.href}
                     className="flex items-center gap-2.5 px-3 py-2.5 rounded-[10px] text-[13px] font-medium mb-0.5 transition-colors"
                     style={{
@@ -94,6 +116,7 @@ export default function DesktopShell({
                       </span>
                     )}
                   </Link>
+                  </div>
                 );
               })}
             </nav>
@@ -128,6 +151,7 @@ export default function DesktopShell({
                 </kbd>
               </div>
               <div className="flex-1" />
+              {headerExtra}
               <button className="relative grid place-items-center w-9 h-9 rounded-[10px] hover:bg-surface2 text-muted">
                 <Icon name="bell" size={18} />
                 <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[var(--danger)]" />

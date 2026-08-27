@@ -107,7 +107,7 @@ export default function CasesProgress() {
         </div>
       </Card>
 
-      <div className="grid gap-4 xl:grid-cols-[1fr_400px]">
+      <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_400px]">
         <Card
           title="รายการเคสทั้งหมด"
           desc="177 เคส · แสดง 8 รายการแรก"
@@ -191,7 +191,7 @@ export default function CasesProgress() {
         </Card>
 
         {/* case detail */}
-        <div className="grid gap-4 content-start">
+        <div className="flex flex-col gap-4 min-w-0">
           <Card
             title="ไทม์ไลน์เคส PLK-6809-0142"
             desc="นายสมชาย ใจดี · ไข้เลือดออก"

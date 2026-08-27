@@ -92,9 +92,9 @@ export default function Requests() {
         <Stat label="อัตราการอนุมัติ" value="78" unit="%" icon="chart" />
       </div>
 
-      <div className="grid gap-4 xl:grid-cols-[1fr_420px]">
+      <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_420px]">
         {/* inbox */}
-        <div className="grid gap-4">
+        <div className="flex flex-col gap-4 min-w-0">
           <Card
             title="กล่องคำร้องที่รอพิจารณา"
             desc="เรียงตามเวลาที่ยื่น · เคสจะถูกพัก SLA จนกว่าจะพิจารณาเสร็จ"
@@ -241,7 +241,7 @@ export default function Requests() {
         </div>
 
         {/* detail rail */}
-        <div className="grid gap-4 content-start">
+        <div className="flex flex-col gap-4 min-w-0">
           <Card
             title="รายละเอียดคำร้อง REQ-6809-014"
             desc="ณัฐพล คำแหง · เคส PLK-6809-0138"

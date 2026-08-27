@@ -5,7 +5,25 @@ import { Icon } from "@/components/icons";
 import { CASES, severityTone, stageTone } from "@/lib/mock";
 
 export default function FieldDesktop() {
-  const incoming = [CASES[0], CASES[7], CASES[3]];
+  const incoming = [
+    { c: CASES[0], src: "รพ.พุทธชินราช", area: false },
+    {
+      c: {
+        ...CASES[1],
+        id: "RPT-6809-027",
+        name: "ด.ช.ภูมิพัฒน์ แก้วมณี",
+        age: 4,
+        hospital: "รพ.สต.บ้านคลอง",
+        tambon: "บ้านคลอง",
+        district: "เมืองพิษณุโลก",
+        reportedAt: "27 ส.ค. 09:15",
+        severity: "เร่งด่วน" as const,
+      },
+      src: "รพ.สต.บ้านคลอง (อสม. แจ้ง)",
+      area: true,
+    },
+    { c: CASES[7], src: "รพ.วัดโบสถ์", area: false },
+  ];
   const mine = CASES.filter((c) => c.stage === "รับเคสแล้ว" || c.stage === "ลงพื้นที่");
 
   return (
@@ -35,11 +53,11 @@ export default function FieldDesktop() {
         <Stat label="หลักฐานรอซิงก์" value={3} unit="รายการ" icon="db" tone="var(--info)" />
       </div>
 
-      <div className="grid gap-4 xl:grid-cols-[340px_1fr]">
+      <div className="grid gap-4 xl:grid-cols-[340px_minmax(0,1fr)]">
         {/* case queue */}
-        <div className="grid gap-4 content-start">
+        <div className="flex flex-col gap-4 min-w-0">
           <Card
-            title="เคสใหม่จากโรงพยาบาล"
+            title="เคสใหม่ที่รอรับ"
             icon="hospital"
             pad={false}
             action={
@@ -49,7 +67,7 @@ export default function FieldDesktop() {
             }
           >
             <ul>
-              {incoming.map((c, i) => (
+              {incoming.map(({ c, src, area }, i) => (
                 <li
                   key={c.id + i}
                   className="px-4 py-3.5 border-b border-line-brd last:border-0"
@@ -60,13 +78,18 @@ export default function FieldDesktop() {
                       {c.disease}
                     </Chip>
                     <Chip {...severityTone[c.severity]}>{c.severity}</Chip>
+                    {area && (
+                      <Chip bg="#ede9fe" fg="#6d28d9">
+                        แจ้งจาก รพ.สต.
+                      </Chip>
+                    )}
                   </div>
                   <p className="text-[13.5px] font-bold mt-1.5">
                     {c.name} <span className="text-muted font-medium">· {c.age} ปี</span>
                   </p>
                   <p className="text-[11px] text-muted font-mono">{c.id}</p>
                   <p className="text-[11.5px] text-muted mt-1">
-                    {c.hospital} · ต.{c.tambon} อ.{c.district}
+                    {src} · ต.{c.tambon} อ.{c.district}
                   </p>
                   <p className="text-[11px] text-faint mt-0.5">
                     แจ้งเมื่อ {c.reportedAt} · ต้องรับภายใน 3 ชม.
@@ -110,7 +133,7 @@ export default function FieldDesktop() {
         </div>
 
         {/* working area */}
-        <div className="grid gap-4">
+        <div className="flex flex-col gap-4 min-w-0">
           <div
             className="card p-4 flex flex-wrap items-center gap-x-6 gap-y-3"
             style={{ borderLeft: "4px solid var(--accent)" }}

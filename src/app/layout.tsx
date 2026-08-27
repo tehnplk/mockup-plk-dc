@@ -15,9 +15,9 @@ const notoThai = Noto_Sans_Thai({
 });
 
 export const metadata: Metadata = {
-  title: "OS Platform สอบสวนควบคุมโรค | สสจ.พิษณุโลก",
+  title: "Plk SRRT Network Operating System | สสจ.พิษณุโลก",
   description:
-    "Mockup ระบบปฏิบัติการสอบสวนควบคุมโรค สำนักงานสาธารณสุขจังหวัดพิษณุโลก",
+    "Mockup ระบบปฏิบัติการเครือข่ายเฝ้าระวังสอบสวนเคลื่อนที่เร็ว จังหวัดพิษณุโลก",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

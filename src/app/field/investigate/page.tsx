@@ -73,7 +73,7 @@ export default function Investigate() {
 
         {/* active section form */}
         <Sheet title="2. การสำรวจสิ่งแวดล้อมรอบบ้าน">
-          <div className="grid gap-4">
+          <div className="flex flex-col gap-4 min-w-0">
             <div>
               <span className="lbl">พบภาชนะที่มีลูกน้ำยุงลายหรือไม่</span>
               <div className="grid grid-cols-2 gap-2">
