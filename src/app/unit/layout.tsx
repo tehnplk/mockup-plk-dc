@@ -36,7 +36,7 @@ const NAV: NavItem[] = [
     label: "รับเคส (Dashboard/Flex)",
     icon: "check",
     badge: "3",
-    section: "2 · รับเคสพื้นที่",
+    section: "2. ทะเบียนรับเคสในพื้นที่รับผิดชอบ",
   },
   { href: "/unit/alert", label: "แจ้งเตือนประชาชนที่คัดเข้า", icon: "chat" },
   { href: "/unit/report", label: "แจ้งเคสที่พบในชุมชน", icon: "pin" },
