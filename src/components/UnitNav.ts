@@ -13,6 +13,7 @@ export const UNIT_NAV: NavItem[] = [
     section: "1. ระบบงานแจ้งเคส",
   },
   { href: "/hos/registry", label: "ทะเบียนแจ้งเคส", icon: "clipboard" },
+  { href: "/hos/report", label: "แจ้งเคสที่พบในชุมชน", icon: "pin" },
   {
     href: "/hos/screening-settings",
     label: "ตั้งค่าวิธีคัดผู้ป่วยเข้าระบบ",
@@ -28,7 +29,6 @@ export const UNIT_NAV: NavItem[] = [
   },
   { href: "/area/patients", label: "ทะเบียนผู้ป่วย", icon: "clipboard" },
   { href: "/area/alert", label: "แจ้งเตือนกลุ่มเสี่ยง", icon: "chat" },
-  { href: "/area/report", label: "แจ้งเคสที่พบในชุมชน", icon: "pin" },
   { href: "/area/exclude", label: "ยื่นคำร้องตัดเคสออก", icon: "shield" },
 
   {
