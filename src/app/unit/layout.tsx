@@ -13,7 +13,7 @@ const NAV: NavItem[] = [
     label: "Agent เฝ้าระวัง ICD-10",
     icon: "sparkles",
     badge: "12",
-    section: "ระบบงานแจ้งเคส",
+    section: "1. ระบบงานแจ้งเคส",
   },
   { href: "/unit/new", label: "คัดเข้า / เปิดเคสใหม่", icon: "plus" },
   { href: "/unit/case", label: "ดึงข้อมูลจาก HIS", icon: "db" },
