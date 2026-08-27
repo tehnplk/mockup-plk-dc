@@ -40,14 +40,14 @@ const NAV: NavItem[] = [
   },
   { href: "/unit/alert", label: "แจ้งเตือนประชาชนที่คัดเข้า", icon: "chat" },
   { href: "/unit/report", label: "แจ้งเคสที่พบในชุมชน", icon: "pin" },
+  { href: "/unit/exclude", label: "ยื่นคำร้องตัดเคสออก", icon: "shield" },
 
   {
-    href: "/unit/exclude",
-    label: "ยื่นคำร้องตัดเคสออก",
-    icon: "shield",
+    href: "/unit/map",
+    label: "แผนที่การระบาด (GIS)",
+    icon: "map",
     section: "3. งานวิเคราะห์ข้อมูลในพื้นที่รับผิดชอบ",
   },
-  { href: "/unit/map", label: "แผนที่การระบาด (GIS)", icon: "map" },
   { href: "/unit/analytics", label: "วิเคราะห์ข้อมูลพื้นที่", icon: "chart" },
   { href: "/unit/media", label: "ผลิตสื่อประชาสัมพันธ์", icon: "image" },
   { href: "/unit/broadcast", label: "แจ้งข่าวประชาชน", icon: "megaphone" },
