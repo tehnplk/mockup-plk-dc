@@ -107,8 +107,8 @@ function CollapsibleSidebarNav({ nav, activePath }: { nav: NavItem[]; activePath
             }}
           />
           <span
-            className="min-w-0 flex-1 text-[11px] font-bold leading-snug"
-            style={{ color: containsActive ? "var(--accent)" : "var(--muted)" }}
+            className="min-w-0 flex-1 text-[13px] font-bold leading-[1.4]"
+            style={{ color: containsActive ? "var(--accent)" : "var(--text)" }}
           >
             {group.section}
           </span>
