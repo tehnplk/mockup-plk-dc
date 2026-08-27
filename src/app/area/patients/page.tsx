@@ -83,7 +83,33 @@ const STATUS_TONE = {
   "สอบสวนเสร็จ": { bg: "#dcfce7", fg: "#15803d" },
 };
 
-function PatientDetailModal({
+/** กิจกรรมสอบสวนควบคุมโรคของแต่ละเคส */
+const ACTIVITIES = [
+  { date: "27 ส.ค. 2569", activity: "รับเคสและตรวจสอบข้อมูลผู้ป่วยจากทะเบียน", photos: 0 },
+  { date: "27 ส.ค. 2569", activity: "ลงพื้นที่สอบสวนโรคที่บ้านผู้ป่วย", photos: 2 },
+  { date: "28 ส.ค. 2569", activity: "สำรวจและกำจัดแหล่งเพาะพันธุ์ในรัศมี 100 เมตร", photos: 3 },
+  { date: "28 ส.ค. 2569", activity: "พ่นสารเคมีควบคุมโรคร่วมกับ อบต.", photos: 2 },
+  { date: "29 ส.ค. 2569", activity: "ให้สุขศึกษาและติดตามผู้สัมผัสใกล้ชิด", photos: 1 },
+];
+
+function PhotoCell({ count }: { count: number }) {
+  if (count === 0) return <span className="text-[12px] text-faint">—</span>;
+
+  return (
+    <div className="flex items-center gap-1.5">
+      {Array.from({ length: count }).map((_, index) => (
+        <span
+          key={index}
+          className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-line-brd bg-surface2 text-faint"
+        >
+          <Icon name="image" size={15} />
+        </span>
+      ))}
+    </div>
+  );
+}
+
+function InvestigationModal({
   patient,
   onClose,
 }: {
@@ -94,51 +120,44 @@ function PatientDetailModal({
     <LargeModal
       open={Boolean(patient)}
       onClose={onClose}
-      title="รายละเอียดผู้ป่วยที่รับเคส"
+      title="สอบสวนควบคุมโรค"
       subtitle={patient ? `${patient.name} · HN ${patient.hn} · ${patient.disease}` : undefined}
-      footer={<button type="button" className="btn" onClick={onClose}>ปิด</button>}
+      footer={
+        <>
+          <button type="button" className="btn" onClick={onClose}>ปิด</button>
+          <button type="button" className="btn btn-primary" onClick={onClose}>
+            <Icon name="plus" size={15} /> เพิ่มกิจกรรม
+          </button>
+        </>
+      }
     >
       {patient && (
-        <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_340px]">
-          <Card title="ข้อมูลผู้ป่วยและเคส" icon="clipboard">
-            <div className="grid gap-3 sm:grid-cols-2">
-              {[
-                ["รหัสเคส", patient.caseId],
-                ["วันที่รับเคส", patient.acceptedAt],
-                ["ชื่อ–นามสกุล", patient.name],
-                ["HN", patient.hn],
-                ["CID", patient.cid],
-                ["โรค", patient.disease],
-                ["ที่อยู่", patient.address],
-                ["ผู้รับผิดชอบ", patient.owner],
-              ].map(([label, value]) => (
-                <div key={label} className="rounded-xl border border-line-brd bg-surface2 p-3">
-                  <p className="text-[11px] font-semibold text-faint">{label}</p>
-                  <p className="mt-1 text-[13px] font-medium">{value}</p>
-                </div>
-              ))}
-            </div>
-          </Card>
-
-          <Card title="ความคืบหน้าการดำเนินการ" icon="clock">
-            <ul className="grid gap-2.5">
-              {[
-                ["กดรับเคสเข้าหน่วยบริการ", patient.acceptedAt],
-                ["เปิดแบบสอบสวนโรค", "หลังกดรับเคส 15 นาที"],
-                ["ลงพื้นที่สอบสวน", patient.status === "กำลังสอบสวน" ? "อยู่ระหว่างดำเนินการ" : "ดำเนินการแล้ว"],
-                ["สรุปผลและแจ้งกลับ Dashboard", patient.status === "สอบสวนเสร็จ" ? "แจ้งกลับแล้ว" : "รอสรุปผล"],
-              ].map(([step, when]) => (
-                <li
-                  key={step}
-                  className="flex items-start justify-between gap-3 border-b border-line-brd pb-2.5 text-[12.5px] last:border-0 last:pb-0"
-                >
-                  <span className="font-semibold">{step}</span>
-                  <span className="text-right text-muted">{when}</span>
-                </li>
-              ))}
-            </ul>
-          </Card>
-        </div>
+        <Card title="กิจกรรมสอบสวนควบคุมโรค" icon="clipboard" pad={false}>
+          <div className="scroll-x nice">
+            <table className="w-full min-w-[720px] border-collapse">
+              <thead>
+                <tr>
+                  <th className="th w-[70px]">ลำดับ</th>
+                  <th className="th w-[150px]">วันที่</th>
+                  <th className="th">กิจกรรม</th>
+                  <th className="th w-[190px]">รูป</th>
+                </tr>
+              </thead>
+              <tbody>
+                {ACTIVITIES.map((item, index) => (
+                  <tr key={item.activity} className="hover:bg-surface2">
+                    <td className="td tabular-nums">{index + 1}</td>
+                    <td className="td whitespace-nowrap text-muted">{item.date}</td>
+                    <td className="td">{item.activity}</td>
+                    <td className="td">
+                      <PhotoCell count={item.photos} />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
       )}
     </LargeModal>
   );
@@ -150,7 +169,7 @@ export default function AcceptedPatientRegistryPage() {
   return (
     <>
       <PageHead
-        title="ทะเบียนผู้ป่วย"
+        title="ทะเบียนรับแล้ว"
         actions={
           <button type="button" className="btn btn-sm">
             <Icon name="file" size={15} /> ส่งออกทะเบียน
@@ -208,10 +227,10 @@ export default function AcceptedPatientRegistryPage() {
                     <td className="td">
                       <button
                         type="button"
-                        className="btn btn-sm whitespace-nowrap"
+                        className="btn btn-primary btn-sm whitespace-nowrap"
                         onClick={() => setSelected(item)}
                       >
-                        <Icon name="file" size={14} /> ดูรายละเอียด
+                        <Icon name="clipboard" size={14} /> สอบสวนควบคุมโรค
                       </button>
                     </td>
                   </tr>
@@ -222,7 +241,7 @@ export default function AcceptedPatientRegistryPage() {
         </div>
       </Card>
 
-      <PatientDetailModal patient={selected} onClose={() => setSelected(null)} />
+      <InvestigationModal patient={selected} onClose={() => setSelected(null)} />
     </>
   );
 }

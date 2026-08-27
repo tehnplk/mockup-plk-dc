@@ -22,13 +22,13 @@ export const UNIT_NAV: NavItem[] = [
 
   {
     href: "/area/inbox",
-    label: "รับเคส",
+    label: "ผู้ป่วยรอกดรับ",
     icon: "check",
     badge: "3",
     section: "2. ระบบงานรับเคส",
   },
-  { href: "/area/patients", label: "ทะเบียนผู้ป่วย", icon: "clipboard" },
-  { href: "/area/exclude", label: "ยื่นคำร้องตัดเคสออก", icon: "shield" },
+  { href: "/area/patients", label: "ทะเบียนรับแล้ว", icon: "clipboard" },
+  { href: "/area/exclude", label: "คำร้องขอตัดเคส", icon: "shield" },
   { href: "/area/alert", label: "แจ้งเตือนกลุ่มเสี่ยง", icon: "chat" },
 
   {

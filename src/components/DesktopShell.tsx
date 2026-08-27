@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Icon, type IconName } from "./icons";
 import { initial } from "./ui";
+
+const SIDEBAR_STORAGE_KEY = "plk-dc:sidebar-collapsed";
 
 export type NavItem = {
   href: string;
@@ -55,6 +57,38 @@ function SidebarNavLink({ item, activePath }: { item: NavItem; activePath: strin
         </span>
       )}
     </Link>
+  );
+}
+
+function CollapsedSidebarNav({ nav, activePath }: { nav: NavItem[]; activePath: string }) {
+  return (
+    <div className="grid gap-1">
+      {nav.map((item) => {
+        const active = activePath === item.href;
+
+        return (
+          <Link
+            key={item.href}
+            href={item.href}
+            title={item.label}
+            aria-label={item.label}
+            className="relative grid h-10 place-items-center rounded-[10px] transition-colors"
+            style={{
+              background: active ? "color-mix(in srgb, var(--accent) 12%, white)" : "transparent",
+              color: active ? "var(--accent)" : "var(--muted)",
+            }}
+          >
+            <Icon name={item.icon} size={18} />
+            {item.badge && (
+              <span
+                className="absolute right-1.5 top-1 h-2 w-2 rounded-full"
+                style={{ background: "var(--danger)" }}
+              />
+            )}
+          </Link>
+        );
+      })}
+    </div>
   );
 }
 
@@ -167,6 +201,27 @@ export default function DesktopShell({
   children: React.ReactNode;
 }) {
   const path = usePathname();
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+
+  // จำสถานะย่อ/ขยายไว้ต่อผู้ใช้หนึ่งคน ตามพฤติกรรมมาตรฐานของ sidebar ทั่วไป
+  useEffect(() => {
+    try {
+      setSidebarCollapsed(window.localStorage.getItem(SIDEBAR_STORAGE_KEY) === "1");
+    } catch {
+      /* โหมดส่วนตัว/ปิด storage — ใช้ค่าเริ่มต้น */
+    }
+  }, []);
+
+  const toggleSidebar = () =>
+    setSidebarCollapsed((current) => {
+      const next = !current;
+      try {
+        window.localStorage.setItem(SIDEBAR_STORAGE_KEY, next ? "1" : "0");
+      } catch {
+        /* ไม่บันทึกก็ยังใช้งานได้ */
+      }
+      return next;
+    });
 
   return (
     <div data-accent={accent} className="min-h-dvh p-0 lg:p-5 bg-canvas">
@@ -189,30 +244,57 @@ export default function DesktopShell({
 
         <div className="flex min-h-dvh lg:min-h-[820px]">
           {/* sidebar */}
-          <aside className="hidden md:flex w-[248px] shrink-0 flex-col border-r border-line-brd bg-surface2">
-            <div className="px-4 py-4 border-b border-line-brd">
-              <Link href="/" className="flex items-center gap-2.5 group">
+          <aside
+            className={`hidden md:flex shrink-0 flex-col border-r border-line-brd bg-surface2 transition-[width] duration-200 ${
+              sidebarCollapsed ? "w-[68px]" : "w-[248px]"
+            }`}
+          >
+            <div
+              className={`flex items-center gap-2 border-b border-line-brd py-4 ${
+                sidebarCollapsed ? "flex-col px-2" : "px-4"
+              }`}
+            >
+              <Link
+                href="/"
+                title={sidebarCollapsed ? `${system} · ${org}` : undefined}
+                className="flex min-w-0 flex-1 items-center gap-2.5 group"
+              >
                 <span
                   className="grid place-items-center rounded-xl text-white shrink-0"
                   style={{ width: 36, height: 36, background: "var(--accent)" }}
                 >
                   <Icon name="shield" size={19} />
                 </span>
-                <span className="min-w-0">
-                  <span className="block text-[13px] font-bold leading-tight truncate">
-                    {system}
+                {!sidebarCollapsed && (
+                  <span className="min-w-0">
+                    <span className="block text-[13px] font-bold leading-tight truncate">
+                      {system}
+                    </span>
+                    <span className="block text-[11px] text-muted truncate">{org}</span>
                   </span>
-                  <span className="block text-[11px] text-muted truncate">{org}</span>
-                </span>
+                )}
               </Link>
+
+              <button
+                type="button"
+                onClick={toggleSidebar}
+                aria-label={sidebarCollapsed ? "ขยายเมนู" : "ย่อเมนู"}
+                aria-expanded={!sidebarCollapsed}
+                title={sidebarCollapsed ? "ขยายเมนู" : "ย่อเมนู"}
+                className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-line-brd bg-surface text-muted hover:text-ink hover:bg-surface2"
+              >
+                <Icon name={sidebarCollapsed ? "arrowRight" : "arrowLeft"} size={15} />
+              </button>
             </div>
 
-            {sidebarExtra && (
+            {sidebarExtra && !sidebarCollapsed && (
               <div className="px-3 py-3 border-b border-line-brd">{sidebarExtra}</div>
             )}
 
             <nav className="flex-1 p-2.5 overflow-y-auto nice">
-              {collapsibleSections ? (
+              {sidebarCollapsed ? (
+                <CollapsedSidebarNav nav={nav} activePath={path} />
+              ) : collapsibleSections ? (
                 <CollapsibleSidebarNav key={path} nav={nav} activePath={path} />
               ) : (
                 nav.map((item) => (
@@ -231,9 +313,13 @@ export default function DesktopShell({
             <div className="p-3 border-t border-line-brd">
               <Link
                 href="/"
-                className="flex items-center gap-2 text-[12px] text-muted hover:text-ink px-2 py-2"
+                title="กลับหน้ารวมระบบ"
+                className={`flex items-center gap-2 text-[12px] text-muted hover:text-ink px-2 py-2 ${
+                  sidebarCollapsed ? "justify-center" : ""
+                }`}
               >
-                <Icon name="arrowLeft" size={15} /> กลับหน้ารวมระบบ
+                <Icon name="arrowLeft" size={15} />
+                {!sidebarCollapsed && "กลับหน้ารวมระบบ"}
               </Link>
             </div>
           </aside>
