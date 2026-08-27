@@ -14,7 +14,7 @@ const SOURCES = [
 const SENT = [
   {
     id: "RPT-6809-027",
-    name: "ด.ช.ภูมิพัฒน์ แก้วมณี",
+    name: "ด.ช.ปัณณวิชญ์ เรืองทอง",
     disease: "มือ เท้า ปาก",
     color: "#059669",
     place: "ศูนย์เด็กเล็ก ม.7 บ้านท่าโรง",
@@ -28,7 +28,7 @@ const SENT = [
   },
   {
     id: "RPT-6809-024",
-    name: "นางบุญเรือน สายทอง",
+    name: "นางประนอม เพ็งสุข",
     disease: "ไข้เลือดออก",
     color: "#dc2626",
     place: "ม.4 บ้านคลองใหม่",
@@ -42,7 +42,7 @@ const SENT = [
   },
   {
     id: "RPT-6809-019",
-    name: "นายประเสริฐ อยู่ดี",
+    name: "นายสุชาติ ยอดคำ",
     disease: "เลปโตสไปโรซิส",
     color: "#ca8a04",
     place: "ม.2 บ้านคลองเหนือ",
@@ -56,7 +56,7 @@ const SENT = [
   },
   {
     id: "RPT-6809-016",
-    name: "ด.ญ.ชนิสรา พูนทรัพย์",
+    name: "ด.ญ.ชญานิศ พูลสวัสดิ์",
     disease: "ไข้เลือดออก",
     color: "#dc2626",
     place: "ม.4 บ้านคลองใหม่",
@@ -151,7 +151,7 @@ export default function AreaReport() {
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
                 <span className="lbl">ชื่อ–สกุล</span>
-                <input className="inp" readOnly defaultValue="ด.ช.ภูมิพัฒน์ แก้วมณี" />
+                <input className="inp" readOnly defaultValue="ด.ช.ปัณณวิชญ์ เรืองทอง" />
               </div>
               <div>
                 <span className="lbl">เลขบัตรประชาชน (ถ้าทราบ)</span>
@@ -428,7 +428,7 @@ export default function AreaReport() {
           <Card title="สรุปการแจ้งที่กำลังสร้าง" icon="clipboard">
             <dl className="grid gap-2.5 text-[12.5px]">
               {[
-                ["ผู้ป่วย", "ด.ช.ภูมิพัฒน์ แก้วมณี"],
+                ["ผู้ป่วย", "ด.ช.ปัณณวิชญ์ เรืองทอง"],
                 ["โรคที่สงสัย", "มือ เท้า ปาก"],
                 ["สถานที่พบ", "ศูนย์เด็กเล็ก ม.7"],
                 ["ผู้แจ้ง", "อสม. นางสมพร ดีใจ"],

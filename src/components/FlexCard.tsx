@@ -85,10 +85,10 @@ export default function FlexCard({
         <span className="min-w-0 flex-1">
           <span className="block text-[10.5px] text-[#94a3b8]">ผู้ส่ง</span>
           <span className="block text-[11.5px] font-bold text-[#0f172a] leading-tight">
-            พญ.นภัสสร ชัยวัฒน์
+            นางนภัสสร ชัยวัฒน์
           </span>
           <span className="block text-[10.5px] text-[#64748b] leading-tight">
-            แพทย์เวรควบคุมโรค · รพ.พุทธชินราช พิษณุโลก
+            นักสาธารณสุขชำนาญการ · รพ.พุทธชินราช พิษณุโลก
           </span>
         </span>
       </div>

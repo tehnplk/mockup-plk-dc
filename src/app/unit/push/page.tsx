@@ -1,7 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import { PageHead } from "@/components/DesktopShell";
 import { Card, Chip, Stat, Progress } from "@/components/ui";
 import { Icon } from "@/components/icons";
+import { useUnitRole } from "@/components/UnitRole";
 
 const PAYLOAD = `{
   "case_id": "PLK-6809-0142",
@@ -27,11 +30,12 @@ const PAYLOAD = `{
   ],
   "contacts_symptomatic": 1,
   "attachments": 3,
-  "reported_by": "พญ.นภัสสร ชัยวัฒน์",
+  "reported_by": "นางนภัสสร ชัยวัฒน์",
   "reported_at": "2026-08-27T09:41:00+07:00"
 }`;
 
 export default function PushPage() {
+  const { role } = useUnitRole();
   return (
     <>
       <PageHead
@@ -122,7 +126,7 @@ export default function PushPage() {
           <Card title="สถานะการเชื่อมต่อ" icon="db">
             <div className="grid gap-3">
               {[
-                ["HIS (HOSxP XE)", "เชื่อมต่อปกติ", "#dcfce7", "#15803d"],
+                [`HIS (${role.his})`, "เชื่อมต่อปกติ", "#dcfce7", "#15803d"],
                 ["Dashboard กลาง สสจ.", "เชื่อมต่อปกติ", "#dcfce7", "#15803d"],
                 ["ระบบไลน์หมอพร้อม", "เชื่อมต่อปกติ", "#dcfce7", "#15803d"],
                 ["ระบบ 506 กรมควบคุมโรค", "หน่วงเวลา 4 นาที", "#fef3c7", "#b45309"],

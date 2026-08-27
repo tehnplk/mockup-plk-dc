@@ -38,7 +38,7 @@ export const UNIT_ROLES: Record<UnitRoleId, UnitRole> = {
     his: "HOSxP XE",
     scope: "ผู้ป่วยที่มารับบริการในโรงพยาบาล",
     scopeSub: "รพ.ระดับ A · เขตอำเภอเมืองพิษณุโลก",
-    user: { name: "พญ.นภัสสร ชัยวัฒน์", role: "ผู้รับผิดชอบงานสอบสวนโรค" },
+    user: { name: "นางนภัสสร ชัยวัฒน์", role: "นักสาธารณสุขชำนาญการ · ผู้รับผิดชอบงานสอบสวนโรค" },
   },
   tambon: {
     id: "tambon",
@@ -49,10 +49,10 @@ export const UNIT_ROLES: Record<UnitRoleId, UnitRole> = {
     url: "https://srrt.plkhealth.go.th/unit/06512",
     accent: "area",
     icon: "area",
-    his: "JHCIS",
+    his: "HOSxP PCU",
     scope: "ประชาชนในเขตรับผิดชอบ",
     scopeSub: "ต.บ้านคลอง อ.เมืองพิษณุโลก · 9 หมู่บ้าน",
-    user: { name: "นายวิรัตน์ สุขเกษม", role: "ผอ.รพ.สต. / ผู้รับผิดชอบงานสอบสวนโรค" },
+    user: { name: "นายวิรัตน์ สุขเกษม", role: "นักสาธารณสุขชำนาญการ · ผู้รับผิดชอบงานสอบสวนโรค" },
   },
 };
 

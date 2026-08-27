@@ -20,7 +20,7 @@ export default function DashboardLayout({ children }: LayoutProps<"/dashboard">)
       url="https://dashboard.plkhealth.go.th"
       device="Webapp Desktop · Web Mobile"
       nav={NAV}
-      user={{ name: "นพ.ธนากร วงศ์วิวัฒน์", role: "นายแพทย์เชี่ยวชาญ (ควบคุมโรค)" }}
+      user={{ name: "นายธนากร วงศ์วิวัฒน์", role: "นักสาธารณสุขเชี่ยวชาญ (ควบคุมโรค)" }}
     >
       {children}
     </DesktopShell>

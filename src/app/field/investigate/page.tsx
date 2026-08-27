@@ -16,7 +16,7 @@ export default function Investigate() {
     <PhoneShell
       url="cdc.plkhealth.go.th/field/investigate"
       title="แบบสอบสวนภาคสนาม"
-      subtitle="PLK-6809-0142 · นายสมชาย ใจดี"
+      subtitle="PLK-6809-0142 · นายกฤษฎา พรมเรือง"
       back="/field/case"
       caption="ระบบงานภาคสนาม · Web Mobile · บันทึกข้อมูลสอบสวน"
       right={<Chip bg="#ffffff2e" fg="#fff">บันทึกแล้ว</Chip>}

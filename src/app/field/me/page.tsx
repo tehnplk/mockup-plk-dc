@@ -23,7 +23,7 @@ export default function MePage() {
           ก
         </span>
         <p className="text-[16px] font-bold mt-3">นายกิตติศักดิ์ แสงเพชร</p>
-        <p className="text-[12px] text-muted">จพ.สาธารณสุข (SRRT) · รพ.สต.บ้านคลอง</p>
+        <p className="text-[12px] text-muted">นักสาธารณสุขปฏิบัติการ (SRRT) · รพ.สต.บ้านคลอง</p>
         <div className="flex justify-center gap-2 mt-2.5">
           <Chip bg="#dcfce7" fg="#15803d" dot>
             ออนไลน์

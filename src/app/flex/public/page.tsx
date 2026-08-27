@@ -32,7 +32,7 @@ export default function PublicFlexChat() {
             <p className="text-[10.5px] text-white/90 mb-1">หมอพร้อม</p>
             <div className="rounded-2xl rounded-bl-sm bg-white px-3.5 py-2.5">
               <p className="text-[12.5px] leading-relaxed text-[#334155]">
-                สวัสดีค่ะ คุณสมหญิง 🙏 มีข่าวสารสุขภาพสำคัญในพื้นที่ของท่าน
+                สวัสดีค่ะ คุณพัชรินทร์ 🙏 มีข่าวสารสุขภาพสำคัญในพื้นที่ของท่าน
                 กรุณากดรับทราบและช่วยตอบคำถามสั้นๆ นะคะ
               </p>
             </div>

@@ -194,7 +194,7 @@ export default function CasesProgress() {
         <div className="flex flex-col gap-4 min-w-0">
           <Card
             title="ไทม์ไลน์เคส PLK-6809-0142"
-            desc="นายสมชาย ใจดี · ไข้เลือดออก"
+            desc="นายกฤษฎา พรมเรือง · ไข้เลือดออก"
             icon="clock"
             action={<Chip {...severityTone["เร่งด่วน"]}>เร่งด่วน</Chip>}
           >
@@ -222,10 +222,10 @@ export default function CasesProgress() {
           <Card title="ผู้เกี่ยวข้องกับเคสนี้" icon="users">
             <div className="grid gap-2.5">
               {[
-                ["พญ.นภัสสร ชัยวัฒน์", "ผู้แจ้งเคส · รพ.พุทธชินราช"],
+                ["นางนภัสสร ชัยวัฒน์", "ผู้แจ้งเคส · รพ.พุทธชินราช"],
                 ["นายกิตติศักดิ์ แสงเพชร", "ผู้สอบสวน · ทีม SRRT เมือง-1"],
                 ["นายวิรัตน์ สุขเกษม", "หน่วยบริการพื้นที่ · รพ.สต.บ้านคลอง"],
-                ["นพ.ธนากร วงศ์วิวัฒน์", "ผู้อนุมัติปิดเคส · สสจ."],
+                ["นายธนากร วงศ์วิวัฒน์", "ผู้อนุมัติปิดเคส · สสจ."],
               ].map(([n, r]) => (
                 <div key={String(n)} className="flex items-center gap-2.5">
                   <Avatar name={String(n)} size={30} />

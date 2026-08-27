@@ -14,7 +14,7 @@ export default function FieldDesktopLayout({ children }: LayoutProps<"/field/des
       url="https://cdc.plkhealth.go.th/field"
       device="Webapp Desktop · Web Mobile"
       nav={NAV}
-      user={{ name: "นายกิตติศักดิ์ แสงเพชร", role: "จพ.สาธารณสุข (SRRT)" }}
+      user={{ name: "นายกิตติศักดิ์ แสงเพชร", role: "นักสาธารณสุขปฏิบัติการ (SRRT)" }}
     >
       {children}
     </DesktopShell>

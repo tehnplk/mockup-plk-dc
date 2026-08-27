@@ -1,7 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import { PageHead } from "@/components/DesktopShell";
 import { Card, Chip, Stat, Progress, Avatar } from "@/components/ui";
 import { Icon } from "@/components/icons";
+import { useUnitRole } from "@/components/UnitRole";
 
 /* รหัส ICD-10 ที่คัดเข้าเฝ้าระวัง (watchlist) */
 const ICD_GROUPS = [
@@ -124,6 +127,7 @@ const ALERTS = [
 ];
 
 export default function AgentPage() {
+  const { role } = useUnitRole();
   const watched = ICD_GROUPS.flatMap((g) => g.rows).filter((r) => r[2]).length;
   const total = ICD_GROUPS.flatMap((g) => g.rows).length;
 
@@ -167,7 +171,7 @@ export default function AgentPage() {
               </Chip>
             </p>
             <p className="sub">
-              อ่าน HIS ทุก 2 นาที · สแกนล่าสุด 09:40 น. · เชื่อมต่อ HOSxP XE ปกติ
+              อ่าน HIS ทุก 2 นาที · สแกนล่าสุด 09:40 น. · เชื่อมต่อ {role.his} ปกติ
             </p>
           </div>
         </div>
@@ -308,7 +312,7 @@ export default function AgentPage() {
               </button>
               <button className="btn btn-sm">นำเข้าชุดรหัสมาตรฐาน 506</button>
               <span className="flex-1" />
-              <span className="sub">แก้ไขล่าสุด 26 ส.ค. 2569 โดย พญ.นภัสสร ชัยวัฒน์</span>
+              <span className="sub">แก้ไขล่าสุด 26 ส.ค. 2569 โดย นางนภัสสร ชัยวัฒน์</span>
             </div>
           </Card>
 
@@ -370,10 +374,10 @@ export default function AgentPage() {
           <Card title="ผู้รับผิดชอบที่จะได้รับแจ้ง" icon="users">
             <div className="grid gap-2.5">
               {[
-                ["พญ.นภัสสร ชัยวัฒน์", "แพทย์เวรควบคุมโรค", "ทุกกลุ่มโรค"],
-                ["นางพรทิพย์ ชูเกียรติ", "พยาบาลวิชาชีพ IC", "ทุกกลุ่มโรค"],
-                ["นายสมคิด บุญเรือง", "นักวิชาการสาธารณสุข", "โรคนำโดยยุง"],
-                ["น.ส.กนกวรรณ ดีมาก", "พยาบาลระบาดวิทยา", "ทางเดินหายใจ"],
+                ["นางนภัสสร ชัยวัฒน์", "นักสาธารณสุขชำนาญการ", "ทุกกลุ่มโรค"],
+                ["นางพรทิพย์ ชูเกียรติ", "นักสาธารณสุขชำนาญการ", "ทุกกลุ่มโรค"],
+                ["นายสมคิด บุญเรือง", "นักสาธารณสุขปฏิบัติการ", "โรคนำโดยยุง"],
+                ["น.ส.กนกวรรณ ดีมาก", "นักสาธารณสุขปฏิบัติการ", "ทางเดินหายใจ"],
               ].map(([n, r, scope]) => (
                 <div key={String(n)} className="flex items-center gap-2.5">
                   <Avatar name={String(n)} size={30} />

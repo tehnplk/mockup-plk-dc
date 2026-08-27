@@ -12,7 +12,7 @@ export default function FieldInbox() {
       c: {
         ...CASES[1],
         id: "RPT-6809-027",
-        name: "ด.ช.ภูมิพัฒน์ แก้วมณี",
+        name: "ด.ช.ปัณณวิชญ์ เรืองทอง",
         age: 4,
         hospital: "รพ.สต.บ้านคลอง",
         tambon: "บ้านคลอง",

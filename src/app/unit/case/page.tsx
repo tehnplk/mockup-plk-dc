@@ -1,9 +1,13 @@
+"use client";
+
 import Link from "next/link";
 import { PageHead } from "@/components/DesktopShell";
 import { Card, Chip, Field, Progress } from "@/components/ui";
 import { Icon } from "@/components/icons";
+import { useUnitRole } from "@/components/UnitRole";
 
 export default function CaseForm() {
+  const { role } = useUnitRole();
   return (
     <>
       <PageHead
@@ -37,7 +41,7 @@ export default function CaseForm() {
           </span>
           <div>
             <p className="text-[13px] font-semibold">ดึงข้อมูลจาก HIS สำเร็จ</p>
-            <p className="sub">HOSxP XE · 28 จาก 41 ช่อง · เหลือให้เติม 13 ช่อง</p>
+            <p className="sub">{role.his} · 28 จาก 41 ช่อง · เหลือให้เติม 13 ช่อง</p>
           </div>
         </div>
         <div className="flex-1 min-w-[180px] max-w-[320px]">
@@ -56,7 +60,7 @@ export default function CaseForm() {
         <div className="flex flex-col gap-4 min-w-0">
           <Card title="ส่วนที่ 1 · ข้อมูลทั่วไปของผู้ป่วย" icon="hospital">
             <div className="grid gap-4 sm:grid-cols-2">
-              <Field label="ชื่อ–สกุล" value="นายสมชาย ใจดี" source="HIS" />
+              <Field label="ชื่อ–สกุล" value="นายกฤษฎา พรมเรือง" source="HIS" />
               <Field label="เลขบัตรประชาชน" value="3-6501-004••-••-1" source="HIS" />
               <Field label="วัน/เดือน/ปีเกิด (อายุ)" value="14 มี.ค. 2535 (34 ปี)" source="HIS" />
               <Field label="เพศ" value="ชาย" source="HIS" />

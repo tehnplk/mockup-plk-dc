@@ -34,7 +34,7 @@ export default function FlexChat() {
             <p className="text-[10.5px] text-white/90 mb-1">หมอพร้อม</p>
             <div className="rounded-2xl rounded-bl-sm bg-white px-3.5 py-2.5">
               <p className="text-[12.5px] leading-relaxed text-[#334155]">
-                เรียน นพ.ธนากร วงศ์วิวัฒน์ — มีเคสสอบสวนโรคใหม่ที่ต้องดำเนินการ
+                เรียน คุณกิตติศักดิ์ แสงเพชร — มีเคสสอบสวนโรคใหม่ที่ต้องดำเนินการ
                 กรุณากดรับทราบภายใน 3 ชั่วโมง
               </p>
             </div>

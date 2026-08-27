@@ -152,7 +152,7 @@ export default function PublicFlexCard({
             นายวิรัตน์ สุขเกษม
           </span>
           <span className="block text-[10.5px] text-[#64748b] leading-tight">
-            ผอ.รพ.สต.บ้านคลอง · สสอ.เมืองพิษณุโลก
+            นักสาธารณสุขชำนาญการ · รพ.สต.บ้านคลอง
           </span>
         </span>
       </div>

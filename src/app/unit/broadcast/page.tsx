@@ -200,7 +200,7 @@ export default function Broadcast() {
                 <span className="lbl">ผู้ส่ง (แสดงเป็น footer บนการ์ด)</span>
                 <div className="grid gap-2.5 sm:grid-cols-3">
                   <input className="inp" readOnly defaultValue="นายวิรัตน์ สุขเกษม" />
-                  <input className="inp" readOnly defaultValue="ผอ.รพ.สต.บ้านคลอง" />
+                  <input className="inp" readOnly defaultValue="นักสาธารณสุขชำนาญการ" />
                   <input className="inp" readOnly defaultValue="สสอ.เมืองพิษณุโลก" />
                 </div>
               </div>

@@ -11,7 +11,7 @@ export default function NotifyPage() {
     <>
       <PageHead
         title="ส่ง Flex Message เข้าไลน์หมอพร้อม"
-        desc="แจ้งเตือนทีมเจ้าหน้าที่ที่คัดเลือกไว้ พร้อมปุ่มกดรับทราบและลิงก์ไปยัง PHR ของผู้ป่วย"
+        desc="แจ้งเตือนทีม SRRT/CDCU ที่คัดเลือกไว้ พร้อมปุ่มกดรับทราบและลิงก์เปิดโมดูลทีมภาคสนาม · การ์ดมี footer ระบุผู้ส่ง"
         actions={
           <>
             <button className="btn btn-sm">
@@ -143,8 +143,8 @@ export default function NotifyPage() {
               <div className="sm:col-span-2">
                 <span className="lbl">ผู้ส่ง (แสดงเป็น footer บนการ์ด)</span>
                 <div className="grid gap-2.5 sm:grid-cols-3">
-                  <input className="inp" readOnly defaultValue="พญ.นภัสสร ชัยวัฒน์" />
-                  <input className="inp" readOnly defaultValue="แพทย์เวรควบคุมโรค" />
+                  <input className="inp" readOnly defaultValue="นางนภัสสร ชัยวัฒน์" />
+                  <input className="inp" readOnly defaultValue="นักสาธารณสุขชำนาญการ" />
                   <input className="inp" readOnly defaultValue="รพ.พุทธชินราช พิษณุโลก" />
                 </div>
                 <p className="sub mt-1.5">
@@ -208,8 +208,8 @@ export default function NotifyPage() {
           <Card title="สถานะการรับทราบ (เคสก่อนหน้า)" icon="check">
             <div className="grid gap-2.5">
               {[
-                ["นพ.ธนากร วงศ์วิวัฒน์", "รับทราบ 09:12", true],
-                ["ภญ.สุพรรณี ทรัพย์เจริญ", "รับทราบ 09:15", true],
+                ["นายกิตติศักดิ์ แสงเพชร", "รับทราบ 09:12", true],
+                ["นางสุพรรณี ทรัพย์เจริญ", "รับทราบ 09:15", true],
                 ["น.ส.วราภรณ์ อินทร์ทอง", "อ่านแล้ว ยังไม่กดรับทราบ", false],
                 ["นางพรทิพย์ ชูเกียรติ", "ยังไม่อ่าน", false],
               ].map(([n, s, ok]) => (

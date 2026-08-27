@@ -26,7 +26,7 @@ export default function FieldCaseDetail() {
           <Icon name="shield" size={17} />
           <span className="text-[12px] font-bold">ไข้เลือดออก (DHF Grade II)</span>
         </div>
-        <p className="text-[19px] font-bold mt-1.5 leading-tight">นายสมชาย ใจดี</p>
+        <p className="text-[19px] font-bold mt-1.5 leading-tight">นายกฤษฎา พรมเรือง</p>
         <p className="text-[12px] opacity-90">ชาย · 34 ปี · HN 0045218</p>
         <div className="flex gap-2 mt-3">
           <span className="chip" style={{ background: "#ffffff26", color: "#fff" }}>
@@ -117,9 +117,9 @@ export default function FieldCaseDetail() {
 
         <Sheet title="ทีมที่เกี่ยวข้อง">
           {[
-            ["พญ.นภัสสร ชัยวัฒน์", "ผู้แจ้งเคส · รพ.พุทธชินราช"],
-            ["นพ.ธนากร วงศ์วิวัฒน์", "หัวหน้าทีมสอบสวน · สสจ."],
-            ["นายกิตติศักดิ์ แสงเพชร", "จพ.สาธารณสุข · รพ.สต.บ้านคลอง"],
+            ["นางนภัสสร ชัยวัฒน์", "ผู้แจ้งเคส · รพ.พุทธชินราช"],
+            ["นายสมชาติ ยั่งยืน", "หัวหน้าทีม SRRT · สสจ."],
+            ["นายกิตติศักดิ์ แสงเพชร", "นักสาธารณสุขปฏิบัติการ · รพ.สต.บ้านคลอง"],
           ].map(([n, r]) => (
             <div key={String(n)} className="flex items-center gap-3 py-2.5 border-b border-line-brd last:border-0">
               <span

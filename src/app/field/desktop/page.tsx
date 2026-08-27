@@ -11,7 +11,7 @@ export default function FieldDesktop() {
       c: {
         ...CASES[1],
         id: "RPT-6809-027",
-        name: "ด.ช.ภูมิพัฒน์ แก้วมณี",
+        name: "ด.ช.ปัณณวิชญ์ เรืองทอง",
         age: 4,
         hospital: "รพ.สต.บ้านคลอง",
         tambon: "บ้านคลอง",
@@ -146,7 +146,7 @@ export default function FieldDesktop() {
                 <Icon name="clipboard" size={18} />
               </span>
               <div>
-                <p className="text-[13px] font-semibold">PLK-6809-0142 · นายสมชาย ใจดี</p>
+                <p className="text-[13px] font-semibold">PLK-6809-0142 · นายกฤษฎา พรมเรือง</p>
                 <p className="sub">ไข้เลือดออก · ม.4 ต.บ้านคลอง · ทีม SRRT เมือง-1</p>
               </div>
             </div>
@@ -168,7 +168,7 @@ export default function FieldDesktop() {
             icon="clipboard"
           >
             <div className="grid gap-4 sm:grid-cols-2">
-              <Field label="ชื่อ–สกุล" value="นายสมชาย ใจดี" source="HIS" />
+              <Field label="ชื่อ–สกุล" value="นายกฤษฎา พรมเรือง" source="HIS" />
               <Field label="วันเริ่มป่วย" value="22 ส.ค. 2569" source="HIS" />
               <Field
                 label="ที่อยู่ขณะป่วย"
