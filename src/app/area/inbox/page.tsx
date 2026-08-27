@@ -14,7 +14,6 @@ const ASSIGNED = [
     area: "ม.4 ต.บางกระทุ่ม",
     at: "27 ส.ค. 08:14",
     urgent: true,
-    channel: "Dashboard กลาง",
   },
   {
     id: "PLK-6809-0140",
@@ -24,7 +23,6 @@ const ASSIGNED = [
     area: "ม.2 ต.สนามคลี",
     at: "27 ส.ค. 07:55",
     urgent: false,
-    channel: "Flex หมอพร้อม",
   },
   {
     id: "PLK-6809-0138",
@@ -34,7 +32,6 @@ const ASSIGNED = [
     area: "ม.7 ต.โคกสลุด",
     at: "26 ส.ค. 19:31",
     urgent: true,
-    channel: "Dashboard กลาง",
   },
 ];
 
@@ -100,12 +97,6 @@ export default function UnitInbox() {
                       <span className="font-mono text-[12px] font-semibold">{c.id}</span>
                       <Chip bg={`${c.color}18`} fg={c.color} dot>
                         {c.disease}
-                      </Chip>
-                      <Chip
-                        bg={c.channel === "Dashboard กลาง" ? "#dbeafe" : "#dcfce7"}
-                        fg={c.channel === "Dashboard กลาง" ? "#1d4ed8" : "#15803d"}
-                      >
-                        {c.channel}
                       </Chip>
                     </div>
                     <p className="sub mt-1">
