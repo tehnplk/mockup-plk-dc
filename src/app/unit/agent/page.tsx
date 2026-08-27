@@ -134,7 +134,7 @@ export default function AgentPage() {
   return (
     <>
       <PageHead
-        title="Agent เฝ้าระวังรหัสวินิจฉัย (ICD-10)"
+        title="ตรวจจับจากรหัส ICD-10"
         desc="Agent อ่านรหัสวินิจฉัยของแพทย์จาก HIS แบบต่อเนื่อง เมื่อพบรหัสที่คัดเข้าไว้จะแจ้งเตือนผู้รับผิดชอบงานสอบสวนโรคทันที"
         actions={
           <>
