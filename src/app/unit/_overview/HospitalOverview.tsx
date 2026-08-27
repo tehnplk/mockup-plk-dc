@@ -8,7 +8,7 @@ export default function HospitalOverview() {
   return (
     <>
       <PageHead
-        title="ภาพรวมงานสอบสวนโรค — รพ.บางกระทุ่ม"
+        title="ภาพรวมงานสอบสวนโรค"
         desc="ข้อมูล ณ 27 ส.ค. 2569 เวลา 09:41 น. · เชื่อมต่อ HIS: HOSxP XE (ปกติ)"
         actions={
           <>

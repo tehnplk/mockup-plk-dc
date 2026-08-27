@@ -1,7 +1,7 @@
 "use client";
 
 import DesktopShell, { type NavItem } from "@/components/DesktopShell";
-import { UNIT_PROFILE, UnitScopeBar } from "@/components/UnitRole";
+import { UNIT_PROFILE } from "@/components/UnitRole";
 
 /**
  * เมนูของ "โมดูลหน่วยบริการ" ตาม doc/spec.md
@@ -62,7 +62,6 @@ export default function UnitLayout({ children }: LayoutProps<"/unit">) {
       user={role.user}
       collapsibleSections
     >
-      <UnitScopeBar role={role} />
       {children}
     </DesktopShell>
   );
