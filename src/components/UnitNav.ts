@@ -8,7 +8,7 @@ import { type NavItem } from "@/components/DesktopShell";
 export const UNIT_NAV: NavItem[] = [
   {
     href: "/hos/his-list",
-    label: "ทะเบียนผู้ป่วยเข้าข่ายต้องแจ้งจาก HosXP",
+    label: "ทะเบียนผู้ป่วย",
     icon: "db",
     section: "1. ระบบงานแจ้งเคส",
   },

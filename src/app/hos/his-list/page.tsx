@@ -263,7 +263,7 @@ export default function CandidateRegistryPage() {
   return (
     <>
       <PageHead
-        title="ทะเบียนผู้ป่วยเข้าข่ายต้องแจ้งจาก HosXP"
+        title="ทะเบียนผู้ป่วย"
         actions={
           <button type="button" className="btn btn-sm">
             <Icon name="clock" size={15} /> อัปเดตล่าสุด 09:40 น.
