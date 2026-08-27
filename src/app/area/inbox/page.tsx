@@ -14,7 +14,6 @@ const ASSIGNED = [
     area: "ม.4 ต.บางกระทุ่ม",
     from: "รพ.พุทธชินราช",
     at: "27 ส.ค. 08:14",
-    left: "เหลือ 1 ชม. 12 นาที",
     urgent: true,
     channel: "Dashboard กลาง",
   },
@@ -26,7 +25,6 @@ const ASSIGNED = [
     area: "ม.2 ต.สนามคลี",
     from: "ศูนย์เด็กเล็กเทศบาล",
     at: "27 ส.ค. 07:55",
-    left: "เหลือ 2 ชม. 40 นาที",
     urgent: false,
     channel: "Flex หมอพร้อม",
   },
@@ -38,7 +36,6 @@ const ASSIGNED = [
     area: "ม.7 ต.โคกสลุด",
     from: "หน่วยบริการเครือข่ายท่าโพธิ์ (ส่งต่อ)",
     at: "26 ส.ค. 19:31",
-    left: "เกินเวลา 4 ชม.",
     urgent: true,
     channel: "Dashboard กลาง",
   },
@@ -118,16 +115,6 @@ export default function UnitInbox() {
                       {c.patient} · {c.area} · แจ้งจาก {c.from} · {c.at}
                     </p>
                   </div>
-
-                  <span
-                    className="chip"
-                    style={{
-                      background: c.left.startsWith("เกิน") ? "#fee2e2" : "#fef3c7",
-                      color: c.left.startsWith("เกิน") ? "#b91c1c" : "#b45309",
-                    }}
-                  >
-                    <Icon name="clock" size={12} /> {c.left}
-                  </span>
 
                   <div className="flex items-center gap-2">
                     <button className="btn btn-sm">
