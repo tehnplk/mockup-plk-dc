@@ -21,7 +21,7 @@ const NAV: NavItem[] = [
     label: "Agent เฝ้าระวัง ICD-10",
     icon: "sparkles",
     badge: "12",
-    section: "1 · สอบสวนและแจ้งทีม",
+    section: "งานสอบสวนผู้ป่วยและแจ้งเครือข่าย",
   },
   { href: "/unit/new", label: "คัดเข้า / เปิดเคสใหม่", icon: "plus" },
   { href: "/unit/case", label: "ดึงข้อมูลจาก HIS", icon: "db" },
