@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { PageHead } from "@/components/DesktopShell";
 import { Card, Chip, Stat, Progress } from "@/components/ui";
-import FlexCard from "@/components/FlexCard";
 import { Icon } from "@/components/icons";
 
 /** เคสที่ Dashboard กลางมอบหมายมาให้หน่วยบริการกดรับ */
@@ -169,30 +168,6 @@ export default function UnitInbox() {
         </div>
 
         <div className="flex flex-col gap-4 min-w-0">
-          <Card
-            title="ช่องทางที่ 2 · Flex หมอพร้อม"
-            desc="กดรับทราบบนการ์ดในไลน์ = กดรับเคสในระบบ"
-            icon="chat"
-          >
-            <div className="grid place-items-center bg-[#8aa5b8] rounded-xl p-4">
-              <FlexCard width={272} />
-            </div>
-            <ul className="grid gap-2 mt-4">
-              {[
-                ["ปุ่ม “กดรับทราบ” บันทึกเวลารับเคสทันที", "check"],
-                ["ปุ่มเปิดระบบงานภาคสนามพร้อมสิทธิ์เข้าถึงเคส", "link"],
-                ["footer ระบุชื่อ ตำแหน่ง หน่วยงานผู้ส่ง", "users"],
-              ].map(([t, ic]) => (
-                <li key={String(t)} className="flex items-start gap-2 text-[12.5px] text-muted">
-                  <span className="mt-[2px] text-ok">
-                    <Icon name={ic as "check"} size={14} />
-                  </span>
-                  {t}
-                </li>
-              ))}
-            </ul>
-          </Card>
-
           <Card title="กติกาการรับเคส" desc="กำหนดโดย Admin จังหวัด" icon="shield">
             <ul className="grid gap-2.5">
               {[
