@@ -314,7 +314,6 @@ export default function DesktopShell({
 
 export function PageHead({
   title,
-  desc,
   actions,
 }: {
   title: string;
@@ -322,11 +321,8 @@ export function PageHead({
   actions?: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-wrap items-end justify-between gap-3 mb-5">
-      <div>
-        <h1 className="text-[19px] sm:text-[21px] font-bold tracking-tight">{title}</h1>
-        {desc && <p className="sub mt-1">{desc}</p>}
-      </div>
+    <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
+      <h1 className="text-[19px] sm:text-[21px] font-bold tracking-tight">{title}</h1>
       {actions && <div className="flex flex-wrap items-center gap-2">{actions}</div>}
     </div>
   );
