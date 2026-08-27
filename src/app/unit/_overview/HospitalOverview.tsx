@@ -30,7 +30,7 @@ export default function HospitalOverview() {
       </div>
 
       <Link
-        href="/unit/agent"
+        href="/unit/hos/his-list"
         className="card p-4 mb-5 flex flex-wrap items-center gap-3 hover:bg-surface2 transition-colors"
         style={{ borderLeft: "4px solid var(--ok)" }}
       >

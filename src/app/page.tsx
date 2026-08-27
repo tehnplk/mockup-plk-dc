@@ -36,7 +36,7 @@ const MODULES: Module[] = [
         no: "1",
         title: "สอบสวนผู้ป่วยในโรงพยาบาล",
         features: [
-          { label: "Agent แจ้งเตือนตามรหัสโรค ICD-10 ที่กำหนด", href: "/unit/agent" },
+          { label: "Agent แจ้งเตือนตามรหัสโรค ICD-10 ที่กำหนด", href: "/unit/hos/his-list" },
           { label: "ดึงข้อมูลอัตโนมัติจาก HIS และเติมข้อมูลส่วนที่ขาด", href: "/unit/case" },
           { label: "บันทึกข้อมูลสอบสวนโรค", href: "/unit/investigate" },
           { label: "แจ้งเคสด้วย Flex หมอพร้อมไปทีม SRRT/CDCU", href: "/unit/notify" },

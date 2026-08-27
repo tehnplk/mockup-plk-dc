@@ -9,7 +9,7 @@ import { UNIT_PROFILE } from "@/components/UnitRole";
  */
 const NAV: NavItem[] = [
   {
-    href: "/unit/agent",
+    href: "/unit/hos/his-list",
     label: "ทะเบียนผู้ป่วยเข้าข่ายต้องแจ้งจาก HosXP",
     icon: "db",
     section: "1. ระบบงานแจ้งเคส",
