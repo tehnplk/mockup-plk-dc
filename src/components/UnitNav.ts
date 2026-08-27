@@ -21,7 +21,7 @@ export const UNIT_NAV: NavItem[] = [
 
   {
     href: "/area/inbox",
-    label: "รับเคส (Dashboard/Flex)",
+    label: "รับเคส",
     icon: "check",
     badge: "3",
     section: "2. ระบบงานรับเคส",
