@@ -45,7 +45,7 @@ const NAV: NavItem[] = [
     href: "/unit/exclude",
     label: "ยื่นคำร้องตัดเคสออก",
     icon: "shield",
-    section: "3 · จัดการพื้นที่",
+    section: "3. งานวิเคราะห์ข้อมูลในพื้นที่รับผิดชอบ",
   },
   { href: "/unit/map", label: "แผนที่การระบาด (GIS)", icon: "map" },
   { href: "/unit/analytics", label: "วิเคราะห์ข้อมูลพื้นที่", icon: "chart" },
