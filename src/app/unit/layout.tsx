@@ -70,6 +70,7 @@ export default function UnitLayout({ children }: LayoutProps<"/unit">) {
         device="Webapp Desktop · Web Mobile"
         nav={NAV}
         user={role.user}
+        collapsibleSections
         sidebarExtra={<UnitRoleSwitcher {...ctx} />}
         headerExtra={<UnitRoleToggle {...ctx} />}
       >

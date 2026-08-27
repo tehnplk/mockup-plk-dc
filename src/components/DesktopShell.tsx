@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 import { Icon, type IconName } from "./icons";
 import { initial } from "./ui";
 
@@ -14,6 +15,129 @@ export type NavItem = {
   section?: string;
 };
 
+type NavGroup = {
+  section?: string;
+  items: NavItem[];
+};
+
+function groupNavItems(nav: NavItem[]) {
+  return nav.reduce<NavGroup[]>((groups, item) => {
+    if (item.section || groups.length === 0) {
+      groups.push({ section: item.section, items: [item] });
+    } else {
+      groups[groups.length - 1].items.push(item);
+    }
+    return groups;
+  }, []);
+}
+
+function SidebarNavLink({ item, activePath }: { item: NavItem; activePath: string }) {
+  const active = activePath === item.href;
+
+  return (
+    <Link
+      href={item.href}
+      className="flex items-center gap-2.5 px-3 py-2.5 rounded-[10px] text-[13px] font-medium mb-0.5 transition-colors"
+      style={{
+        background: active ? "color-mix(in srgb, var(--accent) 12%, white)" : "transparent",
+        color: active ? "var(--accent)" : "var(--muted)",
+        fontWeight: active ? 600 : 500,
+      }}
+    >
+      <Icon name={item.icon} size={17} />
+      <span className="flex-1 truncate">{item.label}</span>
+      {item.badge && (
+        <span
+          className="text-[10.5px] font-bold px-1.5 py-0.5 rounded-full text-white"
+          style={{ background: "var(--danger)" }}
+        >
+          {item.badge}
+        </span>
+      )}
+    </Link>
+  );
+}
+
+function CollapsibleSidebarNav({ nav, activePath }: { nav: NavItem[]; activePath: string }) {
+  const groups = groupNavItems(nav);
+  const activeSection = groups.find((group) =>
+    group.items.some((item) => item.href === activePath),
+  )?.section;
+  const firstSection = groups.find((group) => group.section)?.section;
+  const [openSection, setOpenSection] = useState<string | null>(
+    activeSection ?? firstSection ?? null,
+  );
+
+  return groups.map((group, index) => {
+    if (!group.section) {
+      return (
+        <div key={`standalone-${index}`} className="mb-2">
+          {group.items.map((item) => (
+            <SidebarNavLink key={item.href} item={item} activePath={activePath} />
+          ))}
+        </div>
+      );
+    }
+
+    const open = openSection === group.section;
+    const containsActive = group.items.some((item) => item.href === activePath);
+    const panelId = `sidebar-feature-group-${index}`;
+
+    return (
+      <section
+        key={group.section}
+        className="mb-2 overflow-hidden rounded-xl border border-line-brd bg-surface"
+      >
+        <button
+          type="button"
+          aria-expanded={open}
+          aria-controls={panelId}
+          onClick={() => setOpenSection((current) => (current === group.section ? null : group.section!))}
+          className="flex w-full items-center gap-2 px-3 py-2.5 text-left transition-colors hover:bg-surface2"
+          style={{
+            background: containsActive
+              ? "color-mix(in srgb, var(--accent) 7%, white)"
+              : undefined,
+          }}
+        >
+          <span
+            className="h-5 w-1 shrink-0 rounded-full"
+            style={{
+              background: containsActive ? "var(--accent)" : "var(--border)",
+            }}
+          />
+          <span
+            className="min-w-0 flex-1 text-[11px] font-bold leading-snug"
+            style={{ color: containsActive ? "var(--accent)" : "var(--muted)" }}
+          >
+            {group.section}
+          </span>
+          <span
+            className="shrink-0 text-faint transition-transform duration-200"
+            style={{ transform: open ? "rotate(90deg)" : "rotate(0deg)" }}
+          >
+            <Icon name="arrowRight" size={14} />
+          </span>
+        </button>
+
+        <div
+          id={panelId}
+          className="grid transition-[grid-template-rows] duration-200 ease-out"
+          style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
+        >
+          <div className="overflow-hidden">
+            <div className="border-t border-line-brd px-1.5 pb-1.5 pt-1.5">
+              {group.items.map((item) => (
+                <SidebarNavLink key={item.href} item={item} activePath={activePath} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  });
+}
+
 export default function DesktopShell({
   accent,
   system,
@@ -24,6 +148,7 @@ export default function DesktopShell({
   user,
   sidebarExtra,
   headerExtra,
+  collapsibleSections = false,
   children,
 }: {
   accent: "hospital" | "area" | "central" | "field";
@@ -37,6 +162,8 @@ export default function DesktopShell({
   sidebarExtra?: React.ReactNode;
   /** extra control rendered in the top bar */
   headerExtra?: React.ReactNode;
+  /** render sectioned sidebar items as an accordion */
+  collapsibleSections?: boolean;
   children: React.ReactNode;
 }) {
   const path = usePathname();
@@ -85,40 +212,20 @@ export default function DesktopShell({
             )}
 
             <nav className="flex-1 p-2.5 overflow-y-auto nice">
-              {nav.map((n) => {
-                const active = path === n.href;
-                return (
-                  <div key={n.href}>
-                    {n.section && (
+              {collapsibleSections ? (
+                <CollapsibleSidebarNav key={path} nav={nav} activePath={path} />
+              ) : (
+                nav.map((item) => (
+                  <div key={item.href}>
+                    {item.section && (
                       <p className="px-3 pt-3.5 pb-1.5 text-[10.5px] font-bold uppercase tracking-wider text-faint">
-                        {n.section}
+                        {item.section}
                       </p>
                     )}
-                  <Link
-                    href={n.href}
-                    className="flex items-center gap-2.5 px-3 py-2.5 rounded-[10px] text-[13px] font-medium mb-0.5 transition-colors"
-                    style={{
-                      background: active
-                        ? "color-mix(in srgb, var(--accent) 12%, white)"
-                        : "transparent",
-                      color: active ? "var(--accent)" : "var(--muted)",
-                      fontWeight: active ? 600 : 500,
-                    }}
-                  >
-                    <Icon name={n.icon} size={17} />
-                    <span className="flex-1 truncate">{n.label}</span>
-                    {n.badge && (
-                      <span
-                        className="text-[10.5px] font-bold px-1.5 py-0.5 rounded-full text-white"
-                        style={{ background: "var(--danger)" }}
-                      >
-                        {n.badge}
-                      </span>
-                    )}
-                  </Link>
+                    <SidebarNavLink item={item} activePath={path} />
                   </div>
-                );
-              })}
+                ))
+              )}
             </nav>
 
             <div className="p-3 border-t border-line-brd">
