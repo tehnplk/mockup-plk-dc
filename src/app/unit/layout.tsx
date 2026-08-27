@@ -10,7 +10,7 @@ import { UNIT_PROFILE } from "@/components/UnitRole";
 const NAV: NavItem[] = [
   {
     href: "/unit/agent",
-    label: "Agent เฝ้าระวัง ICD-10",
+    label: "ตรวจจับจากรหัส ICD-10",
     icon: "sparkles",
     badge: "12",
     section: "1. ระบบงานแจ้งเคส",
