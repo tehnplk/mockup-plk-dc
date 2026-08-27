@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { PageHead } from "@/components/DesktopShell";
 import { Card, Chip, Stat, Progress } from "@/components/ui";
 import { Icon } from "@/components/icons";
@@ -68,8 +67,8 @@ export default function UnitInbox() {
         <Stat label="เวลารับเฉลี่ย" value="46" unit="นาที" icon="wave" tone="var(--info)" />
       </div>
 
-      <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_340px]">
-        <div className="flex flex-col gap-4 min-w-0">
+      <div className="grid gap-4">
+        <div className="flex min-w-0 flex-col gap-4">
           <Card
             title="เคสที่รอกดรับ"
             desc="มอบหมายจาก Dashboard กลาง สสจ.พิษณุโลก และแจ้งซ้ำทางไลน์หมอพร้อม"
@@ -164,30 +163,6 @@ export default function UnitInbox() {
                 </tbody>
               </table>
             </div>
-          </Card>
-        </div>
-
-        <div className="flex flex-col gap-4 min-w-0">
-          <Card title="กติกาการรับเคส" desc="กำหนดโดย Admin จังหวัด" icon="shield">
-            <ul className="grid gap-2.5">
-              {[
-                ["เคสวิกฤต", "รับภายใน 1 ชั่วโมง"],
-                ["เคสเร่งด่วน", "รับภายใน 3 ชั่วโมง"],
-                ["เคสเฝ้าระวัง", "รับภายใน 12 ชั่วโมง"],
-                ["ไม่รับตามเวลา", "ระบบแจ้งเตือนหัวหน้าหน่วยและ สสอ."],
-              ].map(([k, v]) => (
-                <li
-                  key={k}
-                  className="flex items-start justify-between gap-3 text-[12.5px] border-b border-line-brd pb-2.5 last:border-0 last:pb-0"
-                >
-                  <span className="font-semibold">{k}</span>
-                  <span className="text-muted text-right">{v}</span>
-                </li>
-              ))}
-            </ul>
-            <Link href="/dashboard/admin" className="btn btn-sm w-full mt-4">
-              ดูกติกาทั้งหมดที่ Admin กำหนด <Icon name="arrowRight" size={14} />
-            </Link>
           </Card>
         </div>
       </div>
