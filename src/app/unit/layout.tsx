@@ -8,8 +8,6 @@ import { UNIT_PROFILE, UnitScopeBar } from "@/components/UnitRole";
  * ตัวอย่างเดียว: รพ.บางกระทุ่ม ครอบคลุมงานในโรงพยาบาลและพื้นที่รับผิดชอบ
  */
 const NAV: NavItem[] = [
-  { href: "/unit", label: "ภาพรวมหน่วยบริการ", icon: "home" },
-
   {
     href: "/unit/agent",
     label: "Agent เฝ้าระวัง ICD-10",

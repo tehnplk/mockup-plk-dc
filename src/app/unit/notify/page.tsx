@@ -141,7 +141,7 @@ export default function NotifyPage() {
                 <input
                   className="inp"
                   readOnly
-                  defaultValue="[เร่งด่วน] เคสไข้เลือดออกรายใหม่ อ.บางกระทุ่ม กรุณากดรับทราบ"
+                  defaultValue="[เร่งด่วน] นายกฤษฎา พรมเรือง · เคสไข้เลือดออกรายใหม่ อ.บางกระทุ่ม กรุณากดรับทราบ"
                 />
               </div>
               <div className="sm:col-span-2">
