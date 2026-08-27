@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { PageHead } from "@/components/DesktopShell";
 import { Card, Chip, Avatar } from "@/components/ui";
 import { Icon } from "@/components/icons";
@@ -14,6 +15,9 @@ export default function NotifyPage() {
         desc="แจ้งเตือนทีม SRRT/CDCU ที่คัดเลือกไว้ พร้อมปุ่มกดรับทราบและลิงก์เปิดโมดูลทีมภาคสนาม · การ์ดมี footer ระบุผู้ส่ง"
         actions={
           <>
+            <Link href="/unit/registry" className="btn btn-sm">
+              <Icon name="clipboard" size={15} /> ทะเบียนแจ้งเคส
+            </Link>
             <button className="btn btn-sm">
               <Icon name="clock" size={15} /> ตั้งเวลาส่ง
             </button>

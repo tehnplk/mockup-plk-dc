@@ -3,20 +3,23 @@ import { Icon, type IconName } from "@/components/icons";
 
 type Feature = { label: string; href: string };
 
+type FeatureGroup = {
+  no: string;
+  title: string;
+  features: Feature[];
+};
+
 type Module = {
   no: string;
   href: string;
   title: string;
   sub: string;
-  device: string;
-  deviceIcon: IconName;
   accent: string;
   tone: string;
   icon: IconName;
-  roles: { icon: IconName; label: string }[];
   /** ฟีเจอร์ตาม doc/spec.md — ทุกข้อชี้ไปยังหน้าจอ mockup จริง */
-  features: Feature[];
-  extras?: Feature[];
+  features?: Feature[];
+  featureGroups?: FeatureGroup[];
 };
 
 const MODULES: Module[] = [
@@ -25,36 +28,43 @@ const MODULES: Module[] = [
     href: "/unit",
     title: "โมดูลของหน่วยบริการ",
     sub: "ใช้ชุดเดียวกันทั้งโรงพยาบาล (รัฐ/เอกชน) และหน่วยบริการเจ้าของพื้นที่ (รพ.สต.) สลับบทบาทได้ในระบบ",
-    device: "Webapp Desktop · Web Mobile",
-    deviceIcon: "grid",
     accent: "#0d9488",
     tone: "#ccfbf1",
     icon: "hospital",
-    roles: [
-      { icon: "hospital", label: "โรงพยาบาล" },
-      { icon: "area", label: "รพ.สต." },
-    ],
-    features: [
-      { label: "Agent แจ้งเตือนเมื่อแพทย์ Dx รหัสโรคที่เลือกไว้ + หน้าจอคัดเข้า ICD-10", href: "/unit/agent" },
-      { label: "ดึงข้อมูลอัตโนมัติจาก HIS ผู้ใช้เติมข้อมูลบางส่วน", href: "/unit/case" },
-      { label: "บันทึกข้อมูลสอบสวนโรค", href: "/unit/investigate" },
-      { label: "แจ้งเคสด้วย Flex หมอพร้อม จากหน่วยบริการไปทีม SRRT/CDCU", href: "/unit/notify" },
-      { label: "รับเคส กดรับจาก Dashboard กลาง หรือ Flex หมอพร้อม", href: "/unit/inbox" },
-      { label: "แจ้งเตือนประชาชนที่คัดเข้าด้วย Flex หมอพร้อม", href: "/unit/alert" },
-      { label: "ยื่นคำร้องขออนุมัติตัดเคสออกจากพื้นที่ไปยัง Admin", href: "/unit/exclude" },
-      { label: "แผนที่การระบาด (GIS)", href: "/unit/map" },
-      { label: "ระบบวิเคราะห์ข้อมูลด้วย AI", href: "/unit/ai" },
-      { label: "ระบบผลิตสื่อประชาสัมพันธ์", href: "/unit/media" },
-      { label: "แจ้งข่าวประชาสัมพันธ์ประชาชนในพื้นที่ระบาดด้วยไลน์หมอพร้อม", href: "/unit/broadcast" },
-      { label: "ติดตามพฤติกรรมสุขภาพต่อการดูแลตนเองของประชาชน", href: "/unit/followup" },
-      { label: "ระบบจัดเก็บค้นคืนเอกสาร", href: "/unit/documents" },
-    ],
-    extras: [
-      { label: "ภาพรวมหน่วยบริการ", href: "/unit" },
-      { label: "คัดเข้า/เปิดเคสใหม่", href: "/unit/new" },
-      { label: "สรุปสนทนา Voice→Text", href: "/unit/voice" },
-      { label: "แจ้งเคสที่พบในชุมชน", href: "/unit/report" },
-      { label: "Push เข้า Dashboard กลาง", href: "/unit/push" },
+    featureGroups: [
+      {
+        no: "1",
+        title: "สอบสวนผู้ป่วยในโรงพยาบาล",
+        features: [
+          { label: "Agent แจ้งเตือนตามรหัสโรค ICD-10 ที่กำหนด", href: "/unit/agent" },
+          { label: "ดึงข้อมูลอัตโนมัติจาก HIS และเติมข้อมูลส่วนที่ขาด", href: "/unit/case" },
+          { label: "บันทึกข้อมูลสอบสวนโรค", href: "/unit/investigate" },
+          { label: "แจ้งเคสด้วย Flex หมอพร้อมไปทีม SRRT/CDCU", href: "/unit/notify" },
+          { label: "ทะเบียนแจ้งเคสและผลการตอบกลับ", href: "/unit/registry" },
+        ],
+      },
+      {
+        no: "2",
+        title: "รับเคสในฐานะเจ้าของพื้นที่",
+        features: [
+          { label: "รับเคสจาก Dashboard กลาง หรือ Flex หมอพร้อม", href: "/unit/inbox" },
+          { label: "แจ้งเตือนประชาชนในพื้นที่ที่คัดเข้าผ่าน Flex หมอพร้อม", href: "/unit/alert" },
+        ],
+      },
+      {
+        no: "3",
+        title: "จัดการข้อมูลในพื้นที่",
+        features: [
+          { label: "ยื่นคำร้องตัดเคสออกไปยัง สสจ.พิษณุโลก", href: "/unit/exclude" },
+          { label: "แผนที่การระบาด (GIS)", href: "/unit/map" },
+          { label: "ระบบวิเคราะห์ข้อมูลพื้นที่", href: "/unit/analytics" },
+          { label: "ระบบผลิตสื่อประชาสัมพันธ์", href: "/unit/media" },
+          { label: "แจ้งข่าวประชาชนในพื้นที่ระบาดผ่านไลน์หมอพร้อม", href: "/unit/broadcast" },
+          { label: "ติดตามพฤติกรรมสุขภาพและการดูแลตนเอง", href: "/unit/followup" },
+          { label: "จัดเก็บและค้นคืนเอกสารสอบสวนควบคุมโรค", href: "/unit/documents" },
+          { label: "Assistant ด้วย AI", href: "/unit/ai" },
+        ],
+      },
     ],
   },
   {
@@ -62,26 +72,12 @@ const MODULES: Module[] = [
     href: "/field",
     title: "โมดูลทีม SRRT / CDCU",
     sub: "ทีมสอบสวนเคลื่อนที่เร็ว ใช้งานบนมือถือขณะลงพื้นที่ และบนเดสก์ท็อปที่สำนักงาน",
-    device: "Webapp Desktop · Web Mobile",
-    deviceIcon: "field",
     accent: "#ea580c",
     tone: "#ffedd5",
     icon: "clipboard",
-    roles: [
-      { icon: "field", label: "ทีม SRRT" },
-      { icon: "users", label: "ทีม CDCU" },
-    ],
     features: [
       { label: "รับเคส กดรับจาก Dashboard กลาง หรือ Flex หมอพร้อม", href: "/field" },
       { label: "บันทึกการสอบสวนและควบคุมโรคภาคสนาม", href: "/field/investigate" },
-    ],
-    extras: [
-      { label: "รายละเอียดเคส", href: "/field/case" },
-      { label: "ถ่ายรูปหลักฐาน", href: "/field/camera" },
-      { label: "เก็บพิกัด GPS", href: "/field/gps" },
-      { label: "อัดเสียงบันทึก", href: "/field/voice" },
-      { label: "ทีม/โปรไฟล์", href: "/field/me" },
-      { label: "มุมมองเดสก์ท็อป", href: "/field/desktop" },
     ],
   },
   {
@@ -89,15 +85,9 @@ const MODULES: Module[] = [
     href: "/dashboard",
     title: "โมดูลระบบบัญชาการระดับจังหวัด",
     sub: "ศูนย์ข้อมูลกลาง สสจ.พิษณุโลก สำหรับติดตาม สั่งการ อนุมัติ และจัดสรรทรัพยากร",
-    device: "Webapp Desktop · Web Mobile",
-    deviceIcon: "chart",
     accent: "#2563eb",
     tone: "#dbeafe",
     icon: "chart",
-    roles: [
-      { icon: "shield", label: "ผู้บัญชาการเหตุการณ์" },
-      { icon: "settings", label: "Admin จังหวัด" },
-    ],
     features: [
       { label: "Dashboard กลาง", href: "/dashboard" },
       { label: "สถานะการสอบสวนควบคุมโรครายเคส", href: "/dashboard/cases" },
@@ -152,8 +142,7 @@ export default function Home() {
         />
         <div className="relative max-w-[1200px] mx-auto px-5 sm:px-8 py-12 sm:py-16">
           <span className="chip" style={{ background: "#ffffff1a", color: "#e2e8f0" }}>
-            <span className="w-1.5 h-1.5 rounded-full bg-[#34d399]" /> UI Mockup · v0.3 ตาม
-            doc/spec.md
+            <span className="w-1.5 h-1.5 rounded-full bg-[#34d399]" /> UX/UI Mockup · doc/spec.md
           </span>
           <h1 className="mt-4 text-[27px] sm:text-[38px] font-bold tracking-tight leading-[1.2] max-w-[820px]">
             Plk SRRT Network
@@ -192,22 +181,6 @@ export default function Home() {
             </Link>
           </div>
 
-          <dl className="mt-9 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-[620px]">
-            {[
-              ["3", "โมดูลหลักตาม spec"],
-              ["36", "หน้าจอ Mockup"],
-              ["9", "อำเภอในจังหวัด"],
-              ["2", "รูปแบบอุปกรณ์"],
-            ].map(([v, l]) => (
-              <div
-                key={l}
-                className="rounded-xl bg-white/[0.06] border border-white/10 px-3.5 py-3"
-              >
-                <dt className="text-[22px] font-bold leading-none">{v}</dt>
-                <dd className="text-[11.5px] text-slate-400 mt-1.5">{l}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
       </header>
 
@@ -244,69 +217,74 @@ export default function Home() {
                       >
                         โมดูล {m.no}
                       </span>
-                      <span className="chip" style={{ background: "#fff", color: m.accent }}>
-                        <Icon name={m.deviceIcon} size={12} />
-                        {m.device}
-                      </span>
                     </div>
                     <h3 className="mt-1.5 text-[15.5px] font-bold leading-tight">{m.title}</h3>
                   </div>
                 </div>
                 <p className="sub mt-2.5 leading-relaxed">{m.sub}</p>
-                <div className="flex flex-wrap gap-1.5 mt-2.5">
-                  {m.roles.map((r) => (
-                    <span
-                      key={r.label}
-                      className="chip"
-                      style={{ background: "#ffffffcc", color: "#475569" }}
-                    >
-                      <Icon name={r.icon} size={12} /> {r.label}
-                    </span>
-                  ))}
-                </div>
               </div>
 
               <div className="p-5 flex-1">
-                <p className="text-[11px] font-bold text-faint uppercase tracking-wide mb-2.5">
-                  ฟีเจอร์ตาม spec ({m.features.length})
-                </p>
-                <ul className="grid gap-1">
-                  {m.features.map((f, i) => (
-                    <li key={`${f.href}-${i}`}>
-                      <Link
-                        href={f.href}
-                        className="flex items-start gap-2.5 text-[12.5px] text-muted rounded-lg px-2 py-1.5 -mx-2 hover:bg-surface2 transition-colors"
+                {m.featureGroups ? (
+                  <div className="grid gap-3">
+                    {m.featureGroups.map((group) => (
+                      <section
+                        key={group.no}
+                        className="py-3 first:pt-0 border-t first:border-t-0 border-line-brd"
                       >
-                        <span className="mt-[3px] shrink-0" style={{ color: m.accent }}>
-                          <Icon name="check" size={13} />
-                        </span>
-                        <span className="flex-1 leading-snug">{f.label}</span>
-                        <span className="mt-[2px] shrink-0 text-faint">
-                          <Icon name="arrowRight" size={13} />
-                        </span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-
-                {m.extras && (
-                  <>
-                    <p className="text-[11px] font-bold text-faint uppercase tracking-wide mt-4 mb-2">
-                      หน้าจอสนับสนุน
-                    </p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {m.extras.map((e) => (
+                        <div className="flex items-start gap-2.5 mb-2">
+                          <span
+                            className="grid place-items-center rounded-lg text-[11px] font-bold text-white shrink-0"
+                            style={{ width: 25, height: 25, background: m.accent }}
+                          >
+                            {group.no}
+                          </span>
+                          <div>
+                            <h4 className="text-[12.5px] font-bold leading-snug">{group.title}</h4>
+                          </div>
+                        </div>
+                        <ul className="grid gap-0.5">
+                          {group.features.map((feature) => (
+                            <li key={feature.href}>
+                              <Link
+                                href={feature.href}
+                                className="flex items-start gap-2 text-[12px] text-muted rounded-lg px-2 py-1.5 hover:bg-white transition-colors"
+                              >
+                                <span className="mt-[3px] shrink-0" style={{ color: m.accent }}>
+                                  <Icon name="check" size={12} />
+                                </span>
+                                <span className="flex-1 leading-snug">{feature.label}</span>
+                                <span className="mt-[2px] shrink-0 text-faint">
+                                  <Icon name="arrowRight" size={12} />
+                                </span>
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </section>
+                    ))}
+                  </div>
+                ) : (
+                  <ul className="grid gap-1">
+                    {m.features?.map((f, i) => (
+                      <li key={`${f.href}-${i}`}>
                         <Link
-                          key={e.href}
-                          href={e.href}
-                          className="px-2.5 py-1.5 rounded-lg text-[12px] font-medium border border-line-brd bg-surface2 hover:bg-white transition-colors"
+                          href={f.href}
+                          className="flex items-start gap-2.5 text-[12.5px] text-muted rounded-lg px-2 py-1.5 -mx-2 hover:bg-surface2 transition-colors"
                         >
-                          {e.label}
+                          <span className="mt-[3px] shrink-0" style={{ color: m.accent }}>
+                            <Icon name="check" size={13} />
+                          </span>
+                          <span className="flex-1 leading-snug">{f.label}</span>
+                          <span className="mt-[2px] shrink-0 text-faint">
+                            <Icon name="arrowRight" size={13} />
+                          </span>
                         </Link>
-                      ))}
-                    </div>
-                  </>
+                      </li>
+                    ))}
+                  </ul>
                 )}
+
               </div>
 
               <div className="px-5 pb-5">

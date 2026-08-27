@@ -195,9 +195,14 @@ export default function HospitalOverview() {
 
       <Card
         className="mt-5"
-        title="เคสที่ส่งต่อทีมสอบสวนแล้ว"
-        desc="ติดตามสถานะเรียลไทม์จากแอปภาคสนาม"
+        title="ทะเบียนแจ้งเคสล่าสุด"
+        desc="ติดตามการตอบกลับและสถานะจากทีมสอบสวนแบบเรียลไทม์"
         icon="field"
+        action={
+          <Link href="/unit/registry" className="btn btn-sm">
+            ดูทะเบียนทั้งหมด <Icon name="arrowRight" size={14} />
+          </Link>
+        }
         pad={false}
       >
         <div className="scroll-x nice">

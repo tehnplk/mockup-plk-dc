@@ -14,44 +14,46 @@ import {
  * ใช้ชุดเดียวกันทั้งโรงพยาบาลและ รพ.สต. (สลับบทบาทได้ที่แถบด้านซ้าย)
  */
 const NAV: NavItem[] = [
-  { href: "/unit", label: "ภาพรวมหน่วยบริการ", icon: "home", section: "ภาพรวม" },
+  { href: "/unit", label: "ภาพรวมหน่วยบริการ", icon: "home" },
 
   {
     href: "/unit/agent",
     label: "Agent เฝ้าระวัง ICD-10",
     icon: "sparkles",
     badge: "12",
-    section: "เฝ้าระวัง & คัดเข้า",
+    section: "1 · สอบสวนและแจ้งทีม",
   },
   { href: "/unit/new", label: "คัดเข้า / เปิดเคสใหม่", icon: "plus" },
-  { href: "/unit/inbox", label: "รับเคส (Dashboard/Flex)", icon: "check", badge: "3" },
-
-  {
-    href: "/unit/case",
-    label: "ดึงข้อมูลจาก HIS",
-    icon: "db",
-    section: "สอบสวนโรค",
-  },
+  { href: "/unit/case", label: "ดึงข้อมูลจาก HIS", icon: "db" },
   { href: "/unit/investigate", label: "บันทึกข้อมูลสอบสวนโรค", icon: "clipboard", badge: "2" },
   { href: "/unit/voice", label: "สรุปสนทนา Voice→Text", icon: "mic" },
-  { href: "/unit/documents", label: "จัดเก็บ/ค้นคืนเอกสาร", icon: "file" },
+  { href: "/unit/notify", label: "แจ้งทีม SRRT/CDCU", icon: "send" },
+  { href: "/unit/registry", label: "ทะเบียนแจ้งเคส/ผลตอบกลับ", icon: "clock", badge: "2" },
+  { href: "/unit/push", label: "Push เข้า Dashboard กลาง", icon: "wave" },
 
   {
-    href: "/unit/notify",
-    label: "แจ้งเคสไปทีม SRRT/CDCU",
-    icon: "send",
-    section: "แจ้งเคส & ส่งต่อ",
+    href: "/unit/inbox",
+    label: "รับเคส (Dashboard/Flex)",
+    icon: "check",
+    badge: "3",
+    section: "2 · รับเคสพื้นที่",
   },
-  { href: "/unit/report", label: "แจ้งเคสที่พบในชุมชน", icon: "pin" },
   { href: "/unit/alert", label: "แจ้งเตือนประชาชนที่คัดเข้า", icon: "chat" },
-  { href: "/unit/push", label: "Push เข้า Dashboard กลาง", icon: "wave" },
-  { href: "/unit/exclude", label: "ยื่นคำร้องตัดเคสออก", icon: "shield" },
+  { href: "/unit/report", label: "แจ้งเคสที่พบในชุมชน", icon: "pin" },
 
-  { href: "/unit/map", label: "แผนที่การระบาด (GIS)", icon: "map", section: "เฝ้าระวังพื้นที่" },
-  { href: "/unit/ai", label: "วิเคราะห์ข้อมูลด้วย AI", icon: "chart" },
+  {
+    href: "/unit/exclude",
+    label: "ยื่นคำร้องตัดเคสออก",
+    icon: "shield",
+    section: "3 · จัดการพื้นที่",
+  },
+  { href: "/unit/map", label: "แผนที่การระบาด (GIS)", icon: "map" },
+  { href: "/unit/analytics", label: "วิเคราะห์ข้อมูลพื้นที่", icon: "chart" },
   { href: "/unit/media", label: "ผลิตสื่อประชาสัมพันธ์", icon: "image" },
   { href: "/unit/broadcast", label: "แจ้งข่าวประชาชน", icon: "megaphone" },
   { href: "/unit/followup", label: "ติดตามพฤติกรรมสุขภาพ", icon: "heart" },
+  { href: "/unit/documents", label: "จัดเก็บ/ค้นคืนเอกสาร", icon: "file" },
+  { href: "/unit/ai", label: "Assistant ด้วย AI", icon: "sparkles" },
 ];
 
 export default function UnitLayout({ children }: LayoutProps<"/unit">) {

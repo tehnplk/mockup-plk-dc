@@ -1,20 +1,24 @@
+import Link from "next/link";
 import { PageHead } from "@/components/DesktopShell";
 import { Card, Chip, Stat, Progress, LineChart, Donut } from "@/components/ui";
 import { Icon } from "@/components/icons";
 
-export default function AreaAi() {
+export default function AreaAiAssistant() {
   return (
     <>
       <PageHead
-        title="ระบบวิเคราะห์ข้อมูลด้วย AI"
-        desc="วิเคราะห์แนวโน้มในเขตรับผิดชอบของหน่วยบริการ พยากรณ์การระบาดรายหมู่บ้าน และเสนอมาตรการจากข้อมูลเคส สภาพอากาศ และค่าดัชนีลูกน้ำ"
+        title="Assistant ด้วย AI"
+        desc="ผู้ช่วยสรุปแนวโน้ม พยากรณ์ความเสี่ยง ตอบคำถามจากข้อมูลในเขตรับผิดชอบ และเสนอมาตรการให้เจ้าหน้าที่พิจารณา"
         actions={
           <>
+            <Link href="/unit/analytics" className="btn btn-sm">
+              <Icon name="chart" size={15} /> รายงานวิเคราะห์พื้นที่
+            </Link>
             <button className="btn btn-sm">
-              <Icon name="settings" size={15} /> ตั้งค่าโมเดล
+              <Icon name="clock" size={15} /> ประวัติการสนทนา
             </button>
             <button className="btn btn-primary btn-sm">
-              <Icon name="sparkles" size={15} /> วิเคราะห์ใหม่
+              <Icon name="sparkles" size={15} /> ถาม Assistant
             </button>
           </>
         }
