@@ -1,5 +1,5 @@
 import SelectMenuNotice from "@/components/SelectMenuNotice";
 
-export default function HosHome() {
+export default function AreaHome() {
   return <SelectMenuNotice />;
 }
