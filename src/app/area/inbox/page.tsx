@@ -68,11 +68,6 @@ export default function UnitInbox() {
             desc="มอบหมายจาก Dashboard กลาง สสจ.พิษณุโลก และแจ้งซ้ำทางไลน์หมอพร้อม"
             icon="check"
             pad={false}
-            action={
-              <Chip bg="#fee2e2" fg="#b91c1c" dot>
-                ต้องรับภายใน 3 ชั่วโมง
-              </Chip>
-            }
           >
             <ul>
               {ASSIGNED.map((c) => (
