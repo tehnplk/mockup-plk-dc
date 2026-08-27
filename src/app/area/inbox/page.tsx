@@ -8,6 +8,7 @@ import { Icon } from "@/components/icons";
 const ASSIGNED = [
   {
     id: "PLK-6809-0142",
+    name: "นายกฤษฎา พรมเรือง",
     patient: "ชาย 34 ปี",
     disease: "ไข้เลือดออก",
     color: "#dc2626",
@@ -17,6 +18,7 @@ const ASSIGNED = [
   },
   {
     id: "PLK-6809-0140",
+    name: "ด.ญ.ปุณยนุช แสนคำ",
     patient: "หญิง 8 ปี",
     disease: "มือ เท้า ปาก",
     color: "#059669",
@@ -26,6 +28,7 @@ const ASSIGNED = [
   },
   {
     id: "PLK-6809-0138",
+    name: "นายบรรจง คำใส",
     patient: "ชาย 57 ปี",
     disease: "เลปโตสไปโรซิส",
     color: "#ca8a04",
@@ -94,7 +97,8 @@ export default function UnitInbox() {
 
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="font-mono text-[12px] font-semibold">{c.id}</span>
+                      <span className="text-[13.5px] font-bold">{c.name}</span>
+                      <span className="font-mono text-[12px] font-semibold text-muted">{c.id}</span>
                       <Chip bg={`${c.color}18`} fg={c.color} dot>
                         {c.disease}
                       </Chip>
