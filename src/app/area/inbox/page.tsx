@@ -12,7 +12,6 @@ const ASSIGNED = [
     disease: "ไข้เลือดออก",
     color: "#dc2626",
     area: "ม.4 ต.บางกระทุ่ม",
-    from: "รพ.พุทธชินราช",
     at: "27 ส.ค. 08:14",
     urgent: true,
     channel: "Dashboard กลาง",
@@ -23,7 +22,6 @@ const ASSIGNED = [
     disease: "มือ เท้า ปาก",
     color: "#059669",
     area: "ม.2 ต.สนามคลี",
-    from: "ศูนย์เด็กเล็กเทศบาล",
     at: "27 ส.ค. 07:55",
     urgent: false,
     channel: "Flex หมอพร้อม",
@@ -34,7 +32,6 @@ const ASSIGNED = [
     disease: "เลปโตสไปโรซิส",
     color: "#ca8a04",
     area: "ม.7 ต.โคกสลุด",
-    from: "หน่วยบริการเครือข่ายท่าโพธิ์ (ส่งต่อ)",
     at: "26 ส.ค. 19:31",
     urgent: true,
     channel: "Dashboard กลาง",
@@ -112,7 +109,7 @@ export default function UnitInbox() {
                       </Chip>
                     </div>
                     <p className="sub mt-1">
-                      {c.patient} · {c.area} · แจ้งจาก {c.from} · {c.at}
+                      {c.patient} · {c.area} · {c.at}
                     </p>
                   </div>
 
