@@ -14,8 +14,12 @@ type AcceptedPatient = {
   name: string;
   address: string;
   disease: string;
-  status: "กำลังสอบสวน" | "รอผลแล็บ" | "สอบสวนเสร็จ";
+  status: "กำลังสอบสวน" | "รอผลแล็บ" | "สอบสวนเสร็จ" | "จำหน่ายออกจากงานระบาด";
   owner: string;
+  /** วินิจฉัยเดิม — มีค่าเมื่อผู้แจ้งเคสเปลี่ยนวินิจฉัยภายหลัง */
+  prevDisease?: string;
+  /** เหตุผลและผู้เปลี่ยนวินิจฉัย แสดงคู่กับสถานะจำหน่ายออก */
+  dischargeNote?: string;
 };
 
 /** ผู้ป่วยที่หน่วยบริการกดรับเคสมาจากหน้า "รับเคส" แล้ว */
@@ -49,9 +53,12 @@ const PATIENTS: AcceptedPatient[] = [
     cid: "1-6505-00522-41-3",
     name: "ด.ช.ธนภัทร พูลสวัสดิ์",
     address: "45/2 ม.6 ต.สนามคลี อ.บางกระทุ่ม",
-    disease: "ไข้หวัดใหญ่",
-    status: "สอบสวนเสร็จ",
+    disease: "ไข้ไม่ทราบสาเหตุ (FUO)",
+    prevDisease: "ไข้เลือดออก",
+    status: "จำหน่ายออกจากงานระบาด",
     owner: "นางสุพรรณี ทรัพย์เจริญ",
+    dischargeNote:
+      "ผู้แจ้งเคส (รพ.บางกระทุ่ม) เปลี่ยนวินิจฉัยเมื่อ 26 ส.ค. 2569 13:40 · ผลตรวจยืนยันทางห้องปฏิบัติการออกภายหลัง",
   },
   {
     acceptedAt: "25 ส.ค. 2569 14:35",
@@ -81,6 +88,7 @@ const STATUS_TONE = {
   "กำลังสอบสวน": { bg: "#fef3c7", fg: "#b45309" },
   "รอผลแล็บ": { bg: "#e0f2fe", fg: "#0369a1" },
   "สอบสวนเสร็จ": { bg: "#dcfce7", fg: "#15803d" },
+  "จำหน่ายออกจากงานระบาด": { bg: "#f1f5f9", fg: "#64748b" },
 };
 
 /** กิจกรรมสอบสวนควบคุมโรคของแต่ละเคส */
@@ -211,27 +219,46 @@ export default function AcceptedPatientRegistryPage() {
             <tbody>
               {PATIENTS.map((item) => {
                 const tone = STATUS_TONE[item.status];
+                const discharged = item.status === "จำหน่ายออกจากงานระบาด";
                 return (
-                  <tr key={item.caseId} className="hover:bg-surface2">
+                  <tr
+                    key={item.caseId}
+                    className="hover:bg-surface2"
+                    style={discharged ? { background: "#f8fafc" } : undefined}
+                  >
                     <td className="td whitespace-nowrap text-muted">{item.acceptedAt}</td>
                     <td className="td whitespace-nowrap font-mono text-[12px] font-semibold">{item.caseId}</td>
                     <td className="td font-mono font-semibold">{item.hn}</td>
                     <td className="td whitespace-nowrap font-mono text-[12px]">{item.cid}</td>
                     <td className="td whitespace-nowrap font-semibold">{item.name}</td>
                     <td className="td min-w-[240px]">{item.address}</td>
-                    <td className="td whitespace-nowrap">{item.disease}</td>
+                    <td className="td min-w-[190px]">
+                      {item.prevDisease && (
+                        <p className="text-[11px] text-faint line-through">{item.prevDisease}</p>
+                      )}
+                      <p className="whitespace-nowrap">{item.disease}</p>
+                    </td>
                     <td className="td">
                       <Chip bg={tone.bg} fg={tone.fg} dot>{item.status}</Chip>
+                      {item.dischargeNote && (
+                        <p className="mt-1 max-w-[260px] text-[11px] leading-relaxed text-faint">
+                          {item.dischargeNote}
+                        </p>
+                      )}
                     </td>
                     <td className="td min-w-[160px] whitespace-nowrap">{item.owner}</td>
                     <td className="td">
-                      <button
-                        type="button"
-                        className="btn btn-primary btn-sm whitespace-nowrap"
-                        onClick={() => setSelected(item)}
-                      >
-                        <Icon name="clipboard" size={14} /> สอบสวนควบคุมโรค
-                      </button>
+                      {discharged ? (
+                        <span className="text-[12px] text-faint">ยุติการสอบสวน</span>
+                      ) : (
+                        <button
+                          type="button"
+                          className="btn btn-primary btn-sm whitespace-nowrap"
+                          onClick={() => setSelected(item)}
+                        >
+                          <Icon name="clipboard" size={14} /> สอบสวนควบคุมโรค
+                        </button>
+                      )}
                     </td>
                   </tr>
                 );

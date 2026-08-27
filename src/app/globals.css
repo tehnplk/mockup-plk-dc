@@ -116,6 +116,11 @@ body {
   }
   .btn-primary:hover { filter: brightness(1.08); background: var(--accent, var(--central)); }
   .btn-sm { padding: 6px 11px; font-size: 12.5px; border-radius: 8px; }
+  .btn:disabled, .btn:disabled:hover {
+    opacity: 0.45;
+    cursor: not-allowed;
+    filter: none;
+  }
   .inp {
     width: 100%;
     padding: 9px 12px;

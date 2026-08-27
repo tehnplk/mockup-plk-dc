@@ -1,7 +1,11 @@
+"use client";
+
+import { useState } from "react";
 import { PageHead } from "@/components/DesktopShell";
+import LargeModal from "@/components/LargeModal";
 import { Card, Chip, Stat, Avatar } from "@/components/ui";
 import { Icon } from "@/components/icons";
-import { DISEASES } from "@/lib/mock";
+import { CASES, DISEASES, DISTRICTS, stageTone, type CaseRow } from "@/lib/mock";
 
 const RULES = [
   {
@@ -55,12 +59,306 @@ const ROLES = [
   ["ทีมภาคสนาม (Mobile)", 128, "รับเคส · บันทึกสอบสวน · แนบหลักฐาน"],
 ];
 
+/** เคสในทะเบียนจังหวัด พร้อมร่องรอยการย้ายอำเภอ (ถ้ามี) */
+type TransferCase = CaseRow & {
+  fromDistrict?: string;
+  movedAt?: string;
+  movedTo?: string;
+};
+
+const TRANSFER_REASONS = [
+  "ที่อยู่จริงของผู้ป่วยอยู่ในอำเภออื่น",
+  "หน่วยบริการปลายทางอยู่ใกล้ผู้ป่วยมากกว่า",
+  "เคสเชื่อมโยงกับ cluster ในอำเภอปลายทาง",
+  "หน่วยงานเดิมร้องขอ / เกินศักยภาพทีม",
+];
+
+/** หน่วยงานที่รับผิดชอบเคสได้ในแต่ละอำเภอ */
+function unitsOf(district: string) {
+  return [`ทีม SRRT ${district}`, `ทีม CDCU อำเภอ${district}`, `สสอ.${district}`];
+}
+
+function Toggle({ on, onChange }: { on: boolean; onChange: (v: boolean) => void }) {
+  return (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={on}
+      onClick={() => onChange(!on)}
+      className="w-9 h-5 rounded-full p-0.5 shrink-0 flex"
+      style={{
+        background: on ? "var(--accent)" : "#cbd5e1",
+        justifyContent: on ? "flex-end" : "flex-start",
+      }}
+    >
+      <span className="w-4 h-4 rounded-full bg-white" />
+    </button>
+  );
+}
+
+/** Admin จังหวัดย้ายความรับผิดชอบของเคสไปยังอำเภออื่นได้โดยตรง */
+function TransferCaseModal({
+  row,
+  onClose,
+  onConfirm,
+}: {
+  row: TransferCase;
+  onClose: () => void;
+  onConfirm: (district: string, unit: string, reason: string, keepSla: boolean) => void;
+}) {
+  const [district, setDistrict] = useState(row.district);
+  const [unit, setUnit] = useState(unitsOf(row.district)[0]);
+  const [reason, setReason] = useState(TRANSFER_REASONS[0]);
+  const [note, setNote] = useState("");
+  const [keepSla, setKeepSla] = useState(true);
+
+  const moved = district !== row.district;
+
+  return (
+    <LargeModal
+      open
+      onClose={onClose}
+      title="ย้ายเคสไปอำเภออื่น"
+      subtitle={`${row.id} · ${row.name} · ${row.disease}`}
+      footer={
+        <>
+          <span className="mr-auto text-[11.5px] text-faint">
+            ผู้ดำเนินการ: นายธนากร วงศ์วิวัฒน์ · กลุ่มงานควบคุมโรค สสจ.พิษณุโลก
+          </span>
+          <button type="button" className="btn" onClick={onClose}>ยกเลิก</button>
+          <button
+            type="button"
+            className="btn btn-primary"
+            disabled={!moved}
+            onClick={() => onConfirm(district, unit, reason, keepSla)}
+          >
+            <Icon name="check" size={15} /> ยืนยันย้ายเคส
+          </button>
+        </>
+      }
+    >
+      <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_360px]">
+        <div className="grid gap-4">
+          <Card title="เคสที่กำลังย้าย" icon="clipboard">
+            <div className="grid gap-3 sm:grid-cols-2">
+              {[
+                ["ผู้ป่วย", `${row.name} (${row.age} ปี ${row.sex})`],
+                ["โรค", row.disease],
+                ["โรงพยาบาลที่แจ้ง", row.hospital],
+                ["พื้นที่ปัจจุบัน", `ต.${row.tambon} อ.${row.district}`],
+                ["สถานะเคส", row.stage],
+                ["ทีมที่รับผิดชอบ", row.team],
+              ].map(([label, value]) => (
+                <div key={label} className="rounded-xl border border-line-brd bg-surface2 p-3">
+                  <p className="text-[11px] font-semibold text-faint">{label}</p>
+                  <p className="mt-1 text-[13px] font-medium">{value}</p>
+                </div>
+              ))}
+            </div>
+          </Card>
+
+          <Card title="อำเภอและหน่วยงานปลายทาง" icon="pin">
+            <div className="grid gap-4 sm:grid-cols-2">
+              <label>
+                <span className="lbl">อำเภอปลายทาง</span>
+                <select
+                  className="inp"
+                  value={district}
+                  onChange={(e) => {
+                    setDistrict(e.target.value);
+                    setUnit(unitsOf(e.target.value)[0]);
+                  }}
+                >
+                  {DISTRICTS.map((d) => (
+                    <option key={d} value={d}>
+                      {d}
+                      {d === row.district ? " (อำเภอปัจจุบัน)" : ""}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label>
+                <span className="lbl">หน่วยงานที่รับผิดชอบใหม่</span>
+                <select className="inp" value={unit} onChange={(e) => setUnit(e.target.value)}>
+                  {unitsOf(district).map((u) => (
+                    <option key={u} value={u}>{u}</option>
+                  ))}
+                </select>
+              </label>
+
+              <div className="sm:col-span-2">
+                <span className="lbl">เหตุผลการย้าย</span>
+                <div className="grid gap-2.5">
+                  {TRANSFER_REASONS.map((r) => (
+                    <label
+                      key={r}
+                      className="flex cursor-pointer items-center gap-3 rounded-xl border p-3"
+                      style={{
+                        borderColor: reason === r ? "var(--accent)" : "var(--border)",
+                        background: reason === r ? "color-mix(in srgb, var(--accent) 6%, #fff)" : "#fff",
+                      }}
+                    >
+                      <input
+                        type="radio"
+                        name="transfer-reason"
+                        className="sr-only"
+                        checked={reason === r}
+                        onChange={() => setReason(r)}
+                      />
+                      <span
+                        className="grid h-[18px] w-[18px] shrink-0 place-items-center rounded-full border-2"
+                        style={{ borderColor: reason === r ? "var(--accent)" : "#cbd5e1" }}
+                      >
+                        {reason === r && (
+                          <span className="h-2 w-2 rounded-full" style={{ background: "var(--accent)" }} />
+                        )}
+                      </span>
+                      <span className="text-[13px] font-medium">{r}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <label className="sm:col-span-2">
+                <span className="lbl">หมายเหตุถึงหน่วยงานปลายทาง</span>
+                <textarea
+                  className="inp min-h-[88px] resize-none"
+                  placeholder="เช่น ผู้ป่วยพักอาศัยจริงที่ ต.อรัญญิก ตั้งแต่ ก.พ. 2569 อสม. ในพื้นที่ยืนยันข้อมูลตรงกัน ขอให้ทีมปลายทางลงพื้นที่ต่อภายใน 24 ชม."
+                  value={note}
+                  onChange={(e) => setNote(e.target.value)}
+                />
+              </label>
+
+              <div className="sm:col-span-2 flex items-center gap-3 rounded-xl border border-line-brd p-3.5">
+                <Toggle on={keepSla} onChange={setKeepSla} />
+                <span className="min-w-0 flex-1">
+                  <span className="block text-[12.5px] font-semibold">คงเวลามาตรฐาน (SLA) เดิม</span>
+                  <span className="block text-[11.5px] text-muted">
+                    {keepSla
+                      ? "นับเวลาต่อเนื่องจากวันที่แจ้งเคสเดิม ไม่รีเซ็ตนาฬิกา"
+                      : "เริ่มนับ SLA ใหม่ตั้งแต่เวลาที่หน่วยงานปลายทางรับเคส"}
+                  </span>
+                </span>
+              </div>
+            </div>
+          </Card>
+        </div>
+
+        <div className="grid content-start gap-4">
+          <Card title="ผลของการย้ายเคส" icon="map">
+            <div className="flex flex-wrap items-center gap-2 text-[13px]">
+              <span className="rounded-lg bg-surface2 px-2.5 py-1.5 font-medium text-muted">
+                อ.{row.district}
+              </span>
+              <Icon name="arrowRight" size={16} />
+              <span
+                className="rounded-lg px-2.5 py-1.5 font-semibold"
+                style={{
+                  background: moved
+                    ? "color-mix(in srgb, var(--accent) 12%, #fff)"
+                    : "var(--surface-2)",
+                  color: moved ? "var(--accent)" : "var(--muted)",
+                }}
+              >
+                อ.{district}
+              </span>
+            </div>
+
+            {!moved ? (
+              <p className="mt-4 text-[12.5px] text-muted">
+                ยังเลือกอำเภอเดิมอยู่ · เลือกอำเภอปลายทางที่ต่างจากเดิมเพื่อย้ายเคส
+              </p>
+            ) : (
+              <ul className="mt-4 grid gap-2 text-[12px] leading-relaxed text-muted">
+                {[
+                  `โอนสิทธิ์การเข้าถึงเคสให้ ${unit} และตัดสิทธิ์ ${row.team}`,
+                  "แจ้งเตือนหน่วยงานต้นทางและปลายทางทันทีผ่าน Flex Message",
+                  keepSla
+                    ? "นาฬิกา SLA นับต่อเนื่อง ไม่รีเซ็ต"
+                    : "เริ่มนับ SLA ใหม่เมื่อปลายทางกดรับเคส",
+                  `ย้ายการนับสถิติจาก อ.${row.district} ไป อ.${district} ตั้งแต่สัปดาห์ปัจจุบัน`,
+                  "ย้ายเอกสารแนบและบันทึกสอบสวนทั้งหมดไปพร้อมเคส",
+                  "บันทึกผู้สั่งย้าย เวลา และเหตุผลไว้ใน Audit log",
+                ].map((t) => (
+                  <li key={t} className="flex gap-2">
+                    <span className="mt-[3px] shrink-0" style={{ color: "var(--accent)" }}>
+                      <Icon name="check" size={13} />
+                    </span>
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </Card>
+
+          <Card title="ข้อควรระวัง" icon="shield">
+            <ul className="grid gap-2 text-[12.5px] text-muted">
+              {[
+                "ย้ายได้เฉพาะเคสที่ยังไม่ปิด — เคสที่ปิดแล้วต้องเปิดเคสใหม่",
+                "ถ้าเคสอยู่ระหว่างลงพื้นที่ ให้ประสานทีมเดิมก่อนย้าย",
+                "ตัวเลขรายงานรายอำเภอย้อนหลังจะถูกคำนวณใหม่อัตโนมัติ",
+                "หน่วยงานปลายทางต้องกดรับเคสภายใน SLA ที่กำหนด",
+              ].map((t) => (
+                <li key={t} className="flex gap-2">
+                  <span className="mt-[3px] shrink-0" style={{ color: "var(--warn)" }}>
+                    <Icon name="bell" size={13} />
+                  </span>
+                  {t}
+                </li>
+              ))}
+            </ul>
+          </Card>
+        </div>
+      </div>
+    </LargeModal>
+  );
+}
+
 export default function Admin() {
+  const [cases, setCases] = useState<TransferCase[]>(CASES);
+  const [transferCase, setTransferCase] = useState<TransferCase | null>(null);
+  const [transferLog, setTransferLog] = useState<string[][]>([]);
+
+  const openCases = cases.filter((c) => c.stage !== "ปิดเคส");
+  const movedCount = cases.filter((c) => c.fromDistrict).length;
+
+  function applyTransfer(
+    target: TransferCase,
+    district: string,
+    unit: string,
+    reason: string,
+    keepSla: boolean,
+  ) {
+    setCases((prev) =>
+      prev.map((item) =>
+        item.id === target.id
+          ? {
+              ...item,
+              district,
+              team: unit,
+              fromDistrict: item.fromDistrict ?? item.district,
+              movedAt: "27 ส.ค. 2569 10:12",
+              movedTo: unit,
+            }
+          : item,
+      ),
+    );
+    setTransferLog((prev) => [
+      [
+        `ย้ายเคส ${target.id} จาก อ.${target.district} → อ.${district} (${reason}${keepSla ? "" : " · รีเซ็ต SLA"})`,
+        "นายธนากร",
+        "27 ส.ค. 10:12",
+      ],
+      ...prev,
+    ]);
+    setTransferCase(null);
+  }
+
   return (
     <>
       <PageHead
         title="ระบบกำหนดกติกาด้วย Admin"
-        desc="ตั้งกฎการทำงานอัตโนมัติ นิยามโรค มาตรฐานเวลา และสิทธิ์ผู้ใช้งานของทั้งจังหวัด"
+        desc="ย้ายเคสข้ามอำเภอ ตั้งกฎการทำงานอัตโนมัติ นิยามโรค มาตรฐานเวลา และสิทธิ์ผู้ใช้งานของทั้งจังหวัด"
         actions={
           <>
             <button className="btn btn-sm">
@@ -82,6 +380,80 @@ export default function Admin() {
 
       <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_360px]">
         <div className="flex flex-col gap-4 min-w-0">
+          <Card
+            title="ย้ายเคสไปอำเภออื่น"
+            desc="Admin จังหวัดโอนความรับผิดชอบเคสข้ามอำเภอได้โดยตรง โดยไม่ต้องรอคำร้องจากหน่วยบริการ"
+            icon="map"
+            pad={false}
+            action={
+              movedCount > 0 ? (
+                <Chip bg="#ede9fe" fg="#6d28d9">ย้ายแล้ว {movedCount} เคส</Chip>
+              ) : (
+                <Chip bg="#f1f5f9" fg="#475569">{openCases.length} เคสที่ย้ายได้</Chip>
+              )
+            }
+          >
+            <div className="scroll-x nice">
+              <table className="w-full border-collapse min-w-[900px]">
+                <thead>
+                  <tr>
+                    <th className="th">รหัสเคส</th>
+                    <th className="th">ผู้ป่วย</th>
+                    <th className="th">โรค</th>
+                    <th className="th">โรงพยาบาลที่แจ้ง</th>
+                    <th className="th">อำเภอที่รับผิดชอบ</th>
+                    <th className="th">สถานะ</th>
+                    <th className="th">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {openCases.map((c) => {
+                    const tone = stageTone[c.stage];
+                    return (
+                      <tr key={c.id} className="hover:bg-surface2">
+                        <td className="td font-mono text-[12px] font-semibold">{c.id}</td>
+                        <td className="td whitespace-nowrap font-medium">{c.name}</td>
+                        <td className="td">
+                          <span
+                            className="w-2 h-2 rounded-full inline-block mr-2 align-middle"
+                            style={{ background: c.diseaseColor }}
+                          />
+                          <span className="align-middle">{c.disease}</span>
+                        </td>
+                        <td className="td text-muted whitespace-nowrap">{c.hospital}</td>
+                        <td className="td min-w-[190px]">
+                          {c.fromDistrict && (
+                            <p className="text-[11px] text-faint line-through">อ.{c.fromDistrict}</p>
+                          )}
+                          <p className="font-medium">อ.{c.district}</p>
+                          <p className="sub">{c.team}</p>
+                        </td>
+                        <td className="td">
+                          <Chip bg={tone.bg} fg={tone.fg} dot>{c.stage}</Chip>
+                          {c.movedAt && (
+                            <p className="mt-1 text-[11px] text-faint">ย้ายเมื่อ {c.movedAt}</p>
+                          )}
+                        </td>
+                        <td className="td">
+                          <button
+                            type="button"
+                            className="btn btn-sm whitespace-nowrap"
+                            onClick={() => setTransferCase(c)}
+                          >
+                            <Icon name="map" size={14} /> ย้ายอำเภอ
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+            <p className="sub p-3.5 border-t border-line-brd">
+              แสดงเฉพาะเคสที่ยังไม่ปิด · การย้ายทุกครั้งถูกบันทึกใน Audit log และแจ้งทั้งสองหน่วยงาน
+            </p>
+          </Card>
+
           <Card
             title="กติกาการทำงานอัตโนมัติ (Rule Engine)"
             desc="เงื่อนไข → การกระทำ · ระบบตรวจสอบทุกครั้งที่มีข้อมูลเข้า"
@@ -263,6 +635,7 @@ export default function Admin() {
             <ol className="relative pl-5">
               <span className="absolute left-[5px] top-2 bottom-2 w-px bg-line-brd" />
               {[
+                ...transferLog,
                 ["ปรับเส้นเตือนภัยไข้เลือดออก 25 → 30", "นายธนากร", "26 ส.ค. 16:20"],
                 ["เปิดใช้งานกติกา R-004", "นายธนากร", "24 ส.ค. 10:05"],
                 ["เพิ่มสิทธิ์ รพ.พิษณุเวช", "ผู้ดูแลระบบ", "22 ส.ค. 09:12"],
@@ -286,6 +659,17 @@ export default function Admin() {
           </Card>
         </div>
       </div>
+
+      {transferCase && (
+        <TransferCaseModal
+          key={transferCase.id}
+          row={transferCase}
+          onClose={() => setTransferCase(null)}
+          onConfirm={(district, unit, reason, keepSla) =>
+            applyTransfer(transferCase, district, unit, reason, keepSla)
+          }
+        />
+      )}
     </>
   );
 }
